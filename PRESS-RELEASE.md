@@ -17,7 +17,7 @@
   Acrobatic Spork makes the decision for you on what to do and how to get there. You enter your constraints and we pick a place that you will love.
 
 ## Quote from You ##
-  "Sometimes you're all just to drunk to make a decision"
+  "Sometimes you're all just too drunk to make a decision"
 
 ## How to Get Started ##
   Login, enter your default destination constraints and push the button.
