@@ -2,28 +2,12 @@ import express from 'express';
 
 const app = express();
 
-app.get('/api', (req, res) => {
-  res.json({
-    shouts: [
-      'Hello World!',
-      'This is React and Webpack...',
-      'They make development fun',
-      'Another shout'
-    ]
-  });
-});
+app.use(express.static(__dirname + '/../public'));
 
-app.get('/api/test', (req, res) => {
-  res.json({
-    hello: "world"
-  });
-});
-
-app.post('/api/test/test', (req, res) => {
-  res.json({
-    hello: "world'"
-  });
-});
+app.post('/api/users/signup');
+app.post('/api/users/signin');
+app.post('/api/users/signout');
+app.post('/api/fuckit');
 
 app.listen(8080, function(err) {
   if (err)
