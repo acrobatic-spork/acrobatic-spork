@@ -18,12 +18,12 @@ module.exports = (req, res, next) => {
 
   yelp.search({ term: 'food', location: 'Montreal' })
   .then(function (data) {
-    // console.log(data);
-    yelp.business(data)
-      .then(function(business) {  
-    res.json(data);
-        console.log(business.location.coordinate);
-      });
+    console.log(data);
+    return yelp.business(data)
+  })
+  .then(function(business) {  
+    res.send(200);
+    // console.log(business.location.coordinate);
   })
   .catch(function (err) {
     console.error(err);
