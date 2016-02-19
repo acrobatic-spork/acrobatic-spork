@@ -7,10 +7,12 @@ class Signin extends React.Component {
   }
   handleSubmit (e) {
     e.preventDefault();
-    this.props.onSubmit(this.refs.username.getDOMNode().value, this.refs.password.getDOMNode().value);
+    this.props.onSubmit(this.refs.username.value, this.refs.password.value);
   }
 
   render() {
+    console.log('in signin.js');
+
     return (
       <div className="">
         <form className="loginform" onSubmit={this.handleSubmit.bind(this)} >

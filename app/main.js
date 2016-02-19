@@ -1,5 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/App.js';
+import { render } from 'react-dom'
+import { Router, Route, Link, browserHistory } from 'react-router'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import App from './components/App.js';
+import Signin from './components/Signin.js'
+import Dashboard from './components/dashboardView.js'
+
+render((
+  <Router history={ browserHistory }>
+    <Route path="/" component={ App }/>
+    <Route path="/signin" component={ Signin }/>
+    <Route path="/dashboard" component={ Dashboard }/>
+  </Router>
+  ), document.getElementById('root'))
+
