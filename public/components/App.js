@@ -5,10 +5,9 @@ class App extends React.Component {
     this.state = {};
   }
 
-  loginSubmit (e) {
-    e.preventDefault()
-    console.log('logging in...');
-    
+  loginSubmit (username, password) {
+    //$.ajax();
+    console.log('logging in with username ' + username + ' and password ' + password);
   }
 
   render () {
