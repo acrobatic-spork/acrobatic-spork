@@ -9,7 +9,6 @@ const yelp = new Yelp({
 
 
 module.exports = (req, res, next) => {
-  console.log('yelp api request', req.body);
 
   // const location = req.body.location;
   // search term
@@ -18,12 +17,11 @@ module.exports = (req, res, next) => {
 
   yelp.search({ term: 'food', location: 'Montreal' })
   .then(function (data) {
-    console.log(data);
-    return yelp.business(data)
+    return yelp.business(data.businesses[0].id)
   })
   .then(function(business) {  
-    res.send(200);
-    // console.log(business.location.coordinate);
+    // TODO: send location to uber
+    res.json(business.location.coordinate);
   })
   .catch(function (err) {
     console.error(err);
