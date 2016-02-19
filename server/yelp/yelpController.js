@@ -18,18 +18,15 @@ var Yelp = function (req, res, next) {
   // $$$$
   // rating
 
-yelp.search({ term: 'food', location: 'Montreal' })
-.then(function (data) {
-  console.log(data);
-  yelp.business(data)
-    .then(function(business) {
-      console.log(business.location.coordinate);
-    });
-})
-.catch(function (err) {
-  console.error(err);
-});
-  
-
-
+  yelp.search({ term: 'food', location: 'Montreal' })
+  .then(function (data) {
+    console.log(data);
+    yelp.business(data)
+      .then(function(business) {
+        console.log(business.location.coordinate);
+      });
+  })
+  .catch(function (err) {
+    console.error(err);
+  });
 };
