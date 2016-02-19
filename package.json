@@ -7,7 +7,8 @@
     "express": "^4.13.4",
     "mongodb": "^2.1.7",
     "mongoose": "^4.4.4",
-    "passport-uber": "0.0.1"
+    "passport-uber": "0.0.1",
+    "yelp": "^1.0.1"
   },
   "devDependencies": {},
   "scripts": {
