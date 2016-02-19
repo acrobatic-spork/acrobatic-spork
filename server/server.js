@@ -9,14 +9,10 @@ const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = isDeveloping ? 3000 : process.env.PORT;
 const app = express();
 
-// I think the import takes care of this
-// const express = require('express');
 const yelp = require('./yelp/yelpController');
 const passport = require('passport');
 const uberStrategy = require('passport-uber');
 const request = require('request');
-
-// const app = express();
 
 if (isDeveloping) {
   const compiler = webpack(config);
@@ -65,9 +61,3 @@ app.listen(port, '0.0.0.0', function onStart(err) {
   }
   console.info('==> 🌎 Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', port, port);
 });
-
-// app.listen(8080, function(err) {
-//   if (err)
-//     return console.log(err);
-//   console.log('running on localhost:8080');
-// });
