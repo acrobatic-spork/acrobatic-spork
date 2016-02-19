@@ -12,6 +12,8 @@ var UserSchema = new mongoose.Schema({
     required: true
   },
 
+  uberToken: String,
+
   preferences: {
     maxCost: {
       type: Number,
