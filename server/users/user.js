@@ -47,7 +47,7 @@ var dummyUser = {
     minRating: 1,
     maxMiles: 60,
     faster: false,
-    foodTypes: ['pizza', 'crap', 'other'],
+    foodTypes: ['pizza', 'crap'],
   }
 };
 
