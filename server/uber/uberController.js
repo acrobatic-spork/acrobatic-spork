@@ -8,7 +8,7 @@ var server_token = '1C_9lI-9D2E1K3OuFqH9EeayNcoWzAJendBM3BfT';
 var endpoint = 'https://sandbox-api.uber.com/v1/sandbox/requests';
 
 
-var Uber = function (startLoc, endLoc, Bearer) {
+var Uber = (startLoc, endLoc, Bearer) => {
 
   // start_latitude
   // start_longitude

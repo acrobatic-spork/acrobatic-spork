@@ -12,6 +12,8 @@ var UserSchema = new mongoose.Schema({
     required: true
   },
 
+  uberToken: String,
+
   preferences: {
     maxCost: {
       type: Number,
@@ -45,12 +47,12 @@ var dummyUser = {
     minRating: 1,
     maxMiles: 60,
     faster: false,
-    foodTypes: ['pizza', 'crap', 'other'],
+    foodTypes: ['pizza', 'crap'],
   }
 };
 
 
-User.seed = function() {
+User.seed = () => {
   User.remove({}, function() {
     User.collection.insert(dummyUser, function(err, user) {
       if (err) {
