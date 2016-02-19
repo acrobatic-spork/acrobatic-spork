@@ -11,8 +11,8 @@ module.exports = {
     path.join(__dirname, 'app/main.js')
   ],
   output: {
-    path: path.join(__dirname, '/dist/'),
-    filename: '[name].js',
+    path: path.join(__dirname, '/public/'),
+    filename: 'acrobaticspork',
     publicPath: '/'
   },
   plugins: [
