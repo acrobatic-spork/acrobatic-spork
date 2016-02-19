@@ -4,6 +4,8 @@ import webpack from 'webpack';
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from '../webpack.config.js';
+import mongoose from 'mongoose';
+import User from './users/user'
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = isDeveloping ? 3000 : process.env.PORT;
@@ -54,6 +56,10 @@ app.get('/auth/uber', function(req, res, next) {
     console.log('-------------------------------', err, response);
   });
 });
+
+mongoose.connect('mongodb://localhost/spork');
+User.seed();
+
 
 app.listen(port, '0.0.0.0', function onStart(err) {
   if (err) {
