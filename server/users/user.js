@@ -52,7 +52,7 @@ var dummyUser = {
 };
 
 
-User.seed = function() {
+User.seed = () => {
   User.remove({}, function() {
     User.collection.insert(dummyUser, function(err, user) {
       if (err) {
