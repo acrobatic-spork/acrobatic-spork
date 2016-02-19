@@ -4,14 +4,17 @@
   "description": "App for taking you on an adventure nearby",
   "main": "gulpfile.babel.js",
   "dependencies": {
+    "babel": "^6.5.2",
     "express": "^4.13.4",
     "mongodb": "^2.1.7",
     "mongoose": "^4.4.4",
+    "passport": "^0.3.2",
     "passport-uber": "0.0.1",
     "yelp": "^1.0.1",
     "babel-cli": "^6.4.0",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "react-dom": "^0.14.3",
+    "request": "^2.69.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
