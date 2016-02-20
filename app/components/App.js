@@ -20,12 +20,11 @@ class App extends React.Component {
    return (
       <div>
         <ul>
-         <li>
-            <Link to="/signin">Sign in</Link>
-         </li>
+         <li><Link to="/signin">Sign in</Link></li>
          <li><Link to="/dashboard">Dashboard</Link> </li>
          <li><Link to="/spork">Spork Now</Link> </li>
        </ul>
+       {this.props.children}
       </div>
     )
   }
