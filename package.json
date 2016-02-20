@@ -6,11 +6,13 @@
   "dependencies": {
     "babel": "^6.5.2",
     "babel-cli": "^6.4.0",
+    "bcrypt": "^0.8.5",
     "express": "^4.13.4",
     "mongodb": "^2.1.7",
     "mongoose": "^4.4.4",
     "passport": "^0.3.2",
     "passport-uber": "0.0.1",
+    "q": "^1.4.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-router": "^2.0.0",
