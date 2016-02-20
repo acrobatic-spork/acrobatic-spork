@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom'
 import { Router, Route, Link, browserHistory } from 'react-router'
 
-import App from './components/App.js';
+import App from './components/App.js'
 import Signin from './components/Signin.js'
 import Dashboard from './components/dashboardView.js'
 
