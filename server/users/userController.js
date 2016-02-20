@@ -3,7 +3,6 @@ import crypto from 'crypto';
 import bcrypt from 'bcrypt-nodejs';
 import Promise from 'bluebird';
 import jwt from 'jwt-simple';
-
 import User from './user';
 
 
@@ -14,7 +13,7 @@ const Controller = {};
 
 // Promisify a few mongoose methods with the `q` promise library
 // var findUser = Q.nbind(User.findOne, User);
-// var User.creatAsync = Q.nbind(User.create, User);
+// var User.createAsync = Q.nbind(User.create, User);
 
 var sendUserInfo = (user, req, res, next) => {
 
@@ -27,7 +26,7 @@ var sendUserInfo = (user, req, res, next) => {
   var token = jwt.encode(user, 'secret');
   res.json({
     token: token,
-    user: responseUser
+    user: user
   })
 };
 
@@ -59,6 +58,8 @@ Controller.signin = function(req, res, next) {
 Controller.signup = function(req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
+  console.log('--------------------------req.body: '+ JSON.stringify(req.body));
+
 
   // check to see if user already exists
   User.findOneAsync({ username: username })
@@ -66,15 +67,15 @@ Controller.signup = function(req, res, next) {
       if (user) {
         next(new Error('User already exists!'));
       } else {
-        // make a new user if not one
-        return User.creatAsync({
+          // make a new user if not one
+        return User.createAsync({
           username: username,
           password: password
         });
       }
     })
     .then(function(user) {
-      sendUserInfo(foundUser, req, res, next);
+      sendUserInfo(user, req, res, next);
     })
     .catch(function(error) {
       next(error);
@@ -122,3 +123,6 @@ Controller.checkAuth = function(req, res, next) {
       });
   }
 };
+
+
+export default Controller;
