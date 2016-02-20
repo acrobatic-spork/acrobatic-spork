@@ -1,4 +1,6 @@
 import React from 'react';
+import { browserHistory, Router, Route, Link } from 'react-router'
+
 
 class Dashboard extends React.Component {
   constructor(props){
@@ -15,6 +17,8 @@ class Dashboard extends React.Component {
           <div className='distance'>Distance: 5mi</div>
           <div className='category'>Restaurants</div>
         </div>
+        <Link to="/categories">Category</Link>          
+        { this.props.children }
       </div>
       )
   }
