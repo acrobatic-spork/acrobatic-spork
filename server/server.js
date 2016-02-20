@@ -5,16 +5,30 @@ import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from '../webpack.config.js';
 import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
 import User from './users/user'
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = isDeveloping ? 3000 : process.env.PORT;
 const app = express();
 
-const yelp = require('./yelp/yelpController');
-const passport = require('passport');
-const uberStrategy = require('passport-uber');
-const request = require('request');
+import yelp from './yelp/yelpController';
+import passport from 'passport';
+import uberStrategy from 'passport-uber';
+import request from 'request';
+
+
+
+// get all data/stuff of the body (POST) parameters
+// parse application/json 
+app.use(bodyParser.json()); 
+
+// parse application/vnd.api+json as json
+app.use(bodyParser.json({ type: 'application/vnd.api+json' })); 
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true })); 
+
 
 if (isDeveloping) {
   const compiler = webpack(config);
@@ -44,18 +58,24 @@ if (isDeveloping) {
   });
 }
 
-app.post('/api/users/signup');
-app.post('/api/users/signin');
-app.post('/api/users/signout');
-app.post('/api/yelp', yelp);
 
 
-app.get('/auth/uber', function(req, res, next) {
-  console.log('..............', req.query.code);
-  request.post("https://login.uber.com/oauth/v2/token?code=" + req.query.code + "&redirect_uri=http://localhost:8080/auth/uber&client_id=x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m&client_secret=9ddASgYXll_qHgdq7XxWtV0iG7AQfpAwGFh-sFL0&grant_type=authorization_code", function(err, response) {
-    console.log('-------------------------------', err, response);
-  });
-});
+
+import router from './routes.js';
+router(app, express);
+
+// app.post('/api/users/signup');
+// app.post('/api/users/signin');
+// app.post('/api/users/signout');
+// app.post('/api/yelp', yelp);
+
+
+// app.get('/auth/uber', function(req, res, next) {
+//   console.log('..............', req.query.code);
+//   request.post("https://login.uber.com/oauth/v2/token?code=" + req.query.code + "&redirect_uri=http://localhost:8080/auth/uber&client_id=x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m&client_secret=9ddASgYXll_qHgdq7XxWtV0iG7AQfpAwGFh-sFL0&grant_type=authorization_code", function(err, response) {
+//     console.log('-------------------------------', err, response);
+//   });
+// });
 
 mongoose.connect('mongodb://localhost/spork');
 User.seed();
