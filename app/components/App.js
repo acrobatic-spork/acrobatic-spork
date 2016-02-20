@@ -24,6 +24,7 @@ class App extends React.Component {
             <Link to="/signin">Sign in</Link>
          </li>
          <li><Link to="/dashboard">Dashboard</Link> </li>
+         <li><Link to="/spork">Spork Now</Link> </li>
        </ul>
       </div>
     )
