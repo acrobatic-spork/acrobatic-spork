@@ -7,6 +7,8 @@ import Signin from './components/Signin.js'
 import Dashboard from './components/dashboardView.js'
 import Spork from './components/SporkView.js'
 import Categories from './components/CategoriesView.js'
+import Uber from './components/ConnectUberView.js'
+
 
 
 render((
@@ -17,6 +19,7 @@ render((
         <Route path="/categories" component={ Categories }/>
       </Route>
       <Route path="/spork" component={ Spork }/>
+      <Route path="/uber" component={ Uber }/>
     </Route>
   </Router>
   ), document.getElementById('root'))
