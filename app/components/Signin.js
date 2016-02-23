@@ -21,14 +21,14 @@ class Signin extends React.Component {
   handleSignup (e) {
     e.preventDefault();
     var url = 'http://0.0.0.0:8080/api/users/signup';
-    Auth.confirmUser(this.refs.username.value, this.refs.password.value, (loggenIn) => {
-      console.log('handlesignup working', loggenIn);
+    Auth.confirmUser(this.refs.username.value, this.refs.password.value, (loggedIn) => {
+      console.log('handlesignup working', loggedIn);
 
     }, url);
   }
 
   render() {
-    console.log('Preferences passed down: ', this.props.)
+    console.log('Preferences passed down: ', this.props)
     return (
       <div className="">
         <form className="loginform" >

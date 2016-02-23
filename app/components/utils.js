@@ -22,12 +22,12 @@ utils.sendAuthRequest = (username, password, url, cb) => {
       cb({authenticated:false})
     }
   }); 
-}
+};
 
-utils.updatePrefs = (prefs, cb) => {
+utils.updatePrefs = (prefs, username, cb) => {
   $.ajax({
-    url: '/api/users',
-    beforeSend: function (request)
+    url: '/api/users/username='+'username',
+    beforeSend: function (request){
       if(Auth.loggedIn()){
         request.setRequestHeader("x-access-token", authorizationToken);
       }
@@ -42,4 +42,4 @@ utils.updatePrefs = (prefs, cb) => {
      cb(false) 
     }
   })
-}
+};

@@ -19,7 +19,8 @@ class Dashboard extends React.Component {
     };
     // Do a put request to update the user's prefs
       // on done, change the state
-    utils.updatePrefs(prefs, (updated) => {
+    var username = this.props.getUsername();
+    utils.updatePrefs(prefs, username, (updated) => {
       if (updated) {
         this.props.updatePreferences(prefs);
       } else {

@@ -35,6 +35,10 @@ class App extends React.Component {
     });
   }
 
+  getUsername(){
+    return this.state.user;
+  }
+
 
   render () {
     console.log('in app.js');
@@ -43,6 +47,7 @@ class App extends React.Component {
               updateUser: this.updateUser.bind(this),
               updatePreferences: this.updatePreferences,
               updateUberStatus: this.updateUberStatus,
+              getUsername: this.getUsername,
               ...this.props });
           });
     console.log('in app.js');
