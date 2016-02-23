@@ -9,7 +9,9 @@ class Dashboard extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault();
-    this.props.onSubmit(this.refs.username.value, this.refs.password.value);
+    // Get the values from the form
+    // Do a put request to update the user's prefs
+      // on done, change the state
   }
 
   render (){
