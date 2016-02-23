@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcrypt-nodejs';
-import Promise from 'bluebird';
-const SALT_WORK_FACTOR = 13;
+var mongoose = require ('mongoose');
+var bcrypt = require ('bcrypt-nodejs');
+var Promise = require ('bluebird');
+// var SALT_WORK_FACTOR = 13;
 
 var UserSchema = new mongoose.Schema({
   username: {
@@ -106,6 +106,7 @@ var dummyUser = {
     foodTypes: ['pizza', 'crap'],
   }
 };
+
 User.seed = function () {
   User.remove({}, function () {
     User.collection.insert(dummyUser, function(err, user) {
@@ -118,4 +119,4 @@ User.seed = function () {
   }); 
 };
 
-export default User;
+module.exports = User;
