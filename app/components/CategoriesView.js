@@ -6,7 +6,6 @@ class Categories extends React.Component {
     super(props);
   }
   
-
   
   render (){
 
@@ -16,9 +15,9 @@ class Categories extends React.Component {
                         )
     
     return (
-      <div>
+      <ul>
       { categoryViews }
-      </div>)
+      </ul>)
   }
 }
 export default Categories
