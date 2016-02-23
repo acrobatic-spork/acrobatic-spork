@@ -7,6 +7,8 @@ class Dashboard extends React.Component {
     super(props);
   }
 
+  // add state to track selected cats?
+
   handleSubmit (e) {
     e.preventDefault();
     // Get the values from the form
