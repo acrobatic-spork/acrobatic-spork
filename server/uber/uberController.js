@@ -1,14 +1,22 @@
+import request from 'request';
 
+const client_id = 'x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m';
+const client_secret = '9ddASgYXll_qHgdq7XxWtV0iG7AQfpAwGFh-sFL0';
 
-var client_id = 'x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m';
-var client_secret = '9ddASgYXll_qHgdq7XxWtV0iG7AQfpAwGFh-sFL0';
+const server_token = '1C_9lI-9D2E1K3OuFqH9EeayNcoWzAJendBM3BfT';
 
-var server_token = '1C_9lI-9D2E1K3OuFqH9EeayNcoWzAJendBM3BfT';
+const endpoint = 'https://sandbox-api.uber.com/v1/sandbox/requests';
 
-var endpoint = 'https://sandbox-api.uber.com/v1/sandbox/requests';
+const Uber = {};
 
+Uber.getToken = function(req, res, next) {
+  console.log('..............', req.query.code);
+  request.post("https://login.uber.com/oauth/v2/token?code=" + req.query.code + "&redirect_uri=http://localhost:8080/auth/uber&client_id=x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m&client_secret=9ddASgYXll_qHgdq7XxWtV0iG7AQfpAwGFh-sFL0&grant_type=authorization_code", function(err, response) {
+    console.log('-------------------------------', err, response.body);
+  });
+}
 
-var Uber = (startLoc, endLoc, Bearer) => {
+Uber.requestCar = (startLoc, endLoc, Bearer) => {
 
   // start_latitude
   // start_longitude
@@ -30,3 +38,5 @@ var Uber = (startLoc, endLoc, Bearer) => {
    "eta": 5,
    "surge_multiplier": null
 }*/
+
+export default Uber;
