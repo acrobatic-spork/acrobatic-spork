@@ -21,7 +21,7 @@ class Signin extends React.Component {
   }
 
   render() {
-
+    console.log('Preferences passed down: ', this.props.preferences)
     return (
       <div className="">
         <form className="loginform" >

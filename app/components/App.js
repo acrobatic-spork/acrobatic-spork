@@ -44,6 +44,7 @@ class App extends React.Component {
               updatePreferences: this.updatePreferences,
               updateUberStatus: this.updateUberStatus,
               ...this.props });
+
           });
    return (
       <div>
@@ -55,8 +56,8 @@ class App extends React.Component {
        </ul>
        {childrenWithProps}
       </div>
-    )
+      )
+    }
   }
-}
   
 export default App;
