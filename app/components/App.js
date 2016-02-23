@@ -10,13 +10,6 @@ class App extends React.Component {
     this.state = {};
   }
 
-  // loginSubmit (username, password) {
-  //   //$.ajax();
-  //   console.log('logging in with username ' + username + ' and password ' + password);
-  // }
-
-  
-
   render () {
     console.log('in app.js');
    return (
