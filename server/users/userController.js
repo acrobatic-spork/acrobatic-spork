@@ -111,6 +111,20 @@ Controller.getUser = function (req, res, next) {
     });
 };
 
+Controller.updatePrefs = function (req, res, next) {
+  console.log('update prefs in userController', req.body);
+  var query = req.params.username;
+  var prefsToUpdate = req.body;
+  var options = { new: true };
+  User.findOneAndUpdateAsync(query, prefsToUpdate, options)
+    .then(function (updatedPrefs) {
+      console.log('Prefences Updated: ', updatedPrefs);
+      res.json(updatedPrefs);
+    })
+    .catch(function (err) {
+      next(err);
+    });
+}
 
 Controller.checkAuth = function(req, res, next) {
   // checking to see if the user is authenticated
