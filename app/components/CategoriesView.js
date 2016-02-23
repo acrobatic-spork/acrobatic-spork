@@ -15,9 +15,9 @@ class Categories extends React.Component {
                         )
     
     return (
-      <div>
+      <ul>
       { categoryViews }
-      </div>)
+      </ul>)
   }
 }
 export default Categories

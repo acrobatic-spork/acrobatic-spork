@@ -1,9 +1,9 @@
 import React from 'react'
 
 const Category = (props) => (
-    <div> 
+    <li> 
        <input className="category-input" type="checkbox" value="{props.name}"/>{props.name}
-    </div>
+    </li>
   )
 
 export default Category
