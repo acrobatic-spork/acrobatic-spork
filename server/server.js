@@ -9,7 +9,8 @@ import bodyParser from 'body-parser';
 import User from './users/user'
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
-const port = isDeveloping ? 3000 : process.env.PORT;
+// const port = isDeveloping ? 3000 : process.env.PORT;
+const port = 8080;
 const app = express();
 
 import yelp from './yelp/yelpController';
@@ -64,18 +65,18 @@ if (isDeveloping) {
 import router from './routes.js';
 router(app, express);
 
-// app.post('/api/users/signup');
-// app.post('/api/users/signin');
-// app.post('/api/users/signout');
-// app.post('/api/yelp', yelp);
+app.post('/api/users/signup');
+app.post('/api/users/signin');
+app.post('/api/users/signout');
+app.post('/api/yelp', yelp);
 
 
-// app.get('/auth/uber', function(req, res, next) {
-//   console.log('..............', req.query.code);
-//   request.post("https://login.uber.com/oauth/v2/token?code=" + req.query.code + "&redirect_uri=http://localhost:8080/auth/uber&client_id=x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m&client_secret=9ddASgYXll_qHgdq7XxWtV0iG7AQfpAwGFh-sFL0&grant_type=authorization_code", function(err, response) {
-//     console.log('-------------------------------', err, response);
-//   });
-// });
+app.get('/auth/uber', function(req, res, next) {
+  console.log('..............', req.query.code);
+  request.post("https://login.uber.com/oauth/v2/token?code=" + req.query.code + "&redirect_uri=http://localhost:8080/auth/uber&client_id=x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m&client_secret=9ddASgYXll_qHgdq7XxWtV0iG7AQfpAwGFh-sFL0&grant_type=authorization_code", function(err, response) {
+    console.log('-------------------------------', err, response);
+  });
+});
 
 mongoose.connect('mongodb://localhost/spork');
 User.seed();
