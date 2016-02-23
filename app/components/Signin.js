@@ -10,11 +10,14 @@ class Signin extends React.Component {
   handleSignin (e) {
     e.preventDefault();
     //confirmUser(this.refs.username.value, this.refs.password.value);
+    this.props.updateUser(this.refs.username.value);
   }
 
   handleSignup (e) {
     e.preventDefault();
     //addUser(this.refs.username.value, this.refs.password.value);
+    this.props.updateUser(this.refs.username.value);
+
   }
 
   render() {
