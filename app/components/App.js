@@ -12,9 +12,9 @@ class App extends React.Component {
 
   render () {
     console.log('in app.js');
-     var childrenWithProps = React.Children.map(this.props.children, (child) => {
-            return React.cloneElement(child, { ...this.props });
-          });
+     // var childrenWithProps = React.Children.map(this.props.children, (child) => {
+     //        return React.cloneElement(child, { ...this.props });
+     //      });
    return (
       <div>
         <ul>

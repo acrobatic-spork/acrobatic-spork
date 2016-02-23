@@ -29,6 +29,7 @@ module.exports = {
     })
   ],
   module: {
+    noParse: /validate\.js/,
     loaders: [{
       test: /\.js?$/,
       exclude: /node_modules/,
