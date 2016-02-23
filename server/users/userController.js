@@ -99,6 +99,18 @@ Controller.getUsername = function(username, req, res, next) {
     });
 };
 
+Controller.getUser = function (req, res, next) {
+  console.log('-------------', req.query);
+  User.findOneAsync({ username: req.query.username })
+    .then(function (user) {
+      console.log(token);
+      res.json(user);
+    })
+    .catch(function (err) {
+      next(err);
+    });
+};
+
 
 Controller.checkAuth = function(req, res, next) {
   // checking to see if the user is authenticated
