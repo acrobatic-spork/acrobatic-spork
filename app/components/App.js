@@ -44,8 +44,9 @@ class App extends React.Component {
               updatePreferences: this.updatePreferences,
               updateUberStatus: this.updateUberStatus,
               ...this.props });
-
           });
+    console.log('in app.js');
+    // console.log('children: ',  this.props.children)
    return (
       <div>
         <ul>
