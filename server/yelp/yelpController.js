@@ -9,9 +9,15 @@ const yelp = new Yelp({
 });
 
 module.exports = (req, res, next) => {
-
+  const yelpQuery = {
+    term: req.body.term,
+    ll: req.body.lat + ',' + lon,
+    sort: 2,
+    redius_filter: req.body.radius,
+    category_filter: req.body.categories
+  }
   // const location = req.body.location;
-  // search term
+  // search term 
   // $$$$
   // rating
 

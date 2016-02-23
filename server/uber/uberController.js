@@ -1,10 +1,9 @@
 import request from 'request';
+import User from '../users/user';
 
 const client_id = 'x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m';
 const client_secret = '9ddASgYXll_qHgdq7XxWtV0iG7AQfpAwGFh-sFL0';
-
 const server_token = '1C_9lI-9D2E1K3OuFqH9EeayNcoWzAJendBM3BfT';
-
 const endpoint = 'https://sandbox-api.uber.com/v1/sandbox/requests';
 
 const Uber = {};
