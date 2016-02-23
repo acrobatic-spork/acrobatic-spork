@@ -5,13 +5,13 @@ class Signin extends React.Component {
   constructor(props) {
     super(props);
   }
+
   handleSubmit (e) {
     e.preventDefault();
     this.props.onSubmit(this.refs.username.value, this.refs.password.value);
   }
 
   render() {
-    console.log('in signin.js');
 
     return (
       <div className="">
