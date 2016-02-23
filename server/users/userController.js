@@ -7,7 +7,7 @@ import User from './user';
 
 
 Promise.promisifyAll(User);
-const Controller = {};
+var Controller = {};
 
 // var Q = require('q');
 
