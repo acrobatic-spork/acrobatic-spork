@@ -13,9 +13,11 @@
     "bluebird": "^3.3.1",
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
+    "fs": "0.0.2",
     "jwt-simple": "^0.4.1",
     "mongodb": "^2.1.7",
     "mongoose": "^4.4.4",
+    "net": "^1.0.2",
     "passport": "^0.3.2",
     "passport-uber": "0.0.1",
     "q": "^1.4.1",
@@ -23,6 +25,7 @@
     "react-dom": "^0.14.3",
     "react-router": "^2.0.0",
     "request": "^2.69.0",
+    "tls": "0.0.1",
     "yelp": "^1.0.1"
   },
   "devDependencies": {
