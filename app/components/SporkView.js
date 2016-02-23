@@ -28,4 +28,4 @@ class Spork extends React.Component {
   }
 }
 
-export default Spork
+export default Spork;
