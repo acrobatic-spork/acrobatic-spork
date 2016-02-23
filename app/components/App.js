@@ -22,6 +22,7 @@ class App extends React.Component {
   }
 
   updateUser(name) {
+    console.log("The user is now: ", name);
     this.setState({
       user: name
     });
@@ -33,10 +34,15 @@ class App extends React.Component {
     });
   }
 
+
   render () {
     console.log('in app.js');
      var childrenWithProps = React.Children.map(this.props.children, (child) => {
-            return React.cloneElement(child, { ...this.props });
+            return React.cloneElement(child, { 
+              updateUser: this.updateUser.bind(this),
+              updatePreferences: this.updatePreferences,
+              updateUberStatus: this.updateUberStatus,
+              ...this.props });
           });
    return (
       <div>
@@ -46,7 +52,7 @@ class App extends React.Component {
          <li><Link to="/spork">Spork Now</Link> </li>
          <li><Link to="/uber">Connect Uber</Link> </li>
        </ul>
-       {this.props.children}
+       {childrenWithProps}
       </div>
     )
   }
