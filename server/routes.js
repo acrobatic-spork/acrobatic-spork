@@ -11,6 +11,7 @@ var router = (app, express) => {
   app.get('/api/users/signedin', userController.checkAuth);
   app.post('/api/users/signout');
   app.post('/api/yelp', yelp);
+  app.post('/api/uber', Uber.requestCar);
   app.get('/auth/uber', Uber.getToken);
 };
 export default router;

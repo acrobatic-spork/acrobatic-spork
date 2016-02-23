@@ -1,4 +1,5 @@
-const Yelp = require('yelp');
+import Yelp from 'yelp';
+import request from 'request';
 
 const yelp = new Yelp({
   consumer_key: 'mcOd7miyFhdp6Cz1L-oD9w',
@@ -21,7 +22,16 @@ module.exports = (req, res, next) => {
   })
   .then(function(business) {  
     // TODO: send location to uber
-    res.json(business.location.coordinate);
+    request.post({ 
+      uri: 'http://localhost:8080/api/uber', 
+      body: {
+        endLoc: business.location.coordinate,
+        startLoc: req.body.location
+      },
+      json: true
+    } , function(err, response) {
+      console.log('yelp to uber request response', err, response);
+    });
   })
   .catch(function (err) {
     console.error(err);
