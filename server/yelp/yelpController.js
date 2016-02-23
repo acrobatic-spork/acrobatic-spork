@@ -1,14 +1,15 @@
-import Yelp from 'yelp';
-import request from 'request';
+var Yelp = require ('yelp');
+var uberController = require ('./uber/uberController');
+var request = require ('request');
 
-const yelp = new Yelp({
+var yelp = new Yelp({
   consumer_key: 'mcOd7miyFhdp6Cz1L-oD9w',
   consumer_secret: 'RXwVPYUZropBN8uT9OpUNfVx-u4',
   token: 'qgA95Qm5YSrXItKRTxcR1iNWERcowxow',
   token_secret: 'z85acpirffZVzb-PzqvyDqkcp58',
 });
 
-module.exports = (req, res, next) => {
+module.exports = function (req, res, next) {
   // receive location and username from client. Go to the DB for everything else
   console.log(req.body);
 
@@ -20,13 +21,13 @@ module.exports = (req, res, next) => {
         sort: 2,
         radius_filter: userObj.radius,
         category_filter: userObj.categories
-      }
+      };
     })
     .then(function (yelpQuery) {
-      return yelp.search(yelpQuery)
+      return yelp.search(yelpQuery);
     })
     .then(function (data) {
-      return yelp.business(data.businesses[0].id)
+      return yelp.business(data.businesses[0].id);
     })
     .then(function(business) {
       request.post({ 

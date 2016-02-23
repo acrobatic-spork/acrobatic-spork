@@ -1,9 +1,9 @@
-import request from 'request';
-import crypto from 'crypto';
-import bcrypt from 'bcrypt-nodejs';
-import Promise from 'bluebird';
-import jwt from 'jwt-simple';
-import User from './user';
+var request = require('request');
+var crypto = require('crypto');
+var bcrypt = require('bcrypt-nodejs');
+var Promise = require('bluebird');
+var jwt = require('jwt-simple');
+var User = require('./user');
 
 
 Promise.promisifyAll(User);
@@ -15,7 +15,7 @@ var Controller = {};
 // var findUser = Q.nbind(User.findOne, User);
 // var User.createAsync = Q.nbind(User.create, User);
 
-var sendUserInfo = (user, req, res, next) => {
+var sendUserInfo = function (user, req, res, next) {
 
 
   // GET USER INFO TO SEND
@@ -27,7 +27,7 @@ var sendUserInfo = (user, req, res, next) => {
   res.json({
     token: token,
     user: user
-  })
+  });
 };
 
 
@@ -137,4 +137,4 @@ Controller.checkAuth = function(req, res, next) {
 };
 
 
-export default Controller;
+module.exports = Controller;
