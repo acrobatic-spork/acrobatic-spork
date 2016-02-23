@@ -14,11 +14,19 @@ class App extends React.Component {
     };
   }
 
+
+
   updatePreferences(newPrefs) {
-    console.log(JSON.stringify(newPrefs));
-    this.setState({
-      // add or replace preferences with prefs passed in
-      preferences: this.state.preferences.extend(newPrefs)
+
+    var extendPrefs = (oldPrefs, newPrefs) => {
+      var preferences = Object.create(oldPrefs);
+      for(var p in this.state.preferences) {
+        preferences[p] = newPrefs[p];
+      }
+    };
+
+    this.setState(function(previousState) {
+      preferences: extendPrefs(previousState, newPrefs);
     });
   }
 

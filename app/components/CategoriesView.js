@@ -10,8 +10,8 @@ class Categories extends React.Component {
   render (){
 
     var categories = ['Mexican', 'Italian', 'Bars', 'Pizza']
-    var categoryViews = categories.map( category => 
-                          <CategoryView name={ category }/>
+    var categoryViews = categories.map( (category, i) => 
+                          <CategoryView name={ category } key={ i }/>
                         )
     
     return (
