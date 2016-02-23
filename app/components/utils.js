@@ -29,7 +29,7 @@ utils.updatePrefs = (prefs, username, cb) => {
     url: '/api/users/username='+'username',
     beforeSend: function (request){
       if(Auth.loggedIn()){
-        request.setRequestHeader("x-access-token", authorizationToken);
+        request.setRequestHeader("x-access-token", Auth.getToken());
       }
     },
     method: 'POST',
