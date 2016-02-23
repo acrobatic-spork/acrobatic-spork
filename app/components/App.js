@@ -7,7 +7,30 @@ class App extends React.Component {
   
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      user: null,
+      preferences: {},
+      uberStatus: null
+    };
+  }
+
+  updatePreferences(newPrefs) {
+    this.setState({
+      // add or replace preferences with prefs passed in
+      preferences: this.state.preferences.extend(newPrefs)
+    });
+  }
+
+  updateUser(name) {
+    this.setState({
+      user: name
+    });
+  }
+
+  updateUberStatus(status) {
+    this.setState({
+      uberStatus: status
+    });
   }
 
   render () {
