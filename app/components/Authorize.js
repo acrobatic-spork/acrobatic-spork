@@ -1,14 +1,14 @@
 import $ from 'jquery';
 
 var Auth = {
-  confirmUser(username, password, cb) {
-    cb = arguments[arguments.length - 1]
+  confirmUser(username, password, cb, url) {
+    url = url || 'http://0.0.0.0:8080/api/users/signin'
     if (localStorage.token) {
       if (cb) cb(true)
       this.onChange(true)
       return
     }
-    sendRequest(username, password, (res) => {
+    sendRequest(username, password, url, (res) => {
       if (res.authenticated) {
         localStorage.token = res.token
         if (cb) cb(true)
@@ -40,11 +40,11 @@ var Auth = {
   }
 }
 
-function sendRequest(username, password, cb) {
+function sendRequest(username, password, url, cb) {
   var user = {username:username, password: password}
   $.ajax({
     // This is the url you should use to communicate with the parse API server.
-    url: 'http://0.0.0.0:8080/api/users/signup',
+    url: url,
     method: 'POST',
     data: user,
 
