@@ -20,4 +20,4 @@ class Categories extends React.Component {
       </ul>)
   }
 }
-export default Categories
+export default Categories;
