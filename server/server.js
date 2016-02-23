@@ -7,12 +7,14 @@ var config = require( '../webpack.config.js');
 var mongoose = require( 'mongoose');
 var bodyParser = require( 'body-parser');
 var User = require( './users/user' );
-var yelp = require ('./yelp/yelpController');
 var passport = require ('passport');
 var uberStrategy = require ('passport-uber');
 var request = require ('request');
 
 
+var userController = require ('./users/userController');
+var uberController = require ('./uber/uberController')(userController);
+var yelp = require ('./yelp/yelpController')(uberController);
 
 var isDeveloping = process.env.NODE_ENV !== 'production';
 // var port = isDeveloping ? 3000 : process.env.PORT;

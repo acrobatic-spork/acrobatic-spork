@@ -1,8 +1,7 @@
-var userController = require ('./users/userController.js');
-var yelp = require ('./yelp/yelpController');
 var request = require ('request');
-var User = require ('./users/user');
-var Uber = require ('./uber/uberController')(User);
+var userController = require ('./users/userController.js');
+var Uber = require ('./uber/uberController')(userController);
+var Yelp = require ('./yelp/yelpController')(Uber);
 
 
 var router = function (app, express) {
@@ -12,8 +11,9 @@ var router = function (app, express) {
   app.get('/api/users/signedin', userController.checkAuth);
   app.post('/api/users/signout');
   app.get('/api/users', userController.getUser);
-  app.post('/api/yelp', yelp);
+  app.post('/api/yelp', Yelp);
   app.post('/api/uber', Uber.requestCar);
   app.get('/auth/uber', Uber.getToken);
 };
+
 module.exports = router;

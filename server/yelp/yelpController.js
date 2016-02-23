@@ -1,5 +1,5 @@
 var Yelp = require ('yelp');
-var uberController = require ('./uber/uberController');
+// var uberController = require ('./uber/uberController');
 var request = require ('request');
 
 var yelp = new Yelp({
@@ -9,13 +9,14 @@ var yelp = new Yelp({
   token_secret: 'z85acpirffZVzb-PzqvyDqkcp58',
 });
 
-module.exports = function (req, res, next) {
+module.exports = function (uberController) {
+var Controller = function (req, res, next) {
   // receive location and username from client. Go to the DB for everything else
   console.log(req.body);
 
   request.get('/api/users?username=' + req.body.username)
     .then(function (userObj) {
-      return yelpQuery = {
+      return { // yelpQuery
         term: userObj.term,
         ll: req.body.lat + ',' + req.body.lon,
         sort: 2,
@@ -44,4 +45,7 @@ module.exports = function (req, res, next) {
     .catch(function (err) {
       console.error(err);
     });
+};
+
+return Controller;
 };
