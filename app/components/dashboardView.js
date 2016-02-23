@@ -9,17 +9,19 @@ class Dashboard extends React.Component {
 
   render (){
     return (
-      <div>
-        <div className='dashboard'>Dashboard</div>
-        <div className='preferences'>
-          <div className='price'>$$$$</div>
-          <div className='stars'>****</div>
-          <div className='distance'>Distance: 5mi</div>
+      <form name='preferences' className='prefernces'>
+        <legend>Dashboard</legend>
+          <label className='price' for='price'>Maximum Price:</label>
+          <input type='number' className='price' name='price' />
+          <label className='stars' for='stars'>Minimum Star Rating:</label>
+          <input type='number' className='stars' name='stars' />
+          <label className='distance' for='distance'>Maximum Distance:</label>
+          <input type='number' className='distance' name='distance' />
           <div className='category'>Restaurants</div>
-        </div>
         <Link to="/categories">Category</Link>          
         { this.props.children }
-      </div>
+        <button type='submit'>Submit</button>
+      </form>
       )
   }
 }

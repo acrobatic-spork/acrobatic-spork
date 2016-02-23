@@ -6,7 +6,6 @@ class Categories extends React.Component {
     super(props);
   }
   
-
   
   render (){
 
