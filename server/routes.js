@@ -9,6 +9,7 @@ var router = (app, express) => {
   app.post('/api/users/signin', userController.signin);
   app.get('/api/users/signedin', userController.checkAuth);
   app.post('/api/users/signout');
+  app.get('/api/users', userController.getUser);
   app.post('/api/yelp', yelp);
   app.post('/api/uber', Uber.requestCar);
   app.get('/auth/uber', Uber.getToken);
