@@ -46,7 +46,6 @@ class App extends React.Component {
               ...this.props });
           });
     console.log('in app.js');
-    // console.log('children: ',  this.props.children)
    return (
       <div>
         <ul>
