@@ -7,6 +7,11 @@ class Dashboard extends React.Component {
     super(props);
   }
 
+  handleSubmit (e) {
+    e.preventDefault();
+    this.props.onSubmit(this.refs.username.value, this.refs.password.value);
+  }
+
   render (){
     return (
       <form name='preferences' className='prefernces'>
@@ -20,7 +25,7 @@ class Dashboard extends React.Component {
           <div className='category'>Restaurants</div>
         <Link to="/categories">Category</Link>          
         { this.props.children }
-        <button type='submit'>Submit</button>
+        <button type='submit' onSubmit={this.handleSubmit.bind(this)}>Submit</button>
       </form>
       )
   }
