@@ -1,4 +1,5 @@
-const Yelp = require('yelp');
+import Yelp from 'yelp';
+import request from 'request';
 
 const yelp = new Yelp({
   consumer_key: 'mcOd7miyFhdp6Cz1L-oD9w',
@@ -6,7 +7,6 @@ const yelp = new Yelp({
   token: 'qgA95Qm5YSrXItKRTxcR1iNWERcowxow',
   token_secret: 'z85acpirffZVzb-PzqvyDqkcp58',
 });
-
 
 module.exports = (req, res, next) => {
 
@@ -19,9 +19,17 @@ module.exports = (req, res, next) => {
   .then(function (data) {
     return yelp.business(data.businesses[0].id)
   })
-  .then(function(business) {  
-    // TODO: send location to uber
-    res.json(business.location.coordinate);
+  .then(function(business) {
+    request.post({ 
+      uri: 'http://localhost:8080/api/uber', 
+      body: {
+        endLoc: business.location.coordinate,
+        startLoc: req.body.location
+      },
+      json: true
+    } , function(err, response) {
+      console.log('yelp to uber request response', err, response);
+    });
   })
   .catch(function (err) {
     console.error(err);
