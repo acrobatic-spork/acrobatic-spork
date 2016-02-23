@@ -10,11 +10,14 @@ class Signin extends React.Component {
   handleSignin (e) {
     e.preventDefault();
     //confirmUser(this.refs.username.value, this.refs.password.value);
+    this.props.updateUser(this.refs.username.value);
   }
 
   handleSignup (e) {
     e.preventDefault();
     //addUser(this.refs.username.value, this.refs.password.value);
+    this.props.updateUser(this.refs.username.value);
+
   }
 
   render() {
@@ -23,7 +26,7 @@ class Signin extends React.Component {
       <div className="">
         <form className="loginform" >
           <input className="username" type="text" ref="username" name="username" placeholder="username" />
-          <input className="passord" type="password" ref="password" name="password" placeholder="password" />
+          <input className="password" type="password" ref="password" name="password" placeholder="password" />
           <button className="signin" onClick={this.handleSignin.bind(this)}>
             <span className="">Signin</span>
           </button>

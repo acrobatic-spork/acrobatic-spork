@@ -6,4 +6,4 @@ const Category = (props) => (
     </li>
   )
 
-export default Category
+export default Category;

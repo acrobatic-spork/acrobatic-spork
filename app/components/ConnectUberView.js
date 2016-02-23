@@ -1,6 +1,6 @@
 import React from 'react'
 
-class Category extends React.Component {
+class ConnectUber extends React.Component {
   constructor(props){
     super(props);
   }
@@ -22,4 +22,4 @@ class Category extends React.Component {
     )  
   }
 }
-export default Category
+export default ConnectUber;
