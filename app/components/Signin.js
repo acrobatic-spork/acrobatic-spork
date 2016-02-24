@@ -12,11 +12,13 @@ class Signin extends React.Component {
 
   handleSignin (e) {
     e.preventDefault();
-    Auth.confirmUser(this.refs.username.value, this.refs.password.value, (loggedIn) => {
-      console.log('handlesignin working', loggedIn);
+    Auth.confirmUser(this.refs.username.value, this.refs.password.value, (loggedIn, res) => {
       if(loggedIn) {
         this.props.updateUser(this.refs.username.value);
         browserHistory.push('/');
+      }  else {
+        var message = res.error.responseText.substr(0, res.error.responseText.indexOf('<'));
+        this.props.displayMessage(message);
       }
     });
   }
@@ -24,11 +26,13 @@ class Signin extends React.Component {
   handleSignup (e) {
     e.preventDefault();
     var url = 'http://0.0.0.0:8080/api/users/signup';
-    Auth.confirmUser(this.refs.username.value, this.refs.password.value, (loggedIn) => {
-      console.log('handlesignup working', loggedIn);
+    Auth.confirmUser(this.refs.username.value, this.refs.password.value, (loggedIn, res) => {
       if (loggedIn) {
         this.props.updateUser(this.refs.username.value);
         browserHistory.push('/dashboard');
+      } else {
+        var message = res.error.responseText.substr(0, res.error.responseText.indexOf('<'));
+        this.props.displayMessage(message);
       }
 
     }, url);

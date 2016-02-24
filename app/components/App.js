@@ -1,6 +1,7 @@
 import React from 'react';
 // import Signin from './Signin.js';
 import { browserHistory, Router, Route, Link } from 'react-router'
+import Message from './Message'
 
 
 class App extends React.Component {
@@ -11,6 +12,7 @@ class App extends React.Component {
       user: null,
       preferences: {},
       uberStatus: null,
+      message: ''
     };
   }
 
@@ -40,6 +42,13 @@ class App extends React.Component {
     });
   }
 
+  displayMessage(message) {
+    console.log("The user is now: ", name);
+    this.setState({
+      message: message
+    });
+  }
+
   updateUberStatus(status) {
     this.setState({
       uberStatus: status
@@ -60,6 +69,7 @@ class App extends React.Component {
               updatePreferences: this.updatePreferences.bind(this),
               updateUberStatus: this.updateUberStatus.bind(this),
               getUsername: this.getUsername.bind(this),
+              displayMessage: this.displayMessage.bind(this),
               ...this.props });
           });
     console.log('in app.js');
@@ -71,6 +81,7 @@ class App extends React.Component {
          <li><Link to="/">Spork Now</Link> </li>
          <li><Link to="/uber">Connect Uber</Link> </li>
        </ul>
+       <Message message={this.state.message} />
        {childrenWithProps}
       </div>
       )
