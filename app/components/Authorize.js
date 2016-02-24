@@ -5,7 +5,6 @@ var Auth = {
     url = url || 'http://0.0.0.0:8080/api/users/signin'
     if (localStorage.getItem('token')) {
       if (cb) cb(true)
-      this.onChange(true)
       return
     }
     utils.sendRequest(username, password, url, (res) => {
