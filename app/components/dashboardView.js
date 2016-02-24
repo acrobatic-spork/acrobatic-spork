@@ -1,6 +1,7 @@
 import React from 'react';
 import { browserHistory, Router, Route, Link } from 'react-router'
 import CategoriesView from './CategoriesView.js';
+import utils from './utils'
 
 class Dashboard extends React.Component {
   constructor(props){
@@ -11,6 +12,11 @@ class Dashboard extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault();
+
+    var options = {
+      enableHighAccuracy: true
+    }
+
     // Get the values from the form
     var prefs = {
       price: this.refs.price.value,
@@ -20,13 +26,23 @@ class Dashboard extends React.Component {
     // Do a put request to update the user's prefs
       // on done, change the state
     var username = this.props.getUsername();
-    utils.updatePrefs(prefs, username, (updated) => {
-      if (updated) {
+    var successNav =  (loc) => {
+      var lat = loc.coords.latitude;
+      var lon = loc.coords.longitude;
+      var location = {lat: lat, lon: lon}
+     utils.updatePrefs(prefs, username, location, (updated) => {
+        if (updated) {
         this.props.updatePreferences(prefs);
-      } else {
-        console.log('Not updated preferences in server')
-      }
-    });
+        } else {
+          console.log('Not updated preferences in server')
+        }
+      });
+    }
+    var errorNav =  () => {
+      console.error('Error getting location');
+    }
+    navigator.geolocation.getCurrentPosition(successNav, errorNav, options);
+   
   }
 
   render (){

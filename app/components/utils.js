@@ -1,4 +1,6 @@
 import Auth from './Authorize'
+import $ from 'jquery';
+
 
 var utils = {};
 utils.sendAuthRequest = (username, password, url, cb) => {
@@ -21,15 +23,15 @@ utils.sendAuthRequest = (username, password, url, cb) => {
       console.error('Failed to store add user endpoint', data);
       cb({authenticated:false})
     }
-  }); 
+  });
 };
 
-utils.updatePrefs = (prefs, username, cb) => {
+utils.updatePrefs = (prefs, username, location, cb) => {
   $.ajax({
-    url: '/api/users/username='+'username',
+    url: '/api/users/username='+username,
     beforeSend: function (request){
       if(Auth.loggedIn()){
-        request.setRequestHeader("x-access-token", authorizationToken);
+        request.setRequestHeader("x-access-token", Auth.getToken());
       }
     },
     method: 'POST',
@@ -43,3 +45,5 @@ utils.updatePrefs = (prefs, username, cb) => {
     }
   })
 };
+
+export default utils;

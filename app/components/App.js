@@ -45,9 +45,9 @@ class App extends React.Component {
      var childrenWithProps = React.Children.map(this.props.children, (child) => {
             return React.cloneElement(child, { 
               updateUser: this.updateUser.bind(this),
-              updatePreferences: this.updatePreferences,
-              updateUberStatus: this.updateUberStatus,
-              getUsername: this.getUsername,
+              updatePreferences: this.updatePreferences.bind(this),
+              updateUberStatus: this.updateUberStatus.bind(this),
+              getUsername: this.getUsername.bind(this),
               ...this.props });
           });
     console.log('in app.js');
