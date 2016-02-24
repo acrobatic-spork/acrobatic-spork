@@ -1,7 +1,7 @@
 var mongoose = require ('mongoose');
 var bcrypt = require ('bcrypt-nodejs');
 var Promise = require ('bluebird');
-// var SALT_WORK_FACTOR = 13;
+var SALT_WORK_FACTOR = 13;
 
 var UserSchema = new mongoose.Schema({
   username: {
