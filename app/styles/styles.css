@@ -82,6 +82,7 @@ nav li {
 /*for food and drinks toggle*/
 .onoffswitch {
     position: relative; width: 110px;
+    display: inline-block;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
 }
 .onoffswitch-checkbox {

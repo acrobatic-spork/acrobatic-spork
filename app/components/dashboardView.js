@@ -18,9 +18,9 @@ class Dashboard extends React.Component {
 
   prefsChange (e) {
     var value = e.target.value;
-    console.log(e.target.value);
-    var slider = e.currentTarget.className;
-    console.log(e.currentTarget.className);
+    console.log(value);
+    var slider = e.currentTarget.name;
+    console.log(slider);
   }
 
   handleSubmit (e) {
@@ -49,7 +49,7 @@ class Dashboard extends React.Component {
           <input className='radius' name='radius' type='range' min='1' max='4' onChange={this.prefsChange.bind(this)}/>
           
           <div className={styles["onoffswitch"]}>
-            <input type="checkbox" name="onoffswitch" className={styles["onoffswitch-checkbox"]} id="myonoffswitch" />
+            <input type="checkbox" name="onoffswitch" className={styles["onoffswitch-checkbox"]} id="myonoffswitch" onChange={this.prefsChange.bind(this)} />
             <label className={styles["onoffswitch-label"]} htmlFor="myonoffswitch">
               <span className={styles["onoffswitch-inner"]}></span>
               <span className={styles["onoffswitch-switch"]}></span>
