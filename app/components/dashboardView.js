@@ -11,36 +11,15 @@ class Dashboard extends React.Component {
   handleSubmit (e) {
     e.preventDefault();
 
-    var options = {
-      enableHighAccuracy: true
-    }
-
     // Get the values from the form
     var prefs = {
       price: this.refs.price.value,
       stars: this.refs.stars.value,
       distance: this.refs.distance.value
     };
-    // Do a put request to update the user's prefs
-      // on done, change the state
+
     var username = this.props.getUsername();
-    var successNav =  (loc) => {
-      var lat = loc.coords.latitude;
-      var lon = loc.coords.longitude;
-      var location = {lat: lat, lon: lon}
-     utils.updatePrefs(prefs, username, location, (updated) => {
-        if (updated) {
-        this.props.updatePreferences(prefs);
-        } else {
-          console.log('Not updated preferences in server')
-        }
-      });
-    }
-    var errorNav =  () => {
-      console.error('Error getting location');
-    }
-    navigator.geolocation.getCurrentPosition(successNav, errorNav, options);
-   
+
   }
 
   render (){
