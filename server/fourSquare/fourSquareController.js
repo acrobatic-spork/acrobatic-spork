@@ -19,7 +19,7 @@ var foursquare = function (req, res, next) {
         section: 'food',
         radius: 5000,
         price: 2,
-        token: 'userObj.uberToken',
+        token: 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsicHJvZmlsZSIsImhpc3RvcnkiLCJwbGFjZXMiXSwic3ViIjoiZjU3MTg2NTctMzFmMS00NTk3LWE5OGQtMzZiODRkMDhlNzc5IiwiaXNzIjoidWJlci11czEiLCJqdGkiOiJjNDIxNGMxYS03NzMxLTQ4NjktYjczMC01Y2IyYzA1ZWQwZDEiLCJleHAiOjE0NTg5NDQ5OTksImlhdCI6MTQ1NjM1Mjk5OSwidWFjdCI6IlV1aEFkaEFwMm5DcmQyWVhGa2VjVTJYd0RLbGlleSIsIm5iZiI6MTQ1NjM1MjkwOSwiYXVkIjoieDhaQk9HZ3Z2ZTJKSFFnT0Z1UjdpYjJlMmR0X0E2Nm0ifQ.T7KxojbjevUpNTiyImT-UQx0_HEExKxdrU5t3hPCG3XklEhJT3QWUr4DVTRJAm_Y4gdvdcLNlsI5PSgwI3REDxTfG7Kee2WpwjBiWhEi6GwU1XSKPcOOakxDZuGCT9EStXZTc0X9JQKUHzFOH_ndirb8JV8t38vabRQqydSaXPHp77GAMbCWOZx9apVAseMR9vTnfqXyqIiDsqjeDWH_sBF1U1ONcpNwDamp34R6RWkDBBGtM-Du3yCu1cCuLYaVMNrB4ZB8zQRHSqcbKAkCvqiPtU9ubUFd9vMqBfKfTg4-6DkX5BRKJ5kP6RSn1oEj7bwZUh0I4jfA912caac9lg',
         lat: req.query.lat,
         lng: req.query.lng
       };
@@ -33,8 +33,10 @@ var foursquare = function (req, res, next) {
         uri: 'http://localhost:8080/api/uber', 
         body: {
           token: userObj.token,
-          endLoc: venueLat+','+venueLng,
-          startLoc: userObj.lat+','+userObj.lng
+          startLat: userObj.lat,
+          startLng: userObj.lng,
+          endLat: venueLat,
+          endLng: venueLng
         },
         json: true
       } , function(err, response) {
