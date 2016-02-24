@@ -10,16 +10,14 @@ class Categories extends React.Component {
   }
 
   updateFoodPrefs (e) {
-    console.log(e.currentTarget.checked);
     var currentFoods = this.state.foodsChecked.slice();
-    console.log(this.state.foodsChecked);
     if(e.currentTarget.checked) {
       currentFoods.push(e.target.value);
     } else {
       var index = currentFoods.indexOf(e.target.value);
       currentFoods.splice(index, 1);
     }
-    
+
     this.setState({
       foodsChecked: currentFoods
     });
