@@ -18,10 +18,11 @@ utils.sendAuthRequest = (username, password, url, cb) => {
         username: data.user
       });
     },
-    error (data) {
+    error (err) {
       // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
-      console.error('Failed to store add user endpoint', data);
-      cb({authenticated:false})
+      console.error('Failed to store add user endpoint', err);
+      cb({authenticated:false,
+          error:err});
     }
   });
 };

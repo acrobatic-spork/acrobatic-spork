@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/styles.css'
 
 class Spork extends React.Component {
   constructor(props){
@@ -19,8 +20,8 @@ class Spork extends React.Component {
   
   render (){
     return (
-      <div>
-        <button onClick={this.sporkHandler.bind(this)}className='spork-button'>SporkButton</button>
+      <div className={styles['button-box']}>
+        <button onClick={this.sporkHandler.bind(this)} className={styles['spork-button']}>Spork</button>
       </div>
       )
   }
