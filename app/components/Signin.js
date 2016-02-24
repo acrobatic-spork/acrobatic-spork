@@ -1,5 +1,7 @@
 import React from 'react';
 import Auth from './Authorize'
+import { browserHistory } from 'react-router'
+
 // import function that will send post request to DB
 
 class Signin extends React.Component {
@@ -14,6 +16,7 @@ class Signin extends React.Component {
       console.log('handlesignin working', loggedIn);
       if(loggedIn) {
         this.props.updateUser(this.refs.username.value);
+        browserHistory.push('/');
       }
     });
   }
@@ -24,7 +27,8 @@ class Signin extends React.Component {
     Auth.confirmUser(this.refs.username.value, this.refs.password.value, (loggedIn) => {
       console.log('handlesignup working', loggedIn);
       if (loggedIn) {
-        browserHistory.push('/')
+        this.props.updateUser(this.refs.username.value);
+        browserHistory.push('/dashboard');
       }
 
     }, url);

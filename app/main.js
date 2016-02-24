@@ -20,12 +20,21 @@ function requireAuth(nextState, replace) {
   }
 }
 
+function notAlreadyAuth (nextState, replace) {
+  if (auth.loggedIn()) {
+    replace({
+      pathname: '/',
+    })
+  }
+}
+
+
 
 render((
   <Router history={ browserHistory }>
     <Route path="/" component={ App } >
       <IndexRoute component={ Spork } onEnter={requireAuth} />
-      <Route path="/signin" component={ Signin }/>
+      <Route path="/signin" component={ Signin } onEnter={notAlreadyAuth}/>
       <Route path="/dashboard" component={ Dashboard } onEnter={requireAuth} >
         <Route path="/categories" component={ Categories }/>
       </Route>
