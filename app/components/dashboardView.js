@@ -1,6 +1,7 @@
 import React from 'react';
 import { browserHistory, Router, Route, Link } from 'react-router'
 import CategoriesView from './CategoriesView.js';
+import utils from './utils'
 
 class Dashboard extends React.Component {
   constructor(props){

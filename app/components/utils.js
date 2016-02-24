@@ -21,7 +21,7 @@ utils.sendAuthRequest = (username, password, url, cb) => {
       console.error('Failed to store add user endpoint', data);
       cb({authenticated:false})
     }
-  }); 
+  });
 };
 
 utils.updatePrefs = (prefs, username, cb) => {
@@ -43,3 +43,5 @@ utils.updatePrefs = (prefs, username, cb) => {
     }
   })
 };
+
+export default utils;
