@@ -17,9 +17,16 @@ class Dashboard extends React.Component {
       stars: this.refs.stars.value,
       distance: this.refs.distance.value
     };
-    this.props.updatePreferences(prefs);
     // Do a put request to update the user's prefs
       // on done, change the state
+    var username = this.props.getUsername();
+    utils.updatePrefs(prefs, username, (updated) => {
+      if (updated) {
+        this.props.updatePreferences(prefs);
+      } else {
+        console.log('Not updated preferences in server')
+      }
+    });
   }
 
   render (){
