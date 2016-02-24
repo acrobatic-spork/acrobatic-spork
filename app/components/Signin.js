@@ -23,6 +23,9 @@ class Signin extends React.Component {
     var url = 'http://0.0.0.0:8080/api/users/signup';
     Auth.confirmUser(this.refs.username.value, this.refs.password.value, (loggedIn) => {
       console.log('handlesignup working', loggedIn);
+      if (loggedIn) {
+        browserHistory.push('/')
+      }
 
     }, url);
   }
