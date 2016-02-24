@@ -1,7 +1,7 @@
 var request = require ('request');
 var userController = require ('./users/userController.js');
 var Uber = require ('./uber/uberController')(userController);
-var FourSquare = require ('./fourSquare/fourSquareController')(Uber);
+var FourSquare = require ('./fourSquare/fourSquareController');
 
 
 var router = function (app, express) {
@@ -14,7 +14,7 @@ var router = function (app, express) {
   app.put('/api/users', userController.updatePrefs);
   app.get('/api/users', userController.getUser);
 
-  // app.get('/api/spork', FourSquare);
+  app.get('/api/spork', FourSquare);
   app.post('/api/uber', Uber.requestCar);
 
   app.get('/auth/uber', Uber.getToken);
