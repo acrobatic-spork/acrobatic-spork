@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import utils from './utils'
+
 var Auth = {
   confirmUser(username, password, cb, url) {
     url = url || 'http://0.0.0.0:8080/api/users/signin'
@@ -22,7 +23,7 @@ var Auth = {
   },
 
   logout(cb) {
-    localStorage.setItem('token', null);
+    localStorage.removeItem('token');
     if (cb) cb()
   },
 

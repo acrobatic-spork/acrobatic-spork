@@ -1,6 +1,4 @@
 import React from 'react';
-import Yelp from '../../server/yelp/yelpController';
-import Uber from '../../server/uber/uberController';
 
 class Spork extends React.Component {
   constructor(props){

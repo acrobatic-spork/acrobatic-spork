@@ -53,6 +53,7 @@ class App extends React.Component {
 
   render () {
     console.log('in app.js');
+
      var childrenWithProps = React.Children.map(this.props.children, (child) => {
             return React.cloneElement(child, { 
               updateUser: this.updateUser.bind(this),
@@ -67,7 +68,7 @@ class App extends React.Component {
         <ul>
          <li><Link to="/signin">Sign in</Link></li>
          <li><Link to="/dashboard">Dashboard</Link> </li>
-         <li><Link to="/spork">Spork Now</Link> </li>
+         <li><Link to="/">Spork Now</Link> </li>
          <li><Link to="/uber">Connect Uber</Link> </li>
        </ul>
        {childrenWithProps}
