@@ -1,11 +1,27 @@
 import React from 'react';
+import InputRange from 'react-input-range';
 import { browserHistory, Router, Route, Link } from 'react-router'
 import CategoriesView from './CategoriesView.js';
-import utils from './utils'
+import utils from './utils';
+
 
 class Dashboard extends React.Component {
   constructor(props){
     super(props);
+
+    this.state = {
+      priceValue: 2,
+      radiusValues: {
+        min: 1,
+        max: 5
+      }
+    }
+  }
+
+  priceChange (component, value) {
+    this.setState({
+      priceValue: value
+    });
   }
 
   handleSubmit (e) {
@@ -29,8 +45,8 @@ class Dashboard extends React.Component {
       <form name='preferences' className='prefernces' onSubmit={this.handleSubmit.bind(this)}>
         <fieldset>
           <legend>Dashboard</legend>
-          <label className='price' htmlFor='price'>Maximum Price:</label>
-          <input type='number' className='price' name='price' ref='price' />
+          <label className='price' htmlFor='price'>Price:</label>
+          <InputRange className='price' name='price' maxValue={4} minValue={1} value={this.state.priceValue} onChange={this.priceChange.bind(this)} />
           <label className='stars' htmlFor='stars'>Minimum Star Rating:</label>
           <input type='number' className='stars' name='stars' ref='stars'/>
           <label className='distance' htmlFor='distance'>Maximum Distance:</label>
