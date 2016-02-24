@@ -67,7 +67,8 @@
   "scripts": {
     "test": "mocha test --compilers js:babel-core/register",
     "start": "./node_modules/.bin/babel-node server/server",
-    "build": "rimraf dist && set NODE_ENV=production && webpack --config ./webpack.production.config.js --progress --profile --colors",
+    "build": "rimraf dist && BABEL_ENV=production NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors",
+    "deploy": "rimraf dist && BABEL_ENV=production NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors && NODE_ENV=production nodemon ./server/server",
     "eslint": "eslint .",
     "jscs": "jscs ."
   },
