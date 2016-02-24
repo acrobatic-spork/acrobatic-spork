@@ -11,7 +11,7 @@ class Dashboard extends React.Component {
 
     this.state = {
       priceValue: 2,
-      radiusValues: {
+      values: {
         min: 1,
         max: 5
       }
@@ -38,6 +38,10 @@ class Dashboard extends React.Component {
 
   }
 
+  handleValuesChange(component, values) {
+    console.log(values);
+  }
+
   render (){
     var categories = ['Mexican', 'Italian', 'Bars', 'Pizza'];
 
@@ -45,8 +49,16 @@ class Dashboard extends React.Component {
       <form name='preferences' className='prefernces' onSubmit={this.handleSubmit.bind(this)}>
         <fieldset>
           <legend>Dashboard</legend>
+
+          <InputRange
+            maxValue={20}
+            minValue={0}
+            value={this.state.values}
+            onChange={this.handleValuesChange.bind(this)}
+          />
+
           <label className='price' htmlFor='price'>Price:</label>
-          <InputRange className='price' name='price' maxValue={4} minValue={1} value={this.state.priceValue} onChange={this.priceChange.bind(this)} />
+          <InputRange className='price' name='price' type='range' />
           <label className='stars' htmlFor='stars'>Minimum Star Rating:</label>
           <input type='number' className='stars' name='stars' ref='stars'/>
           <label className='distance' htmlFor='distance'>Maximum Distance:</label>
