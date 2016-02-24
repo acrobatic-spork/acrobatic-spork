@@ -17,17 +17,7 @@ class App extends React.Component {
   }
 
   updatePreferences(newPrefs) {
-    
-    // Create a new object with the current preference
-    var preferences = {};
-    for(var p in this.state.preferences) {
-      preferences[p] = this.state.preferences[p];
-    }
-    // Overwrite any preferences to update
-    for(var p in newPrefs) {
-      preferences[p] = newPrefs[p];
-    }
-    // Set the state
+
     this.setState({
       preferences: preferences
     });
