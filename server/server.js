@@ -17,21 +17,16 @@ var uberController = require ('./uber/uberController')(userController);
 var yelp = require ('./yelp/yelpController')(uberController);
 
 var isDeveloping = process.env.NODE_ENV !== 'production';
+console.log('isDeveloping: ' + isDeveloping);
+// isDeveloping = false;
 // var port = isDeveloping ? 3000 : process.env.PORT;
 var port = 8080;
 var app = express();
 
 
-
-
 // get all data/stuff of the body (POST) parameters
-// parse application/json 
 app.use(bodyParser.json()); 
-
-// parse application/vnd.api+json as json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); 
-
-// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true })); 
 
 var allowCrossDomain = function(req, res, next) {
@@ -47,6 +42,9 @@ var allowCrossDomain = function(req, res, next) {
 
 app.use(allowCrossDomain);
 
+
+var distDir = path.resolve(__dirname, '../dist');
+  
 if (isDeveloping) {
   var compiler = webpack(config);
   var middleware = webpackMiddleware(compiler, {
@@ -64,19 +62,33 @@ if (isDeveloping) {
 
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
-  app.get('/', function response(req, res) {
-    res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
-    res.end();
+  app.get(function response(req, res, next) {
+    if (req.accepts('html')) {
+      res.write(middleware.fileSystem.readFileSync(path.join(distDir, '/index.html')));
+      res.end();
+    } else {
+      next();
+    }
   });
 } else {
-  app.use(express.static(__dirname + '/dist'));
-  app.get('/', function response(req, res) {
-    res.sendFile(path.join(__dirname, 'dist/index.html'));
+  console.log('using static middleware ' + distDir);
+  app.use(express.static(distDir, {
+    extensions: ['html', 'htm'],
+    fallthrough: true
+  }));
+  app.use(function (req, res, next) {
+    if (req.accepts('html') && req.method === 'GET') {
+      console.log("in fallback. req is " + JSON.stringify(req.accepts('html')));
+      res.sendFile(path.join(distDir, '/index.html'));
+    } else {
+      next();
+    } 
   });
 }
 
 var router = require ('./routes.js');
 router(app, express);
+// app.use( express.errorHandler({ dumpExceptions: true, showStack: true }));
 
 mongoose.connect('mongodb://localhost/spork');
 User.seed();

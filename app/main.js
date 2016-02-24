@@ -24,8 +24,15 @@ function notAlreadyAuth (nextState, replace) {
   if (auth.loggedIn()) {
     replace({
       pathname: '/',
-    })
+    });
   }
+}
+
+function redirectToRoot (nextState, replace) {
+  console.log("inredirect")
+  replace({
+    pathname: '/',
+  });
 }
 
 
@@ -33,13 +40,15 @@ function notAlreadyAuth (nextState, replace) {
 render((
   <Router history={ browserHistory }>
     <Route path="/" component={ App } >
-      <IndexRoute component={ Spork } onEnter={requireAuth} />
+      <IndexRoute component={ Spork } onEnter={requireAuth}/>
       <Route path="/signin" component={ Signin } onEnter={notAlreadyAuth}/>
       <Route path="/dashboard" component={ Dashboard } onEnter={requireAuth} >
         <Route path="/categories" component={ Categories }/>
       </Route>
       <Route path="/uber" component={ Uber } onEnter={requireAuth} />
+      <Route path="*" onEnter={redirectToRoot} />
     </Route>
   </Router>
+
   ), document.getElementById('root'))
 
