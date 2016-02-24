@@ -2,6 +2,7 @@ import React from 'react';
 // import Signin from './Signin.js';
 import { browserHistory, Router, Route, Link } from 'react-router'
 import Message from './Message'
+import auth from './Authorize'
 import styles from '../styles/styles.css'
 
 class App extends React.Component {
@@ -59,6 +60,12 @@ class App extends React.Component {
     return this.state.user;
   }
 
+  logout(e) {
+    e.preventDefault;
+    auth.logout(() => {
+      browserHistory.push('/signin');
+    });
+  }
 
   render () {
     console.log('in app.js');
@@ -75,12 +82,16 @@ class App extends React.Component {
     console.log('in app.js');
    return (
       <div>
+      <nav>
         <ul>
-         <li><Link to="/signin">Sign in</Link></li>
-         <li><Link to="/dashboard">Dashboard</Link> </li>
-         <li><Link to="/">Spork Now</Link> </li>
-         <li><Link to="/uber">Connect Uber</Link> </li>
+         <li><Link activeClassName={styles['active-nav']} to="/dashboard">Dashboard</Link> </li>
+         <li><Link onlyActiveOnIndex activeClassName={styles['active-nav']} to="/">Spork Now</Link> </li>
+         <li><Link activeClassName={styles['active-nav']} to="/uber">Connect Uber</Link> </li>
+        {auth.loggedIn() ?
+         <li><a href='#' onClick={this.logout.bind(this)}>Log Out</a></li>
+         : <li><Link activeClassName={styles['active-nav']} to="/signin">Sign in</Link></li> }
        </ul>
+       </nav>
        <Message message={this.state.message} />
        {childrenWithProps}
       </div>
