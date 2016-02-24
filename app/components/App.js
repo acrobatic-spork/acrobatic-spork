@@ -14,19 +14,9 @@ class App extends React.Component {
     };
   }
 
-
-
   updatePreferences(newPrefs) {
-
-    var extendPrefs = (oldPrefs, newPrefs) => {
-      var preferences = Object.create(oldPrefs);
-      for(var p in this.state.preferences) {
-        preferences[p] = newPrefs[p];
-      }
-    };
-
-    this.setState(function(previousState) {
-      preferences: extendPrefs(previousState, newPrefs);
+    this.setState({
+      preferences: newPrefs
     });
   }
 
@@ -43,10 +33,10 @@ class App extends React.Component {
     });
   }
 
+
   getUsername(){
     return this.state.user;
   }
-
 
   render () {
     console.log('in app.js');
