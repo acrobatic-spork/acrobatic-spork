@@ -12,7 +12,6 @@ class App extends React.Component {
     this.state = {
       user: null,
       preferences: {},
-      uberStatus: null,
       message: ''
     };
   }
@@ -35,6 +34,10 @@ class App extends React.Component {
 
     // call the utility function to update preferences in the db
     // get the location when user signs in
+
+    // var options = {
+    //   enableHighAccuracy: true
+    // }
 
   //   var successNav =  (loc) => {
   //     var lat = loc.coords.latitude;
@@ -65,12 +68,6 @@ class App extends React.Component {
     console.log("The user is now: ", name);
     this.setState({
       message: message
-    });
-  }
-
-  updateUberStatus(status) {
-    this.setState({
-      uberStatus: status
     });
   }
 
