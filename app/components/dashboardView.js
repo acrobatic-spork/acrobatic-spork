@@ -18,9 +18,23 @@ class Dashboard extends React.Component {
 
   prefsChange (e) {
     var value = e.target.value;
-    console.log(value);
     var slider = e.currentTarget.name;
-    console.log(slider);
+    if(slider === 'price') {
+      this.setState({
+        price: value
+      });
+    } else if(slider === 'radius') {
+      this.setState({
+        radius: value
+      });
+    } else {
+      this.setState(function(prevState) {
+
+        return {chooseFood: !prevState.chooseFood}
+      });
+    }
+
+    console.log(this.state);
   }
 
   handleSubmit (e) {
@@ -28,9 +42,9 @@ class Dashboard extends React.Component {
 
     // Get the values from the form
     var prefs = {
-      price: this.refs.price.value,
-      stars: this.refs.stars.value,
-      distance: this.refs.distance.value
+      price: this.state.price,
+      range: this.state.range,
+      chooseFood: this.state.chooseFood
     };
 
     this.props.updatePreferences(prefs);
