@@ -1,46 +1,53 @@
 import React from 'react';
 import { browserHistory, Router, Route, Link } from 'react-router'
 import CategoriesView from './CategoriesView.js';
-import utils from './utils'
+import utils from './utils';
+import styles from '../styles/styles.css'
+
 
 class Dashboard extends React.Component {
   constructor(props){
     super(props);
+
+    this.state = {
+      price: 2,
+      radius: 2,
+      chooseFood: true
+    }
+  }
+
+  prefsChange (e) {
+    var value = e.target.value;
+    var slider = e.currentTarget.name;
+    if(slider === 'price') {
+      this.setState({
+        price: value
+      });
+    } else if(slider === 'radius') {
+      this.setState({
+        radius: value
+      });
+    } else {
+      this.setState(function(prevState) {
+
+        return {chooseFood: !prevState.chooseFood}
+      });
+    }
+
+    console.log(this.state);
   }
 
   handleSubmit (e) {
     e.preventDefault();
 
-    var options = {
-      enableHighAccuracy: true
-    }
-
     // Get the values from the form
     var prefs = {
-      price: this.refs.price.value,
-      stars: this.refs.stars.value,
-      distance: this.refs.distance.value
+      price: this.state.price,
+      range: this.state.range,
+      chooseFood: this.state.chooseFood
     };
-    // Do a put request to update the user's prefs
-      // on done, change the state
-    var username = this.props.getUsername();
-    var successNav =  (loc) => {
-      var lat = loc.coords.latitude;
-      var lon = loc.coords.longitude;
-      var location = {lat: lat, lon: lon}
-     utils.updatePrefs(prefs, username, location, (updated) => {
-        if (updated) {
-        this.props.updatePreferences(prefs);
-        } else {
-          console.log('Not updated preferences in server')
-        }
-      });
-    }
-    var errorNav =  () => {
-      console.error('Error getting location');
-    }
-    navigator.geolocation.getCurrentPosition(successNav, errorNav, options);
-   
+
+    this.props.updatePreferences(prefs);
   }
 
   render (){
@@ -50,14 +57,20 @@ class Dashboard extends React.Component {
       <form name='preferences' className='prefernces' onSubmit={this.handleSubmit.bind(this)}>
         <fieldset>
           <legend>Dashboard</legend>
-          <label className='price' htmlFor='price'>Maximum Price:</label>
-          <input type='number' className='price' name='price' ref='price' />
-          <label className='stars' htmlFor='stars'>Minimum Star Rating:</label>
-          <input type='number' className='stars' name='stars' ref='stars'/>
-          <label className='distance' htmlFor='distance'>Maximum Distance:</label>
-          <input type='number' className='distance' name='distance' ref='distance'/>
-          <div className='category'>Restaurants</div>
-          <CategoriesView updatePreferences={this.props.updatePreferences.bind(this)} />
+          <label className='price' htmlFor='price'>Price:</label>
+          <input className='price' name='price' type='range' min='1' max='4' onChange={this.prefsChange.bind(this)}/>
+          <label className='radius' htmlFor='radius'>Maximum Distance:</label>
+          <input className='radius' name='radius' type='range' min='1' max='4' onChange={this.prefsChange.bind(this)}/>
+          
+          <div className={styles["onoffswitch"]}>
+            <input type="checkbox" name="onoffswitch" className={styles["onoffswitch-checkbox"]} id="myonoffswitch" onChange={this.prefsChange.bind(this)} />
+            <label className={styles["onoffswitch-label"]} htmlFor="myonoffswitch">
+              <span className={styles["onoffswitch-inner"]}></span>
+              <span className={styles["onoffswitch-switch"]}></span>
+            </label>
+          </div>
+
+
           <button type='submit'>Submit</button>
         </fieldset>
       </form>

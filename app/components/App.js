@@ -12,29 +12,40 @@ class App extends React.Component {
     this.state = {
       user: null,
       preferences: {},
-      uberStatus: null,
       message: ''
     };
   }
 
   updatePreferences(newPrefs) {
-    
-    // Create a new object with the current preference
-    var preferences = {};
-    for(var p in this.state.preferences) {
-      preferences[p] = this.state.preferences[p];
-    }
-    // Overwrite any preferences to update
-    for(var p in newPrefs) {
-      preferences[p] = newPrefs[p];
-    }
-    // Set the state
+
     this.setState({
       preferences: preferences
     });
 
-    console.log(this.state);
-  }
+    // call the utility function to update preferences in the db
+    // get the location when user signs in
+
+    // var options = {
+    //   enableHighAccuracy: true
+    // }
+
+  //   var successNav =  (loc) => {
+  //     var lat = loc.coords.latitude;
+  //     var lon = loc.coords.longitude;
+  //     var location = {lat: lat, lon: lon}
+  //    utils.updatePrefs(prefs, username, location, (updated) => {
+  //       if (updated) {
+  //       this.props.updatePreferences(prefs);
+  //       } else {
+  //         console.log('Not updated preferences in server')
+  //       }
+  //     });
+  //   }
+  //   var errorNav =  () => {
+  //     console.error('Error getting location');
+  //   }
+  //   navigator.geolocation.getCurrentPosition(successNav, errorNav, options);
+  } // updatePreferences
 
   updateUser(name) {
     console.log("The user is now: ", name);
@@ -47,12 +58,6 @@ class App extends React.Component {
     console.log("The user is now: ", name);
     this.setState({
       message: message
-    });
-  }
-
-  updateUberStatus(status) {
-    this.setState({
-      uberStatus: status
     });
   }
 
@@ -74,7 +79,6 @@ class App extends React.Component {
             return React.cloneElement(child, { 
               updateUser: this.updateUser.bind(this),
               updatePreferences: this.updatePreferences.bind(this),
-              updateUberStatus: this.updateUberStatus.bind(this),
               getUsername: this.getUsername.bind(this),
               displayMessage: this.displayMessage.bind(this),
               ...this.props });
