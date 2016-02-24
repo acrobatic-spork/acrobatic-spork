@@ -26,8 +26,11 @@ class Dashboard extends React.Component {
     // Do a put request to update the user's prefs
       // on done, change the state
     var username = this.props.getUsername();
-    var successNav =  () => {
-     utils.updatePrefs(prefs, username, (updated) => {
+    var successNav =  (loc) => {
+      var lat = loc.coords.latitude;
+      var lon = loc.coords.longitude;
+      var location = {lat: lat, lon: lon}
+     utils.updatePrefs(prefs, username, location, (updated) => {
         if (updated) {
         this.props.updatePreferences(prefs);
         } else {

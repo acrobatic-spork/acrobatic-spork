@@ -26,7 +26,7 @@ utils.sendAuthRequest = (username, password, url, cb) => {
   });
 };
 
-utils.updatePrefs = (prefs, username, cb) => {
+utils.updatePrefs = (prefs, username, location, cb) => {
   $.ajax({
     url: '/api/users/username='+username,
     beforeSend: function (request){
