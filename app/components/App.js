@@ -10,16 +10,27 @@ class App extends React.Component {
     this.state = {
       user: null,
       preferences: {},
-      uberStatus: null
+      uberStatus: null,
     };
   }
 
   updatePreferences(newPrefs) {
-    console.log(JSON.stringify(newPrefs));
+    
+    // Create a new object with the current preference
+    var preferences = {};
+    for(var p in this.state.preferences) {
+      preferences[p] = this.state.preferences[p];
+    }
+    // Overwrite any preferences to update
+    for(var p in newPrefs) {
+      preferences[p] = newPrefs[p];
+    }
+    // Set the state
     this.setState({
-      // add or replace preferences with prefs passed in
-      preferences: this.state.preferences.extend(newPrefs)
+      preferences: preferences
     });
+
+    console.log(this.state);
   }
 
   updateUser(name) {

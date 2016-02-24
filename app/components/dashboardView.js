@@ -8,8 +8,6 @@ class Dashboard extends React.Component {
     super(props);
   }
 
-  // add state to track selected cats?
-
   handleSubmit (e) {
     e.preventDefault();
 
@@ -59,7 +57,7 @@ class Dashboard extends React.Component {
           <label className='distance' htmlFor='distance'>Maximum Distance:</label>
           <input type='number' className='distance' name='distance' ref='distance'/>
           <div className='category'>Restaurants</div>
-          <CategoriesView />
+          <CategoriesView updatePreferences={this.props.updatePreferences.bind(this)} />
           <button type='submit'>Submit</button>
         </fieldset>
       </form>
