@@ -4,12 +4,27 @@ import CategoryView from './CategoryView.js';
 class Categories extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      foodsChecked: []
+    };
   }
 
   updateFoodPrefs (e) {
-    e.preventDefault();
-    var foods = [e.target.value];
-    this.props.updatePreferences({foodTypes: foods});
+    console.log(e.currentTarget.checked);
+    var currentFoods = this.state.foodsChecked.slice();
+    console.log(this.state.foodsChecked);
+    if(e.currentTarget.checked) {
+      currentFoods.push(e.target.value);
+    } else {
+      var index = currentFoods.indexOf(e.target.value);
+      currentFoods.splice(index, 1);
+    }
+    
+    this.setState({
+      foodsChecked: currentFoods
+    });
+
+    this.props.updatePreferences({foodTypes: currentFoods});
   }
   
   
