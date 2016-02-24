@@ -1,7 +1,7 @@
 var request = require ('request');
 var userController = require ('./users/userController.js');
 var Uber = require ('./uber/uberController')(userController);
-var Yelp = require ('./yelp/yelpController')(Uber);
+var FourSquare = require ('./fourSquare/fourSquareController')(Uber);
 
 
 var router = function (app, express) {
@@ -10,10 +10,13 @@ var router = function (app, express) {
   app.post('/api/users/signin', userController.signin);
   app.get('/api/users/signedin', userController.checkAuth);
   app.post('/api/users/signout');
+
   app.put('/api/users', userController.updatePrefs);
   app.get('/api/users', userController.getUser);
-  app.post('/api/yelp', Yelp);
+
+  app.get('/api/spork', FourSquare);
   app.post('/api/uber', Uber.requestCar);
+
   app.get('/auth/uber', Uber.getToken);
 };
 
