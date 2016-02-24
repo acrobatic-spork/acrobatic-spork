@@ -33,8 +33,26 @@ class App extends React.Component {
       preferences: preferences
     });
 
-    console.log(this.state);
-  }
+    // call the utility function to update preferences in the db
+    // get the location when user signs in
+
+  //   var successNav =  (loc) => {
+  //     var lat = loc.coords.latitude;
+  //     var lon = loc.coords.longitude;
+  //     var location = {lat: lat, lon: lon}
+  //    utils.updatePrefs(prefs, username, location, (updated) => {
+  //       if (updated) {
+  //       this.props.updatePreferences(prefs);
+  //       } else {
+  //         console.log('Not updated preferences in server')
+  //       }
+  //     });
+  //   }
+  //   var errorNav =  () => {
+  //     console.error('Error getting location');
+  //   }
+  //   navigator.geolocation.getCurrentPosition(successNav, errorNav, options);
+  } // updatePreferences
 
   updateUser(name) {
     console.log("The user is now: ", name);
