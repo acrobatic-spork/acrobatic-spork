@@ -19,10 +19,14 @@ Uber.getToken = function (req, res, next) {
 };
 
 Uber.requestCar = function (req, res, next) {
-  console.log('uber request from yelp', req);
+  console.log('uber request from 4square', req.body);
   var startLoc = req.body.startLoc;
   var endLoc = req.body.endLoc;
+  var token = req.body.token;
+  
+  
 
+  res.json('success');
   // start_latitude
   // start_longitude
   // end_latitude
