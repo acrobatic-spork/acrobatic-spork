@@ -8,8 +8,8 @@ class Categories extends React.Component {
 
   updateFoodPrefs (e) {
     e.preventDefault();
-    console.log(e.target.value);
-    this.props.updatePreferences({foodTypes: ['pizza']});
+    var foods = [e.target.value];
+    this.props.updatePreferences({foodTypes: foods});
   }
   
   
