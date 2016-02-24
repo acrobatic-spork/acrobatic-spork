@@ -2,7 +2,7 @@ import React from 'react';
 // import Signin from './Signin.js';
 import { browserHistory, Router, Route, Link } from 'react-router'
 import Message from './Message'
-
+import styles from '../styles/styles.css'
 
 class App extends React.Component {
   
