@@ -7,7 +7,7 @@ var Auth = {
       if (cb) cb(true)
       return
     }
-    utils.sendRequest(username, password, url, (res) => {
+    utils.sendAuthRequest(username, password, url, (res) => {
       if (res.authenticated) {
         localStorage.setItem('token', res.token);
         if (cb) cb(true)
