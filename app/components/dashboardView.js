@@ -1,8 +1,8 @@
 import React from 'react';
-import InputRange from 'react-input-range';
 import { browserHistory, Router, Route, Link } from 'react-router'
 import CategoriesView from './CategoriesView.js';
 import utils from './utils';
+import styles from '../styles/styles.css'
 
 
 class Dashboard extends React.Component {
@@ -10,18 +10,17 @@ class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-      priceValue: 2,
-      values: {
-        min: 1,
-        max: 5
-      }
+      price: 2,
+      radius: 2,
+      chooseFood: true
     }
   }
 
-  priceChange (component, value) {
-    this.setState({
-      priceValue: value
-    });
+  prefsChange (e) {
+    var value = e.target.value;
+    console.log(e.target.value);
+    var slider = e.currentTarget.className;
+    console.log(e.currentTarget.className);
   }
 
   handleSubmit (e) {
@@ -34,12 +33,7 @@ class Dashboard extends React.Component {
       distance: this.refs.distance.value
     };
 
-    var username = this.props.getUsername();
-
-  }
-
-  handleValuesChange(component, values) {
-    console.log(values);
+    this.props.updatePreferences(prefs);
   }
 
   render (){
@@ -49,22 +43,20 @@ class Dashboard extends React.Component {
       <form name='preferences' className='prefernces' onSubmit={this.handleSubmit.bind(this)}>
         <fieldset>
           <legend>Dashboard</legend>
-
-          <InputRange
-            maxValue={20}
-            minValue={0}
-            value={this.state.values}
-            onChange={this.handleValuesChange.bind(this)}
-          />
-
           <label className='price' htmlFor='price'>Price:</label>
-          <InputRange className='price' name='price' type='range' />
-          <label className='stars' htmlFor='stars'>Minimum Star Rating:</label>
-          <input type='number' className='stars' name='stars' ref='stars'/>
-          <label className='distance' htmlFor='distance'>Maximum Distance:</label>
-          <input type='number' className='distance' name='distance' ref='distance'/>
-          <div className='category'>Restaurants</div>
-          <CategoriesView updatePreferences={this.props.updatePreferences.bind(this)} />
+          <input className='price' name='price' type='range' min='1' max='4' onChange={this.prefsChange.bind(this)}/>
+          <label className='radius' htmlFor='radius'>Maximum Distance:</label>
+          <input className='radius' name='radius' type='range' min='1' max='4' onChange={this.prefsChange.bind(this)}/>
+          
+          <div className={styles["onoffswitch"]}>
+            <input type="checkbox" name="onoffswitch" className={styles["onoffswitch-checkbox"]} id="myonoffswitch" />
+            <label className={styles["onoffswitch-label"]} htmlFor="myonoffswitch">
+              <span className={styles["onoffswitch-inner"]}></span>
+              <span className={styles["onoffswitch-switch"]}></span>
+            </label>
+          </div>
+
+
           <button type='submit'>Submit</button>
         </fieldset>
       </form>
