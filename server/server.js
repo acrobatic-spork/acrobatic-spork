@@ -18,9 +18,9 @@ var uberController = require ('./uber/uberController')(userController);
 var isDeveloping = process.env.NODE_ENV !== 'production';
 console.log('isDeveloping: ' + isDeveloping);
 // isDeveloping = false;
-var port = process.env.PORT || 8080;
-//var port = 80;
 
+// Digital Ocean does not seem to have a default process.env.PORT, so it is always undefined so the followoing can choose prod or dev
+var port = isDeveloping ? 3000 : 8080;
 var app = express();
 
 
@@ -44,7 +44,8 @@ app.use(allowCrossDomain);
 
 
 var distDir = path.resolve(__dirname, '../dist');
-  
+console.log('distdir: ', distDir);
+
 if (isDeveloping) {
   var compiler = webpack(config);
   var middleware = webpackMiddleware(compiler, {
@@ -59,18 +60,19 @@ if (isDeveloping) {
       modules: false
     }
   });
-
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
+}
+
   
  
-  app.use(express.static(distDir, {
-    extensions: ['html', 'htm', 'css', 'js'],
-    fallthrough: true
-  }));
+app.use(express.static(distDir, {
+  extensions: ['html', 'htm', 'css', 'js'],
+  fallthrough: true
+}));
   
-  var router = require ('./routes.js');
-  router(app, express);
+var router = require ('./routes.js');
+router(app, express);
 
 
 // app.use( express.errorHandler({ dumpExceptions: true, showStack: true }));
