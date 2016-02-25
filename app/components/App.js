@@ -61,8 +61,10 @@ class App extends React.Component {
     });
   }
 
-  getUsername(){
-    return this.state.user;
+  linkUberAccount() {
+    // util function that sends them to uber,
+    // deals with the token
+    // then sends them to preferences
   }
 
   logout(e) {
@@ -79,8 +81,8 @@ class App extends React.Component {
             return React.cloneElement(child, { 
               updateUser: this.updateUser.bind(this),
               updatePreferences: this.updatePreferences.bind(this),
-              getUsername: this.getUsername.bind(this),
               displayMessage: this.displayMessage.bind(this),
+              linkUberAccount: this.linkUberAccount.bind(this),
               ...this.props });
           });
     console.log('in app.js');

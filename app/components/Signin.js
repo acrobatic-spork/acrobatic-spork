@@ -1,6 +1,6 @@
 import React from 'react';
-import Auth from './Authorize'
-import { browserHistory } from 'react-router'
+import Auth from './Authorize';
+import { browserHistory } from 'react-router';
 
 // import function that will send post request to DB
 
@@ -8,9 +8,14 @@ class Signin extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      confirm: false,
+      passNotMatch: false
+    }
   }
 
-  handleSignin (e) {
+  handleLogin (e) {
     e.preventDefault();
     Auth.confirmUser(this.refs.username.value, this.refs.password.value, (loggedIn, res) => {
       if(loggedIn) {
@@ -23,36 +28,66 @@ class Signin extends React.Component {
     });
   }
 
-  handleSignup (e) {
+  confirmPass (e) {
     e.preventDefault();
-    var url = 'http://0.0.0.0:8080/api/users/signup';
-    Auth.confirmUser(this.refs.username.value, this.refs.password.value, (loggedIn, res) => {
-      if (loggedIn) {
-        this.props.updateUser(this.refs.username.value);
-        browserHistory.push('/dashboard');
-      } else {
-        var message = res.error.responseText.substr(0, res.error.responseText.indexOf('<'));
-        this.props.displayMessage(message);
-      }
-
-    }, url);
+    // show password confirmation
+    this.setState({
+      confirm: true
+    });
   }
 
-  render() {
-    console.log('Preferences passed down: ', this.props)
+  signupNewUser (e) {
+    e.preventDefault();
+
+    this.setState({
+      confirm: false
+    });
+
+    if(this.refs.confirm.value === this.refs.password.value) {
+      var url = 'http://0.0.0.0:8080/api/users/signup';
+      Auth.confirmUser(this.refs.username.value, this.refs.password.value, (loggedIn, res) => {
+        if (loggedIn) {
+          this.props.updateUser(this.refs.username.value);
+          browserHistory.push('/dashboard');
+        } else {
+          var message = res.error.responseText.substr(0, res.error.responseText.indexOf('<'));
+          this.props.displayMessage(message);
+        }
+
+      }, url);
+    } else {
+      // give feedback, as user to re-enter password
+      this.refs.password.value = '';
+      this.refs.confirm.value = '';
+      this.setState({
+        confirm: true,
+        passNotMatch: true
+      });
+    }
+
+  }
+
+  render () {
     return (
       <div className="">
         <form className="loginform" >
           <input className="username" type="text" ref="username" name="username" placeholder="username" />
           <input className="passord" type="password" ref="password" name="password" placeholder="password" />
-          <button className="signin" onClick={this.handleSignin.bind(this)}>
-            <span className="">Signin</span>
+          <button className="signin" onClick={this.handleLogin.bind(this)}>
+            <span className="">Login</span>
           </button>
-          <button className="signup" onClick={this.handleSignup.bind(this)}>
+          <button className="signup" onClick={this.confirmPass.bind(this)}>
             <span className="">Signup</span>
           </button>
         </form>
-      </div> 
+        {this.state.passNotMatch ? <p>Password did not match. Please try again.</p> : null}
+        {this.state.confirm ?
+          <div> 
+            <label htmlFor='confirm'>Confirm your password</label>
+            <input className='confirm' name='confirm' type='text' ref='confirm' /> 
+            <button onClick={this.signupNewUser.bind(this)}>Create account</button>
+          </div> : null}
+      </div>
     )
   }
 }
