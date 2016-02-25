@@ -18,8 +18,8 @@ var uberController = require ('./uber/uberController')(userController);
 var isDeveloping = process.env.NODE_ENV !== 'production';
 console.log('isDeveloping: ' + isDeveloping);
 // isDeveloping = false;
-// var port = isDeveloping ? 3000 : process.env.PORT;
-var port = 8080;
+var port = process.env.PORT || 8080;
+//var port = 80;
 var app = express();
 
 
