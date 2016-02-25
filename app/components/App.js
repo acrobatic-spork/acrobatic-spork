@@ -44,7 +44,7 @@ class App extends React.Component {
   }
 
   displayMessage(message) {
-    console.log("The user is now: ", name);
+    console.log("The message is now: ", message);
     this.setState({
       message: message
     });
@@ -57,7 +57,6 @@ class App extends React.Component {
   }
 
   getUser() {
-    console.log('in get User: ', this.state.user)
     return this.state.user
   }
 
