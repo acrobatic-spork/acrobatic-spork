@@ -18,8 +18,9 @@ var uberController = require ('./uber/uberController')(userController);
 var isDeveloping = process.env.NODE_ENV !== 'production';
 console.log('isDeveloping: ' + isDeveloping);
 // isDeveloping = false;
-var port = process.env.PORT || 8080;
-//var port = 80;
+
+// Digital Ocean does not seem to have a default process.env.PORT, so it is always undefined so the followoing can choose prod or dev
+var port = isDeveloping ? 3000 : 8080;
 var app = express();
 
 
@@ -43,7 +44,8 @@ app.use(allowCrossDomain);
 
 
 var distDir = path.resolve(__dirname, '../dist');
-  
+console.log('distdir: ', distDir);
+
 if (isDeveloping) {
   var compiler = webpack(config);
   var middleware = webpackMiddleware(compiler, {
@@ -58,35 +60,21 @@ if (isDeveloping) {
       modules: false
     }
   });
-
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
-  app.get(function response(req, res, next) {
-    if (req.accepts('html')) {
-      res.write(middleware.fileSystem.readFileSync(path.join(distDir, '/index.html')));
-      res.end();
-    } else {
-      next();
-    }
-  });
-} else {
-  console.log('using static middleware ' + distDir);
-  app.use(express.static(distDir, {
-    extensions: ['html', 'htm'],
-    fallthrough: true
-  }));
-  app.use(function (req, res, next) {
-    if (req.accepts('html') && req.method === 'GET') {
-      console.log("in fallback. req is " + JSON.stringify(req.accepts('html')));
-      res.sendFile(path.join(distDir, '/index.html'));
-    } else {
-      next();
-    } 
-  });
 }
 
+  
+ 
+app.use(express.static(distDir, {
+  extensions: ['html', 'htm', 'css', 'js'],
+  fallthrough: true
+}));
+  
 var router = require ('./routes.js');
 router(app, express);
+
+
 // app.use( express.errorHandler({ dumpExceptions: true, showStack: true }));
 
 mongoose.connect('mongodb://localhost/spork');

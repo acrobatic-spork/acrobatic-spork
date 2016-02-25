@@ -3,7 +3,7 @@ import utils from './utils'
 
 var Auth = {
   confirmUser(username, password, cb, url) {
-    url = url || 'http://0.0.0.0:8080/api/users/signin'
+    url = url || '/api/users/signin'
     if (localStorage.getItem('token')) {
       if (cb) cb(true)
       return

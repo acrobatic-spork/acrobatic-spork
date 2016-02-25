@@ -46,7 +46,7 @@ class Signin extends React.Component {
     });
 
     if(this.refs.confirm.value === this.refs.password.value) {
-      var url = 'http://0.0.0.0:8080/api/users/signup';
+      var url = '/api/users/signup';
       Auth.confirmUser(this.refs.username.value, this.refs.password.value, (loggedIn, res) => {
         if (loggedIn) {
           //get location permission on signup
