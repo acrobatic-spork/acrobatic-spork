@@ -90,8 +90,10 @@ router(app, express);
 // app.use( express.errorHandler({ dumpExceptions: true, showStack: true }));
 
 mongoose.connect('mongodb://localhost/spork');
-User.seed();
 
+if (isDeveloping) {
+  User.seed(); // THIS ERASES USER DB! DON'T DO IT IN PRODUCTION!!!
+}
 
 app.listen(port, '0.0.0.0', function onStart(err) {
   if (err) {
