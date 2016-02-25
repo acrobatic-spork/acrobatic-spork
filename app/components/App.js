@@ -20,14 +20,14 @@ class App extends React.Component {
   updatePreferences(newPrefs) {
 
     this.setState({
-      preferences: preferences
+      preferences: newPrefs
     });
 
     // call the utility function to update preferences in the db
     // get the location when user signs in
 
    // updatePreferences
-    utils.updatePrefs(prefs, this.state.user, (updated) => {
+    utils.updatePrefs(newPrefs, this.state.user, (updated) => {
         if (updated) {
           console.log('Updated preferences in server')
         } else {
