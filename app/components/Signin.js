@@ -28,7 +28,7 @@ class Signin extends React.Component {
     });
   }
 
-  handleSignup (e) {
+  confirmPass (e) {
     e.preventDefault();
     // show password confirmation
     this.setState({
@@ -76,7 +76,7 @@ class Signin extends React.Component {
           <button className="signin" onClick={this.handleLogin.bind(this)}>
             <span className="">Login</span>
           </button>
-          <button className="signup" onClick={this.handleSignup.bind(this)}>
+          <button className="signup" onClick={this.confirmPass.bind(this)}>
             <span className="">Signup</span>
           </button>
         </form>
