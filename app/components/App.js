@@ -79,7 +79,6 @@ class App extends React.Component {
               getUser: this.getUser.bind(this),
               ...this.props });
           });
-    console.log('in app.js');
    return (
       <div>
       <nav>

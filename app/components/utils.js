@@ -70,7 +70,7 @@ utils.sendSporkRequest = (userLocation, cb) => {
     },
     error (data) {
       // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
-      console.error('Failed to fetch from Youtube API endpoint');
+      console.error('Failed to send Spork request, response: ', data);
     }
   });
 
