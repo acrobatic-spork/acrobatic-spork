@@ -61,8 +61,10 @@ class App extends React.Component {
     });
   }
 
-  getUsername(){
-    return this.state.user;
+  linkUberAccount() {
+    // util function that sends them to uber,
+    // deals with the token
+    // then sends them to preferences
   }
 
   logout(e) {
