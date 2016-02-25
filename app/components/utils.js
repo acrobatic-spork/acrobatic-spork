@@ -67,7 +67,7 @@ utils.getUberAuth = (username, cb) => {
   }
    var url = 'https://login.uber.com/oauth/v2/authorize?'
    url = url + $.param( uberParams );
-   window.location.replace(url);
+   window.location.replace(url);// redirect to uber auth with redirect uri
    cb(null);
 }
 
