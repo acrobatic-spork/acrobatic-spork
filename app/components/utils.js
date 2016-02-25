@@ -27,7 +27,7 @@ utils.sendAuthRequest = (username, password, url, cb) => {
   });
 };
 
-utils.updatePrefs = (prefs, username, location, cb) => {
+utils.updatePrefs = (prefs, username, cb) => {
   $.ajax({
     url: '/api/users/username='+username,
     beforeSend: function (request){
@@ -46,5 +46,34 @@ utils.updatePrefs = (prefs, username, location, cb) => {
     }
   })
 };
+
+utils.getLocation = (successNav) => {
+  var options = {
+    enableHighAccuracy: true
+  }
+
+  var errorNav =  () => {
+    console.error('Error getting location');
+  }
+  navigator.geolocation.getCurrentPosition(successNav, errorNav, options);
+}
+
+utils.sendSporkRequest = (userLocation, cb) => {
+  $.ajax({
+    // This is the url you should use to communicate with the parse API server.
+    url: '/api/spork',
+    type: 'GET',
+    data: userLocation,
+
+    success (data) {
+      cb(data);
+    },
+    error (data) {
+      // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
+      console.error('Failed to fetch from Youtube API endpoint');
+    }
+  });
+
+}
 
 export default utils;
