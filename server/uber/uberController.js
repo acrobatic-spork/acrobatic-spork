@@ -15,12 +15,15 @@ module.exports = function(userController) {
 var Uber = {};
 
 Uber.getToken = function (req, res, next) {
-  console.log('>>>>>>>>>>>>>>>>>>>>', req);
   request.post("https://login.uber.com/oauth/v2/token?code=" + req.query.code + "&redirect_uri=http://localhost:8080/auth/uber&client_id=x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m&client_secret=9ddASgYXll_qHgdq7XxWtV0iG7AQfpAwGFh-sFL0&grant_type=authorization_code", function(err, response) {
     console.log('-------------------------------', err, response.body);
+    request.post({
+      uri: 'http://localhost:8080/api/users/auth',
+      body: req.body.access_token
+    })
     // TODO: Add to database
   });
-  res.redirect('/');
+  // res.redirect('/');
 };
 
 Uber.requestCar = function (req, res, next) {
@@ -44,6 +47,28 @@ Uber.requestCar = function (req, res, next) {
     console.log('Response from uber car request', err, response.body);
   });   
 };
+
+Uber.checkStatus = function (req, res, next) {
+  request.get({ 
+    uri: testEndpoint+'/<REQUEST_ID>',
+    headers: {
+      'Authorization': 'Bearer '+testAccessToken
+    }
+  } , function(err, response) {
+    console.log('Status of uber ride', err, response.body);
+  });
+}
+
+Uber.cancelRequest = function (req, res, next) {
+  request.delete({ 
+    uri: testEndpoint+'/<REQUEST_ID>',
+    headers: {
+      'Authorization': 'Bearer '+testAccessToken
+    }
+  } , function(err, response) {
+    console.log('Cancelling uber request', err, response.body);
+  });
+}
 
 
 // example response

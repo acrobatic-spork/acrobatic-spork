@@ -30,6 +30,9 @@ var sendUserInfo = function (user, req, res, next) {
   });
 };
 
+Controller.addToken = function (req, res, next) {
+  console.log('*************** addToken', req);
+}
 
 Controller.signin = function(req, res, next) {
   var username = req.body.username;
