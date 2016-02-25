@@ -14,7 +14,6 @@ var request = require ('request');
 
 var userController = require ('./users/userController');
 var uberController = require ('./uber/uberController')(userController);
-var yelp = require ('./yelp/yelpController')(uberController);
 
 var isDeveloping = process.env.NODE_ENV !== 'production';
 console.log('isDeveloping: ' + isDeveloping);
