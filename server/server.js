@@ -62,32 +62,17 @@ if (isDeveloping) {
 
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
-  var router = require ('./routes.js');
-  router(app, express);
   
-  app.get(function response(req, res, next) {
-    if (req.accepts('html')) {
-      res.write(middleware.fileSystem.readFileSync(path.join(distDir, '/index.html')));
-      res.end();
-    } else {
-      next();
-    }
-  });
-} else {
-  console.log('using static middleware ' + distDir);
+ 
   app.use(express.static(distDir, {
-    extensions: ['html', 'htm'],
+  console.log('using static middleware ' + distDir);
+    extensions: ['html', 'htm', 'css', 'js'],
     fallthrough: true
   }));
-  app.use(function (req, res, next) {
-    if (req.accepts('html') && req.method === 'GET') {
-      console.log("in fallback. req is " + JSON.stringify(req.accepts('html')));
-      res.sendFile(path.join(distDir, '/index.html'));
-    } else {
-      next();
-    } 
-  });
-}
+  
+  var router = require ('./routes.js');
+  router(app, express);
+
 
 // app.use( express.errorHandler({ dumpExceptions: true, showStack: true }));
 
@@ -97,7 +82,7 @@ if (isDeveloping) {
   User.seed(); // THIS ERASES USER DB! DON'T DO IT IN PRODUCTION!!!
 }
 
-app.listen(port, '0.0.0.0', function onStart(err) {
+app.listen(port, localhost, function onStart(err) {
   if (err) {
     console.log(err);
   }
