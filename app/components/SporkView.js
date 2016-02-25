@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../styles/styles.css'
+import utils from './utils'
 
 class Spork extends React.Component {
   constructor(props){
@@ -8,13 +9,24 @@ class Spork extends React.Component {
 
   sporkHandler (e) {
     e.preventDefault();
-    // get user preferences from state
-    // query yelp
-      // on response, choose a place (helper function?)
-        // on response query uber for a ride
-          // on response
-            // update state to ride on the way
-            // route user to uber?
+    console.log('in spork handler');
+
+    // sends the spork request after getting location
+    var successNav =  (loc) => {
+      var lat = loc.coords.latitude;
+      var lon = loc.coords.longitude;
+      var location = {lat: lat, lng: lon};
+      console.log('props.geUser exists: ', this.props.getUser)
+      location.username = this.props.getUser();
+      if (location.username){
+        console.log('got location & username', location)
+        utils.sendSporkRequest(location, (res) => {
+          console.log('sent spork request & response is:', res);
+        });  
+      } else console.log('Could not get username');
+    }
+    // get location
+    utils.getLocation(successNav.bind(this));
 
   }
   

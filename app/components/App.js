@@ -4,6 +4,7 @@ import { browserHistory, Router, Route, Link } from 'react-router'
 import Message from './Message'
 import auth from './Authorize'
 import styles from '../styles/styles.css'
+import utils from './utils'
 
 class App extends React.Component {
   
@@ -25,27 +26,15 @@ class App extends React.Component {
     // call the utility function to update preferences in the db
     // get the location when user signs in
 
-    // var options = {
-    //   enableHighAccuracy: true
-    // }
-
-  //   var successNav =  (loc) => {
-  //     var lat = loc.coords.latitude;
-  //     var lon = loc.coords.longitude;
-  //     var location = {lat: lat, lon: lon}
-  //    utils.updatePrefs(prefs, username, location, (updated) => {
-  //       if (updated) {
-  //       this.props.updatePreferences(prefs);
-  //       } else {
-  //         console.log('Not updated preferences in server')
-  //       }
-  //     });
-  //   }
-  //   var errorNav =  () => {
-  //     console.error('Error getting location');
-  //   }
-  //   navigator.geolocation.getCurrentPosition(successNav, errorNav, options);
-  } // updatePreferences
+   // updatePreferences
+    utils.updatePrefs(prefs, this.state.user, (updated) => {
+        if (updated) {
+          console.log('Updated preferences in server')
+        } else {
+          console.log('Not updated preferences in server')
+        }
+      });
+    }
 
   updateUser(name) {
     console.log("The user is now: ", name);
@@ -55,7 +44,7 @@ class App extends React.Component {
   }
 
   displayMessage(message) {
-    console.log("The user is now: ", name);
+    console.log("The message is now: ", message);
     this.setState({
       message: message
     });
@@ -65,6 +54,10 @@ class App extends React.Component {
     // util function that sends them to uber,
     // deals with the token
     // then sends them to preferences
+  }
+
+  getUser() {
+    return this.state.user
   }
 
   logout(e) {
@@ -83,9 +76,9 @@ class App extends React.Component {
               updatePreferences: this.updatePreferences.bind(this),
               displayMessage: this.displayMessage.bind(this),
               linkUberAccount: this.linkUberAccount.bind(this),
+              getUser: this.getUser.bind(this),
               ...this.props });
           });
-    console.log('in app.js');
    return (
       <div>
       <nav>
