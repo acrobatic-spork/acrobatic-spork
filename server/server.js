@@ -81,7 +81,7 @@ if (isDeveloping) {
   User.seed(); // THIS ERASES USER DB! DON'T DO IT IN PRODUCTION!!!
 }
 
-app.listen(port, localhost, function onStart(err) {
+app.listen(port, '0.0.0.0', function onStart(err) {
   if (err) {
     console.log(err);
   }
