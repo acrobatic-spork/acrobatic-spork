@@ -63,21 +63,12 @@ utils.getUberAuth = (username, cb) => {
   var uberParams = {
     responseType: 'code',
     client_id: 'x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m',
-    redirect_uri: 'http://acrobaticspork.com/auth/uber/username='+username
+    redirect_uri: 'http://acrobaticspork.com/auth/uber/'
   }
-  $.ajax({
-    // This is the url you should use to communicate with the parse API server.
-    url: 'https://login.uber.com/oauth/v2/authorize',
-    type: 'GET',
-    data: uberParams,
-
-    success (data) {
-      cb(data);
-    },
-    error (data) {
-      console.error('Failed to get Uber Authorization, response: ', data);
-    }
-  });
+   var url = 'https://login.uber.com/oauth/v2/authorize?'
+   url = url + $.param( uberParams );
+   window.location.replace(url);
+   cb(null);
 }
 
 utils.sendSporkRequest = (userLocation, cb) => {
