@@ -61,6 +61,8 @@ if (isDeveloping) {
 
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
+  var router = require ('./routes.js');
+  
   app.get(function response(req, res, next) {
     if (req.accepts('html')) {
       res.write(middleware.fileSystem.readFileSync(path.join(distDir, '/index.html')));
@@ -85,7 +87,6 @@ if (isDeveloping) {
   });
 }
 
-var router = require ('./routes.js');
 router(app, express);
 // app.use( express.errorHandler({ dumpExceptions: true, showStack: true }));
 
