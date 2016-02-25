@@ -1,7 +1,7 @@
 import React from 'react';
 import Auth from './Authorize';
 import { browserHistory } from 'react-router';
-
+import utils from './utils'
 // import function that will send post request to DB
 
 class Signin extends React.Component {
@@ -19,6 +19,8 @@ class Signin extends React.Component {
     e.preventDefault();
     Auth.confirmUser(this.refs.username.value, this.refs.password.value, (loggedIn, res) => {
       if(loggedIn) {
+        //get location permission on sign so spork request had better user experience
+        utils.getLocation( () => console.log('Got location on Login') );
         this.props.updateUser(this.refs.username.value);
         browserHistory.push('/');
       }  else {
@@ -47,6 +49,8 @@ class Signin extends React.Component {
       var url = 'http://0.0.0.0:8080/api/users/signup';
       Auth.confirmUser(this.refs.username.value, this.refs.password.value, (loggedIn, res) => {
         if (loggedIn) {
+          //get location permission on signup
+          utils.getLocation( () => console.log('Got location on Login') );
           this.props.updateUser(this.refs.username.value);
           browserHistory.push('/dashboard');
         } else {
