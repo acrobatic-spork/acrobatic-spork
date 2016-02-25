@@ -45,6 +45,28 @@ Uber.requestCar = function (req, res, next) {
   });   
 };
 
+Uber.checkStatus = function (req, res, next) {
+  request.get({ 
+    uri: testEndpoint+'/<REQUEST_ID>',
+    headers: {
+      'Authorization': 'Bearer '+testAccessToken
+    }
+  } , function(err, response) {
+    console.log('Status of uber ride', err, response.body);
+  });
+}
+
+Uber.cancelRequest = function (req, res, next) {
+  request.delete({ 
+    uri: testEndpoint+'/<REQUEST_ID>',
+    headers: {
+      'Authorization': 'Bearer '+testAccessToken
+    }
+  } , function(err, response) {
+    console.log('Cancelling uber request', err, response.body);
+  });
+}
+
 
 // example response
 /*{
