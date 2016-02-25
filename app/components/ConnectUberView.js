@@ -7,7 +7,7 @@ class ConnectUber extends React.Component {
 
   handleUberSignin (e) {
     e.preventDefault();
-    this.props.addUberAccount();
+    this.props.linkUberAccount();
   }
 
   render() {

@@ -58,6 +58,27 @@ utils.getLocation = (successNav) => {
   navigator.geolocation.getCurrentPosition(successNav, errorNav, options);
 }
 
+utils.getUberAuth = (username, cb) => {
+  var uberParams = {
+    responseType: 'code',
+    client_id: 'x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m',
+    redirect_uri: 'http://acrobaticspork.com/auth/uber/username='+username
+  }
+  $.ajax({
+    // This is the url you should use to communicate with the parse API server.
+    url: 'https://login.uber.com/oauth/v2/authorize',
+    type: 'GET',
+    data: uberParams,
+
+    success (data) {
+      cb(data);
+    },
+    error (data) {
+      console.error('Failed to get Uber Authorization, response: ', data);
+    }
+  });
+}
+
 utils.sendSporkRequest = (userLocation, cb) => {
   $.ajax({
     // This is the url you should use to communicate with the parse API server.
@@ -66,14 +87,16 @@ utils.sendSporkRequest = (userLocation, cb) => {
     data: userLocation,
 
     success (data) {
-      cb(data);
+      cb(null, data);
     },
     error (data) {
+      cb(data, null);
       // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
       console.error('Failed to send Spork request, response: ', data);
     }
   });
 
 }
+
 
 export default utils;
