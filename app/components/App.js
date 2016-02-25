@@ -51,7 +51,9 @@ class App extends React.Component {
   }
 
   linkUberAccount() {
+    console.log('In linkUberAccount')
     if(!this.state.user){
+      console.log('Username not found in state')
       browserHistory.push('/signin');
     } else {
     // util function that sends them to uber, with redirect uri set to our uber enpoint

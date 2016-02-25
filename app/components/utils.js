@@ -59,6 +59,7 @@ utils.getLocation = (successNav) => {
 }
 
 utils.getUberAuth = (username, cb) => {
+  console.log('In getUberAuth: user: ', username)
   var uberParams = {
     responseType: 'code',
     client_id: 'x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m',
