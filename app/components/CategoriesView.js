@@ -9,6 +9,11 @@ class Categories extends React.Component {
     };
   }
 
+  // Could use this if we want to let them create a list
+  // of prefs and then randomly pick one for the 
+  // 4 square query
+  // Move the handler to dashboard so that all prefs are set onSubmit
+
   updateFoodPrefs (e) {
     var currentFoods = this.state.foodsChecked.slice();
     if(e.currentTarget.checked) {
