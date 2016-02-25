@@ -22,16 +22,11 @@ var UserSchema = new mongoose.Schema({
       type: Number,
       default: 2
     },
-    minRating: {
-      type: Number,
-      default: 3
-    },
     maxMiles: {
       type: Number,
       default: 3
     },
-    faster: Boolean,
-    foodTypes: Array,
+    chooseFood: Boolean,
   }
 },
 {
@@ -100,10 +95,8 @@ var dummyUser = {
 
   preferences: {
     maxCost: 1,
-    minRating: 1,
     maxMiles: 60,
-    faster: false,
-    foodTypes: ['pizza', 'crap'],
+    chooseFood: true
   }
 };
 
