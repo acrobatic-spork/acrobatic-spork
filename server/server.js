@@ -65,7 +65,6 @@ if (isDeveloping) {
   
  
   app.use(express.static(distDir, {
-  console.log('using static middleware ' + distDir);
     extensions: ['html', 'htm', 'css', 'js'],
     fallthrough: true
   }));
