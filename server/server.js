@@ -62,6 +62,7 @@ if (isDeveloping) {
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
   var router = require ('./routes.js');
+  router(app, express);
   
   app.get(function response(req, res, next) {
     if (req.accepts('html')) {
@@ -87,7 +88,6 @@ if (isDeveloping) {
   });
 }
 
-router(app, express);
 // app.use( express.errorHandler({ dumpExceptions: true, showStack: true }));
 
 mongoose.connect('mongodb://localhost/spork');
