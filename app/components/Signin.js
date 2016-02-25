@@ -46,7 +46,7 @@ class Signin extends React.Component {
           <input className="username" type="text" ref="username" name="username" placeholder="username" />
           <input className="passord" type="password" ref="password" name="password" placeholder="password" />
           <button className="signin" onClick={this.handleSignin.bind(this)}>
-            <span className="">Signin</span>
+            <span className="">Login</span>
           </button>
           <button className="signup" onClick={this.handleSignup.bind(this)}>
             <span className="">Signup</span>
