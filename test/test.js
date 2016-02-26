@@ -26,6 +26,10 @@ describe('the Uber Controller', function () {
 
 describe('the FourSquare Controller', function () {
   it('should have all the functions', function () {
-    expect(FourSquare).to.be.a('function');
+    expect(FourSquare.init).to.be.a('function');
+    expect(FourSquare.getUserInfoAsync).to.be.a('function');
+    expect(FourSquare.sendQueryAsync).to.be.a('function');
+    expect(FourSquare.callUber).to.be.a('function');
+
   });
 });
