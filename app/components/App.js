@@ -51,9 +51,21 @@ class App extends React.Component {
   }
 
   linkUberAccount() {
-    // util function that sends them to uber,
-    // deals with the token
-    // then sends them to preferences
+    console.log('In linkUberAccount')
+    if(!this.state.user){
+      console.log('Username not found in state')
+      browserHistory.push('/signin');
+    } else {
+    // util function that sends them to uber, with redirect uri set to our uber enpoint
+      utils.getUberAuth( this.state.user, 
+        (err, res) => {
+          if (err) return
+          console.log('Got uber auth: ',res);
+          // have to confirm if the server has recieved 'code' & access / refresh token
+          browserHistory.push('/dashboard');
+          // then sends them to preferences
+        } );
+      }
   }
 
   getUser() {

@@ -16,6 +16,10 @@ class Dashboard extends React.Component {
     }
   }
 
+  componentDidMount () {
+    this.props.displayMessage('');
+  }
+
   prefsChange (e) {
     var value = e.target.value;
     var slider = e.currentTarget.name;
@@ -52,7 +56,6 @@ class Dashboard extends React.Component {
 
   render (){
     var categories = ['Mexican', 'Italian', 'Bars', 'Pizza'];
-
     return (
       <form name='preferences' className='prefernces' onSubmit={this.handleSubmit.bind(this)}>
         <fieldset>
