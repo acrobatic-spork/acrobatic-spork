@@ -16,6 +16,7 @@ module.exports = function(userController) {
 var Uber = {};
 
 Uber.getToken = function (req, res, next) {
+  console.log('query code',req.query.code)
   request.post("https://login.uber.com/oauth/v2/token?code=" + req.query.code + "&redirect_uri=" + redirectUri + "&client_id=" + client_id + "&client_secret=" + client_secret + "&grant_type=authorization_code", function(err, response) {
 
     var token = {
