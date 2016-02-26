@@ -107,10 +107,8 @@ Controller.getUsername = function(username, req, res, next) {
 };
 
 Controller.getUser = function (req, res, next) {
-  console.log('-------------', req.query);
   User.findOneAsync({ username: req.query.username })
     .then(function (user) {
-      console.log('userobject>>>>>>>',user);
       res.json(user);
     })
     .catch(function (err) {

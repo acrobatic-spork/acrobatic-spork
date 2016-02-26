@@ -32,7 +32,6 @@ Uber.getToken = function (req, res, next) {
 };
 
 Uber.requestCar = function (req, res, next) {
-  console.log('uber request from 4square', req.body);
   // var token = req.body.token;
   var requestCar = {
     start_latitude: req.body.startLat,
