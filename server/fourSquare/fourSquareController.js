@@ -45,7 +45,7 @@ FourSquare.getUserInfoAsync = function (req) {
           lat: req.query.lat,
           lng: req.query.lng
         };
-        resolve();
+        resolve(response);
       }
     })
   });
@@ -60,14 +60,14 @@ FourSquare.sendQueryAsync = function (userObj) {
         reject(err);
       } else {
         var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*10)].venue;
-        resolve(venue, userObj);
+        resolve(venue);
       }
     });
   })
 
 }
 
-FourSquare.callUber = function (venue) {
+FourSquare.callUber = function (venue, cb) {
   request.post({ 
     uri: test.uri + '/api/uber', 
     body: {
@@ -79,6 +79,8 @@ FourSquare.callUber = function (venue) {
     },
     json: true
   } , function(err, response) {
+    cb(response);
+    console.log('response from call uber', response);
   }); 
 }
 
