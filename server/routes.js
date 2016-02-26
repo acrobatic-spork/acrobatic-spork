@@ -14,7 +14,7 @@ var router = function (app, express) {
   app.put('/api/users', userController.updatePrefs);
   app.get('/api/users', userController.getUser);
 
-  app.post('/api/users/auth', userController.addToken);
+  app.get('/api/users/auth', userController.redirectToUber);
 
   app.get('/api/spork', FourSquare);
   app.post('/api/uber', Uber.requestCar);

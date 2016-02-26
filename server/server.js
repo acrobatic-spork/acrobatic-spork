@@ -10,6 +10,7 @@ var User = require( './users/user' );
 var passport = require ('passport');
 var uberStrategy = require ('passport-uber');
 var request = require ('request');
+var session = require('express-session');
 
 
 var userController = require ('./users/userController');
@@ -28,6 +29,11 @@ var app = express();
 app.use(bodyParser.json()); 
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); 
 app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(session({
+  secret: 'shhh, it\'s a secret',
+  resave: false,
+  saveUninitialized: true
+}));
 
 var allowCrossDomain = function(req, res, next) {
   // if ('OPTIONS' === req.method) {

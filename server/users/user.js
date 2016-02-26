@@ -93,6 +93,8 @@ var dummyUser = {
 
   password: 'stuff',
 
+  uberToken: '',
+
   preferences: {
     maxCost: 1,
     maxMiles: 60,
