@@ -17,8 +17,8 @@ var uberController = require ('./uber/uberController')(userController);
 // for ssl server
 var fs = require('fs');
 var https = require('https');
-var privateKey  = fs.readFileSync('sslcert/server.key', 'utf8');
-var certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
+var privateKey  = fs.readFileSync('sslcerts/acrobaticspork.key', 'utf8');
+var certificate = fs.readFileSync('sslcerts/acrobaticspork.crt', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 
 var isDeveloping = process.env.NODE_ENV !== 'production';
