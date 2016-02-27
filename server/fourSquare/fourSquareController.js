@@ -23,10 +23,19 @@ FourSquare.userObj = {}
 FourSquare.init = function (req, res, cb) {
   FourSquare.getUserInfoAsync(req)
   .then(function() {
+    console.log('user: ', FourSquare.userObj)
     return FourSquare.sendQueryAsync(FourSquare.userObj);
   })
   .then(function (venue) {
-    FourSquare.callUber(venue);
+    return FourSquare.callUberAsync(venue);
+  })
+  .then(function (response) {
+    var sendToFront = {
+      uberStatus: response.body.body,
+      venue: FourSquare.userObj.venue
+    }
+    console.log('response from callUberAsync: ', sendToFront);
+    res.json(sendToFront);
   })
 
 }
@@ -59,29 +68,35 @@ FourSquare.sendQueryAsync = function (userObj) {
       if (err) {
         reject(err);
       } else {
-        var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*10)].venue;
+        var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*9)].venue;
+        console.log('venue name = ', venue.name)
+        FourSquare.userObj.venue = venue.name;
         resolve(venue);
       }
     });
   })
-
 }
 
-FourSquare.callUber = function (venue, cb) {
-  request.post({ 
-    uri: test.uri + '/api/uber', 
-    body: {
-      token: FourSquare.userObj.token,
-      startLat: FourSquare.userObj.lat,
-      startLng: FourSquare.userObj.lng,
-      endLat: venue.location.lat,
-      endLng: venue.location.lng
-    },
-    json: true
-  } , function(err, response) {
-    cb(response);
-    console.log('response from call uber', response);
-  }); 
+FourSquare.callUberAsync = function (venue) {
+  return new Promise(function (resolve, reject) {
+    request.post({ 
+      uri: test.uri + '/api/uber', 
+      body: {
+        token: FourSquare.userObj.token,
+        startLat: FourSquare.userObj.lat,
+        startLng: FourSquare.userObj.lng,
+        endLat: venue.location.lat,
+        endLng: venue.location.lng
+      },
+      json: true
+    } , function(err, response) {
+      if(err) {
+        reject(err);
+      } else {
+        resolve(response);
+      }
+    }); 
+  })
 }
 
 module.exports = FourSquare;
