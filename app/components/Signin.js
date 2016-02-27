@@ -22,6 +22,7 @@ class Signin extends React.Component {
         //get location permission on sign so spork request had better user experience
         utils.getLocation( () => console.log('Got location on Login') );
         this.props.updateUser(this.refs.username.value);
+        // check for uber token, if not valid, route to connect uber
         browserHistory.push('/');
       }  else {
         var message = res.error.responseText.substr(0, res.error.responseText.indexOf('<'));
@@ -52,7 +53,7 @@ class Signin extends React.Component {
           //get location permission on signup
           utils.getLocation( () => console.log('Got location on Login') );
           this.props.updateUser(this.refs.username.value);
-          browserHistory.push('/dashboard');
+          browserHistory.push('/uber');
         } else {
           var message = res.error.responseText.substr(0, res.error.responseText.indexOf('<'));
           this.props.displayMessage(message);
