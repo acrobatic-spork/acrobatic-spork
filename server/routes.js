@@ -15,11 +15,13 @@ var router = function (app, express) {
   app.get('/api/users', userController.getUser);
 
   app.get('/api/users/auth', userController.redirectToUber);
+  app.get('/auth/uber', Uber.getToken);
 
   app.get('/api/spork', FourSquare.init);
   app.post('/api/uber', Uber.requestCar);
+  app.get('/api/uber/:id', Uber.checkStatus);
+  app.delete('/api/uber/:id', Uber.cancelRequest);
 
-  app.get('/auth/uber', Uber.getToken);
 };
 
 module.exports = router;
