@@ -76,7 +76,7 @@ utils.checkUberToken = (username, cb) => {
     url: '/api/users?username='+username,
     type: 'GET',
      success (data) {
-      console.log('Got the user info, here is data...');
+      console.log('Got the user info, here is data...', data.token);
       cb(null, data.uberToken.length);
      },
      error (error) {
