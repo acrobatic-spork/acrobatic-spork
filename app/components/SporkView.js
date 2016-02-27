@@ -1,10 +1,18 @@
 import React from 'react';
 import styles from '../styles/styles.css'
 import utils from './utils'
+import Status from './UberStatusView'
 
 class Spork extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      venue: null,
+      status: null,
+      eta: null,
+      id: null
+
+    }
   }
 
   sporkHandler (e) {
@@ -22,6 +30,12 @@ class Spork extends React.Component {
         console.log('got location & username', location)
         utils.sendSporkRequest(location, (err, res) => {
           console.log('sent spork request & response is:', res);
+          this.setState({
+            venue: res.venue,
+            status: res.uberStatus.status,
+            eta: res.uberStatus.eta,
+            id: res.uberStatus.request_id
+          })
         });  
       } else console.log('Could not get username');
     }
@@ -33,7 +47,12 @@ class Spork extends React.Component {
   render (){
     return (
       <div className={styles['button-box']}>
-        <button onClick={this.sporkHandler.bind(this)} className={styles['spork-button']}>Spork</button>
+        <div>
+          <button onClick={this.sporkHandler.bind(this)} className={styles['spork-button']}>Spork</button>
+        </div>
+        <div>
+          <Status status={this.state}/>
+        </div>
       </div>
       )
   }
