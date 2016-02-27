@@ -50,7 +50,13 @@ Uber.requestCar = function (req, res, next) {
     body: requestCar,
     json: true
   } , function(err, response) {
-    console.log('Response from uber car request', err, response.body);
+    if(err) {
+      res.json(err);
+    } else {
+      console.log('Response from uber car request: ', err, response.body);
+      console.log('=======================================')
+      res.json(response);
+    }
   });   
 };
 
