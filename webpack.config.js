@@ -2,6 +2,7 @@
 
 var path = require('path');
 var webpack = require('webpack');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -15,6 +16,7 @@ module.exports = {
     filename: 'acrobaticspork',
     publicPath: '/'
   },
+  context: path.join(__dirname, 'app'),
   plugins: [
     new HtmlWebpackPlugin({
       template: 'app/index.tpl.html',
@@ -26,7 +28,11 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
-    })
+    }),
+    new CopyWebpackPlugin([ 
+      { from: 'images', to: 'images' },
+      { from: 'favicons', to: 'favicons' }
+    ])
   ],
   module: {
     noParse: /validate\.js/,
@@ -40,7 +46,8 @@ module.exports = {
     }, {
       test: /\.css$/,
       loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]'
-    }]
+    },
+    { test: /\.(png|jpg|gif)$/, loader: 'file-loader?name=images/[name].[ext]' }]
   }, resolve: {
     extensions: ['', '.js', '.jsx', '.node']
   } 
