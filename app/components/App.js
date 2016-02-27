@@ -98,7 +98,7 @@ class App extends React.Component {
               ...this.props });
           });
    return (
-      <div>
+      <div className="container">
       <nav>
         <ul>
          <li><Link activeClassName={styles['active-nav']} to="/dashboard">Dashboard</Link> </li>
@@ -111,6 +111,7 @@ class App extends React.Component {
        </nav>
        <Message message={this.state.message} />
        {childrenWithProps}
+      <div className="anim-box"><img src="wc-spork.png" /></div>
       </div>
       )
     }
