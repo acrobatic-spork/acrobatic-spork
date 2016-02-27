@@ -41,6 +41,10 @@ nav li {
   margin: 0.5em;
 }
 
+button {
+  font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+
+}
 
 .button-box {
   position: relative;
@@ -81,7 +85,8 @@ nav li {
 
 /*for food and drinks toggle*/
 .onoffswitch {
-    position: relative; width: 110px;
+    position: relative; 
+    width: 110px;
     display: inline-block;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
 }
@@ -102,14 +107,16 @@ nav li {
     box-sizing: border-box;
 }
 .onoffswitch-inner:before {
-    content: "FOOD";
+    content: "DRINKS";
     padding-left: 10px;
-    background-color: #34A7C1; color: #FFFFFF;
+    font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+    background-color: #63677A; color: #CFD6FF;
 }
 .onoffswitch-inner:after {
-    content: "DRINKS";
+    content: "FOOD";
     padding-right: 10px;
-    background-color: #EEEEEE; color: #999999;
+    font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+    background-color: #D5FFB5; color: #252839;
     text-align: right;
 }
 .onoffswitch-switch {
