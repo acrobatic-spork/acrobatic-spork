@@ -11,7 +11,7 @@ class Dashboard extends React.Component {
 
     this.state = {
       price: 2,
-      radius: 2,
+      range: 2,
       chooseFood: true
     }
   }
