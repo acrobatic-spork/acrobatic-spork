@@ -29,7 +29,7 @@ class Dashboard extends React.Component {
       });
     } else if(slider === 'radius') {
       this.setState({
-        radius: +value
+        range: +value
       });
     } else {
       this.setState(function(prevState) {

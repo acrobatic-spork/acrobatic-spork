@@ -46,14 +46,13 @@ FourSquare.getUserInfoAsync = function (req) {
       if (err) {
         reject(err);
       } else {
-        console.log('user info fetched from db: ', JSON.parse(response.body));
         var userInfo = JSON.parse(response.body);
 
         FourSquare.userObj = {
           section: userInfo.preferences.chooseFood ? 'food' : 'drinks',
           radius: userInfo.preferences.range*1610,
           price: userInfo.preferences.price,
-          token: userInfo.preferences.uberToken,
+          token: userInfo.uberToken,
           lat: req.query.lat,
           lng: req.query.lng
         };
@@ -71,7 +70,7 @@ FourSquare.sendQueryAsync = function (userObj) {
       if (err) {
         reject(err);
       } else {
-        var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*9)].venue;
+        var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*10)].venue;
         console.log('venue name = ', venue.name)
         FourSquare.userObj.venue = venue.name;
         resolve(venue);
