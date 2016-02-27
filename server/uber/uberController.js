@@ -66,6 +66,7 @@ Uber.checkStatus = function (req, res, next) {
     }
   } , function(err, response) {
     console.log('Status of uber ride', err, response.body);
+    res.json(response.body);
   });
 }
 
