@@ -79,6 +79,7 @@ utils.sendSporkRequest = (userLocation, cb) => {
     data: userLocation,
 
     success (data) {
+      console.log('data sent from spork request: ', data);
       cb(null, data);
     },
     error (data) {

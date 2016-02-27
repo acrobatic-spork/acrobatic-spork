@@ -30,8 +30,12 @@ FourSquare.init = function (req, res, cb) {
     return FourSquare.callUberAsync(venue);
   })
   .then(function (response) {
-    console.log('response from callUberAsync: ', response.body);
-    res.json(response);
+    var sendToFront = {
+      uberStatus: response.body.body,
+      venue: FourSquare.userObj.venue
+    }
+    console.log('response from callUberAsync: ', sendToFront);
+    res.json(sendToFront);
   })
 
 }
@@ -66,6 +70,7 @@ FourSquare.sendQueryAsync = function (userObj) {
       } else {
         var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*9)].venue;
         console.log('venue name = ', venue.name)
+        FourSquare.userObj.venue = venue.name;
         resolve(venue);
       }
     });

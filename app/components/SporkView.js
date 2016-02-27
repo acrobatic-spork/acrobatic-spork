@@ -20,7 +20,7 @@ class Spork extends React.Component {
       location.username = this.props.getUser();
       if (location.username){
         console.log('got location & username', location)
-        utils.sendSporkRequest(location, (res) => {
+        utils.sendSporkRequest(location, (err, res) => {
           console.log('sent spork request & response is:', res);
         });  
       } else console.log('Could not get username');
