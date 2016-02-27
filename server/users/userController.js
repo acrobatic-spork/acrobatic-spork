@@ -120,8 +120,8 @@ Controller.updatePrefs = function (req, res, next) {
   console.log('update prefs in userController for: ', req.body.username);
   console.log('update prefs in userController with: ', req.body.preferences);
 
-  var query = req.body.username;
-  var prefsToUpdate = req.body.preferences;
+  var query = { username: req.body.username };
+  var prefsToUpdate = {preferences: req.body.preferences};
   var options = { new: true };
   User.findOneAndUpdateAsync(query, prefsToUpdate, options)
     .then(function (updatedPrefs) {

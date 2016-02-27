@@ -18,15 +18,21 @@ var UserSchema = new mongoose.Schema({
   uberToken: String,
 
   preferences: {
-    maxCost: {
+    price: {
       type: Number,
+      required: true,
       default: 2
     },
-    maxMiles: {
+    range: {
       type: Number,
-      default: 3
+      required: true,
+      default: 2
     },
-    chooseFood: Boolean,
+    chooseFood: {
+      type: Boolean,
+      required: true,
+      default: true
+    },
   }
 },
 {
@@ -96,8 +102,8 @@ var dummyUser = {
   uberToken: '',
 
   preferences: {
-    maxCost: 1,
-    maxMiles: 60,
+    price: 1,
+    range: 4828,
     chooseFood: true
   }
 };
