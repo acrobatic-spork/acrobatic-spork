@@ -9,6 +9,8 @@ import Spork from './components/SporkView.js'
 import Categories from './components/CategoriesView.js'
 import Uber from './components/ConnectUberView.js'
 import auth from './components/Authorize'
+import Status from './components/UberStatusView.js'
+
 
 
 function requireAuth(nextState, replace) {
@@ -41,6 +43,7 @@ render((
   <Router history={ browserHistory }>
     <Route path="/" component={ App } >
       <IndexRoute component={ Spork } onEnter={requireAuth}/>
+      <Route path="/status" component={ Status }/>
       <Route path="/signin" component={ Signin } onEnter={notAlreadyAuth}/>
       <Route path="/dashboard" component={ Dashboard } onEnter={requireAuth} >
         <Route path="/categories" component={ Categories }/>

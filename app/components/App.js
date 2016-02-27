@@ -2,6 +2,7 @@ import React from 'react';
 // import Signin from './Signin.js';
 import { browserHistory, Router, Route, Link } from 'react-router'
 import Message from './Message'
+import Status from './UberStatusView'
 import auth from './Authorize'
 import styles from '../styles/styles.css'
 import utils from './utils'
@@ -102,6 +103,7 @@ class App extends React.Component {
       <nav>
         <ul>
          <li><Link activeClassName={styles['active-nav']} to="/dashboard">Dashboard</Link> </li>
+         <li><Link activeClassName={styles['active-nav']} to="/status">Status</Link> </li>
          <li><Link onlyActiveOnIndex activeClassName={styles['active-nav']} to="/">Spork Now</Link> </li>
          <li><Link activeClassName={styles['active-nav']} to="/uber">Connect Uber</Link> </li>
         {auth.loggedIn() ?
