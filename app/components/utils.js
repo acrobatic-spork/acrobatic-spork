@@ -71,6 +71,20 @@ utils.getUberAuth = (username, cb) => {
    cb(null);
 }
 
+utils.checkUberToken = (username, cb) => {
+  $.ajax({
+    url: '/api/users?username='+username,
+    type: 'GET',
+     success (data) {
+      console.log('Got the user info, here is data...', data.token);
+      cb(null, data.uberToken.length);
+     },
+     error (error) {
+      cb(error, null);
+     }
+  })
+}
+
 utils.sendSporkRequest = (userLocation, cb) => {
   $.ajax({
     // This is the url you should use to communicate with the parse API server.

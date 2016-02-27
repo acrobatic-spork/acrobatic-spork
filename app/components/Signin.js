@@ -23,7 +23,18 @@ class Signin extends React.Component {
         utils.getLocation( () => console.log('Got location on Login') );
         this.props.updateUser(this.refs.username.value);
         // check for uber token, if not valid, route to connect uber
-        browserHistory.push('/');
+        utils.checkUberToken(this.refs.username.value, (err, tokenLength) => {
+          if(err) {
+            console.error(err);
+          } else {
+            console.log("The token length: ", tokenLength);
+            if(tokenLength) {
+              browserHistory.push('/');  
+            } else {
+              browserHistory.push('/uber');
+            }
+          }
+        });
       }  else {
         var message = res.error.responseText.substr(0, res.error.responseText.indexOf('<'));
         this.props.displayMessage(message);
