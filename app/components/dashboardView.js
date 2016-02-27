@@ -25,11 +25,11 @@ class Dashboard extends React.Component {
     var slider = e.currentTarget.name;
     if(slider === 'price') {
       this.setState({
-        price: value
+        price: +value
       });
     } else if(slider === 'radius') {
       this.setState({
-        radius: value
+        radius: +value
       });
     } else {
       this.setState(function(prevState) {
