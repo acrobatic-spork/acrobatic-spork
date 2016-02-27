@@ -46,11 +46,14 @@ FourSquare.getUserInfoAsync = function (req) {
       if (err) {
         reject(err);
       } else {
+        console.log('user info fetched from db: ', JSON.parse(response.body));
+        var userInfo = JSON.parse(response.body);
+
         FourSquare.userObj = {
-          section: test.section,
-          radius: test.radius,
-          price: test.price,
-          token: test.token,
+          section: userInfo.preferences.chooseFood ? 'food' : 'drinks',
+          radius: userInfo.preferences.range*1610,
+          price: userInfo.preferences.price,
+          token: userInfo.preferences.uberToken,
           lat: req.query.lat,
           lng: req.query.lng
         };
