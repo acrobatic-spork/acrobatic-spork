@@ -77,7 +77,8 @@ Controller.signup = function(req, res, next) {
           // make a new user if not one
         return User.createAsync({
           username: username,
-          password: password
+          password: password,
+          uberToken: ''
         });
       }
     })
