@@ -113,7 +113,7 @@ class App extends React.Component {
        </nav>
        <Message message={this.state.message} />
        {childrenWithProps}
-      <div className="anim-box"><img src="wc-spork.png" /></div>
+      <div className={styles['anim-box']} style={{display: 'none'}}><img src="images/wc-spork.png" /></div>
       </div>
       )
     }
