@@ -29,13 +29,13 @@ utils.sendAuthRequest = (username, password, url, cb) => {
 
 utils.updatePrefs = (prefs, username, cb) => {
   $.ajax({
-    url: '/api/users/username='+username,
+    url: '/api/users?username='+username,
     beforeSend: function (request){
       if(Auth.loggedIn()){
         request.setRequestHeader("x-access-token", Auth.getToken());
       }
     },
-    method: 'POST',
+    method: 'PUT',
     data: prefs,
     success (data) {
       cb(true);
