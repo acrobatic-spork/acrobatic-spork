@@ -100,6 +100,7 @@ class App extends React.Component {
             return React.cloneElement(child, { 
               updateUser: this.updateUser.bind(this),
               updatePreferences: this.updatePreferences.bind(this),
+              updateDestination: this.updateDestination.bind(this),
               displayMessage: this.displayMessage.bind(this),
               linkUberAccount: this.linkUberAccount.bind(this),
               getUser: this.getUser.bind(this),
