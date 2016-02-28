@@ -17,8 +17,7 @@ class Spork extends React.Component {
       var lat = loc.coords.latitude;
       var lon = loc.coords.longitude;
       var location = {lat: lat, lng: lon};
-      console.log('props.geUser exists: ', this.props.getUser)
-      location.username = this.props.getUser();
+      location.username = this.props.user;
       if (location.username){
         console.log('got location & username', location)
         utils.sendSporkRequest(location, (err, res) => {
@@ -31,7 +30,9 @@ class Spork extends React.Component {
           };
           this.props.upDateRideStatus(rideStatus);
         });  
-      } else console.log('Could not get username');
+      } else {
+        console.log('The user name in props is: ', this.props.user, ' which is bad.');
+      };
     }
     // get location
     utils.getLocation(successNav.bind(this));
