@@ -25,13 +25,7 @@ var sendUserInfo = function (user, req, res, next) {
   });
 };
 
-Controller.redirectToUber = function (req, res, next) {
-  console.log('*************** connect to uber', req.query);
-  req.session.user = req.query.username;
-  redirectUri = 'https://login.uber.com/oauth/v2/authorize?response_type=code&client_id=x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m&scope=request&redirect_uri='+ req.protocol + '://' + req.get('host') + '/auth/uber';
-  console.log('redirecting user to ' + redirectUri);
-  res.redirect(redirectUri);
-};
+
 
 Controller.signin = function(req, res, next) {
   var username = req.body.username;
@@ -113,11 +107,8 @@ Controller.getUser = function (req, res, next) {
 };
 
 Controller.updatePrefs = function (req, res, next) {
-  console.log('update prefs in userController for: ', req.body.username);
-  console.log('update prefs in userController with: ', req.body.preferences);
-
-  var query = { username: req.body.username };
-  var prefsToUpdate = {preferences: req.body.preferences};
+  var query = { username: req.query.username };
+  var prefsToUpdate = req.body.uberToken ? req.body : {preferences: req.body.preferences};
   var options = { new: true };
   User.findOneAndUpdateAsync(query, prefsToUpdate, options)
     .then(function (updatedPrefs) {

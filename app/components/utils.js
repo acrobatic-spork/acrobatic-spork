@@ -27,15 +27,15 @@ utils.sendAuthRequest = (username, password, url, cb) => {
   });
 };
 
-utils.updatePrefs = (prefs, cb) => {
+utils.updatePrefs = (prefs, username, cb) => {
   $.ajax({
-    url: '/api/users',
+    url: '/api/users/username='+username,
     beforeSend: function (request){
       if(Auth.loggedIn()){
         request.setRequestHeader("x-access-token", Auth.getToken());
       }
     },
-    method: 'PUT',
+    method: 'POST',
     data: prefs,
     success (data) {
       cb(true);
@@ -60,43 +60,9 @@ utils.getLocation = (successNav) => {
 
 utils.getUberAuth = (username, cb) => {
   console.log('In getUberAuth: user: ', username)
-  var uberParams = {
-    responseType: 'code',
-    client_id: 'x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m',
-    redirect_uri: 'http://acrobaticspork.com/auth/uber/'
-  }
-   var url = 'https://login.uber.com/oauth/v2/authorize?'
-   url = url + $.param( uberParams );
-   window.location.replace(url);// redirect to uber auth with redirect uri
+  var sendToServer = 'http://localhost:3000/api/uber/auth?username='+username;
+   window.location.replace(sendToServer);
    cb(null);
-}
-
-utils.checkUberToken = (username, cb) => {
-  $.ajax({
-    url: '/api/users?username='+username,
-    type: 'GET',
-     success (data) {
-      console.log('Got the user info, here is data...', data.token);
-      cb(null, data.uberToken.length);
-     },
-     error (error) {
-      cb(error, null);
-     }
-  })
-}
-
-utils.checkUberStatus = (request_id, cb) => {
-  $.ajax({
-    url: '/api/uber/request_id',
-    type: 'GET',
-     success (data) {
-      console.log('Uber status update...', data);
-      cb(null, data.uberToken.length);
-     },
-     error (error) {
-      cb(error, null);
-     }
-  })
 }
 
 utils.sendSporkRequest = (userLocation, cb) => {
@@ -107,7 +73,6 @@ utils.sendSporkRequest = (userLocation, cb) => {
     data: userLocation,
 
     success (data) {
-      console.log('data sent from spork request: ', data);
       cb(null, data);
     },
     error (data) {
