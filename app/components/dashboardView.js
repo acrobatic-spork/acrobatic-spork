@@ -68,7 +68,7 @@ class Dashboard extends React.Component {
       <div className={styles['content']}>
       <form name='preferences' className='prefernces' onSubmit={this.handleSubmit.bind(this)}>
         <fieldset>
-          <legend>Dashboard</legend>
+          <legend>Preferences</legend>
           <div className={styles['form-item']} >
             <label className={styles['slider-label']} htmlFor='price'>Price:</label>
             <input className='price' name='price' type='range' min='1' max='4' value={this.state.price} onChange={this.prefsChange.bind(this)}/>

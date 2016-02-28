@@ -59,8 +59,10 @@ input[type="text"], input[type="password"]{
   font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
   font-weight: lighter;
 }
-input[type="range"],{
-  margin: 0 1.5rem;
+
+input[type="range"]{
+  margin: 0 0.5em;
+  color: inherit;
 }
 .container {
   text-align: center;
@@ -159,6 +161,7 @@ input[type="range"],{
 .onoffswitch-inner:before {
     content: "DRINKS";
     padding-left: 10px;
+    padding-right: 10px;
     font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
     background-color: #63677A; color: #CFD6FF;
 }
