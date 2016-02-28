@@ -80,6 +80,16 @@ input[type="range"],{
   width:auto;
 }
 
+.slider-label {
+  display: inline-block;
+  width:8em;
+  text-align: right;
+}
+.slider-val {
+  display: inline-block;
+  width:3em
+}
+
 .button-box {
   position: relative;
   width: 50%;
