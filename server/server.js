@@ -25,7 +25,7 @@ var isDeveloping = process.env.NODE_ENV !== 'production';
 console.log('isDeveloping: ' + isDeveloping);
 
 var port = isDeveloping ? 3000 : process.env.PORT || 80;
-var httpsport = isDeveloping ? 8000 : process.env.HTTPS_PORT || 443;
+var httpsPort = isDeveloping ? 8000 : process.env.HTTPS_PORT || 443;
 var app = express();
 
 
@@ -39,7 +39,7 @@ app.use(session({
   saveUninitialized: true
 }));
 
-var allowCrossDomain = function(req, res, next) {// if ('OPTIONS' === req.method) {
+var allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
@@ -101,7 +101,7 @@ if (isDeveloping) {
   User.seed(); // THIS ERASES USER DB! DON'T DO IT IN PRODUCTION!!!
 }
 
-app.listen(port, '0.0.0.0', function onStart(err) {
+var server = app.listen(port, '0.0.0.0', function onStart(err) {
   if (err) {
     console.log(err);
   }
@@ -110,5 +110,9 @@ app.listen(port, '0.0.0.0', function onStart(err) {
 
 // start https server
 var httpsServer = https.createServer(credentials, app);
-httpsServer.listen(httpsport);
-console.info('==> 🌎 HTTPS running on port %s.', httpsport);
+httpsServer.listen(httpsPort);
+console.info('==> 🌎 HTTPS running on port %s.', httpsPort);
+
+
+console.log('server address: ' + JSON.stringify(server.address()));
+console.log('https server address: ' + JSON.stringify(httpsServer.address()));

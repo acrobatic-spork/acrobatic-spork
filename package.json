@@ -23,6 +23,7 @@
     "net": "^1.0.2",
     "passport": "^0.3.2",
     "passport-uber": "0.0.1",
+    "public-ip": "^1.2.0",
     "q": "^1.4.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
@@ -70,12 +71,9 @@
   "scripts": {
     "test": "mocha test --compilers js:babel-core/register",
     "start": "nodemon server/server",
-    
     "build": "rimraf dist && BABEL_ENV=production NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors",
-
     "deploy": "rimraf dist && BABEL_ENV=production NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors && NODE_ENV=production PORT=80 nodemon ./server/server",
     "fakedeploy": "rimraf dist && BABEL_ENV=production NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors && NODE_ENV=production PORT=8080 HTTPS_PORT=8443 nodemon ./server/server",
-    
     "eslint": "eslint .",
     "jscs": "jscs ."
   },
