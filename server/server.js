@@ -26,7 +26,8 @@ console.log('isDeveloping: ' + isDeveloping);
 // isDeveloping = false;
 
 // Digital Ocean does not seem to have a default process.env.PORT, so it is always undefined so the followoing can choose prod or dev
-var port = isDeveloping ? 3000 : 8080;
+var port = isDeveloping ? 3000 : process.env.PORT || 80;
+var httpsport = isDeveloping ? 8000 : process.env.HTTPS_PORT || 443;
 var app = express();
 
 
@@ -111,5 +112,6 @@ app.listen(port, '0.0.0.0', function onStart(err) {
 
 // start https server
 
-// var httpsServer = https.createServer(credentials, app);
-// httpsServer.listen(443);
+var httpsServer = https.createServer(credentials, app);
+httpsServer.listen(httpsport);
+console.info('==> 🌎 HTTPS running on port %s.', httpsport);
