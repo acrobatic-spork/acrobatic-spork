@@ -30,13 +30,11 @@ Uber.redirectToUber = function (req, res) {
 }
 
 Uber.getToken = function (req, res, next) {
-  console.log('sessioninformation', req.session);
   request.post("https://login.uber.com/oauth/v2/token?code=" + req.query.code + "&redirect_uri=" + test.redirect_uri + "&client_id=" + config.client_id + "&client_secret=" + config.client_secret + "&grant_type=authorization_code", function(err, response) {
 
     var token = {
       uberToken: JSON.parse(response.body).access_token
     }
-    console.log('token to update', token);
     request.put({
       uri: 'http://localhost:3000/api/users?username=' + req.session.user,
       body: token,

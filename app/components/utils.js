@@ -61,14 +61,7 @@ utils.getLocation = (successNav) => {
 utils.getUberAuth = (username, cb) => {
   console.log('In getUberAuth: user: ', username)
   var sendToServer = 'http://localhost:3000/api/uber/auth?username='+username;
-  // var uberParams = {
-  //   responseType: 'code',
-  //   client_id: 'x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m',
-  //   redirect_uri: 'http://acrobaticspork.com/auth/uber/'
-  // }
-  //  var url = 'https://login.uber.com/oauth/v2/authorize?'
-  //  url = url + $.param( uberParams );
-   window.location.replace(sendToServer);// redirect to uber auth with redirect uri
+   window.location.replace(sendToServer);
    cb(null);
 }
 
