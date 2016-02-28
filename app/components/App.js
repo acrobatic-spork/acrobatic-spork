@@ -13,7 +13,11 @@ class App extends React.Component {
     super(props);
     this.state = {
       user: null,
-      preferences: {},
+      preferences: {
+        price: 2,
+        range: 2,
+        chooseFood: true
+      },
       message: '',
       rideStatus: {}
     };
@@ -109,6 +113,7 @@ class App extends React.Component {
               linkUberAccount: this.linkUberAccount.bind(this),
               getUser: this.getUser.bind(this),
               status: this.state.rideStatus,
+              preferences: this.state.preferences,
               ...this.props });
           });
    return (
