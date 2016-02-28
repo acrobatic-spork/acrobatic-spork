@@ -60,17 +60,24 @@ class Dashboard extends React.Component {
       <form name='preferences' className='prefernces' onSubmit={this.handleSubmit.bind(this)}>
         <fieldset>
           <legend>Dashboard</legend>
-          <label className='price' htmlFor='price'>Price:</label>
-          <input className='price' name='price' type='range' min='1' max='4' onChange={this.prefsChange.bind(this)}/>
-          <label className='radius' htmlFor='radius'>Maximum Distance:</label>
+          <div className={styles["form-item"]} >
+            <label className='price' htmlFor='price'>Price:</label>
+            <input className='price' name='price' type='range' min='1' max='4' onChange={this.prefsChange.bind(this)}/>
+            <span className='slider-val'>{this.state.price}</span>
+          </div>
+          <div className={styles["form-item"]} >
+          <label className='radius' htmlFor='radius'>Max Distance:</label>
           <input className='radius' name='radius' type='range' min='1' max='4' onChange={this.prefsChange.bind(this)}/>
-          
-          <div className={styles["onoffswitch"]}>
-            <input type="checkbox" name="onoffswitch" className={styles["onoffswitch-checkbox"]} id="myonoffswitch" onChange={this.prefsChange.bind(this)} />
-            <label className={styles["onoffswitch-label"]} htmlFor="myonoffswitch">
-              <span className={styles["onoffswitch-inner"]}></span>
-              <span className={styles["onoffswitch-switch"]}></span>
-            </label>
+          <span className='slider-val'>{this.state.range}</span>
+          </div>
+          <div className={styles["form-item"]} >
+            <div className={styles["onoffswitch"]}>
+              <input type="checkbox" name="onoffswitch" className={styles["onoffswitch-checkbox"]} id="myonoffswitch" onChange={this.prefsChange.bind(this)} />
+              <label className={styles["onoffswitch-label"]} htmlFor="myonoffswitch">
+                <span className={styles["onoffswitch-inner"]}></span>
+                <span className={styles["onoffswitch-switch"]}></span>
+              </label>
+            </div>
           </div>
 
 
