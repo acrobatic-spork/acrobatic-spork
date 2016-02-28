@@ -29,13 +29,7 @@ class App extends React.Component {
       preferences: newPrefs
     });
 
-   // updatePreferences
-   var preferences = {
-    preferences: newPrefs,
-    username: this.state.user
-   };
-
-    utils.updatePrefs(preferences, (updated) => {
+    utils.updatePrefs(newPrefs, this.state.user, (updated) => {
         if (updated) {
           console.log('Updated preferences in server');
           browserHistory.push('/');
