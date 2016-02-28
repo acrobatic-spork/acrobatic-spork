@@ -15,7 +15,7 @@ class App extends React.Component {
       user: null,
       preferences: {},
       message: '',
-      destination: ''
+      rideStatus: {}
     };
   }
 
@@ -47,9 +47,10 @@ class App extends React.Component {
     });
   }
 
-  updateDestination(destination) {
+  updateRideStatus(rideStatus) {
+
     this.setState({
-      destination: destination
+      rideStatus: rideStatus
     });
   }
 
@@ -100,10 +101,11 @@ class App extends React.Component {
             return React.cloneElement(child, { 
               updateUser: this.updateUser.bind(this),
               updatePreferences: this.updatePreferences.bind(this),
-              updateDestination: this.updateDestination.bind(this),
+              updateRideStatus: this.updateRideStatus.bind(this),
               displayMessage: this.displayMessage.bind(this),
               linkUberAccount: this.linkUberAccount.bind(this),
               getUser: this.getUser.bind(this),
+              status: this.state.rideStatus,
               ...this.props });
           });
    return (

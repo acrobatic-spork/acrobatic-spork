@@ -6,13 +6,6 @@ import Status from './UberStatusView'
 class Spork extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      venue: null,
-      status: null,
-      eta: null,
-      id: null
-
-    }
   }
 
   sporkHandler (e) {
@@ -30,12 +23,13 @@ class Spork extends React.Component {
         console.log('got location & username', location)
         utils.sendSporkRequest(location, (err, res) => {
           console.log('sent spork request & response is:', res);
-          this.setState({
+          var rideStatus = {
             venue: res.venue,
             status: res.uberStatus.status,
             eta: res.uberStatus.eta,
             id: res.uberStatus.request_id
-          })
+          };
+          this.props.upDateRideStatus(rideStatus);
         });  
       } else console.log('Could not get username');
     }
@@ -49,9 +43,6 @@ class Spork extends React.Component {
       <div className={styles['button-box']}>
         <div>
           <button onClick={this.sporkHandler.bind(this)} className={styles['spork-button']}>Spork</button>
-        </div>
-        <div>
-          <Status status={this.state}/>
         </div>
       </div>
       )
