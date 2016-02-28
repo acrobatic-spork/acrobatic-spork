@@ -16,6 +16,14 @@ class Dashboard extends React.Component {
     }
   }
 
+  showDollars(num) {
+    var result = '';
+    for (var i = 0; i < num; i++) {
+      result += '$';
+    }
+    return result;
+  }
+
   componentDidMount () {
     this.props.displayMessage('');
   }
@@ -63,7 +71,7 @@ class Dashboard extends React.Component {
           <div className={styles["form-item"]} >
             <label className='price' htmlFor='price'>Price:</label>
             <input className='price' name='price' type='range' min='1' max='4' value={this.state.price} onChange={this.prefsChange.bind(this)}/>
-            <span className='slider-val'>{this.state.price}</span>
+            <span className='slider-val'>{this.showDollars(this.state.price)}</span>
           </div>
           <div className={styles["form-item"]} >
           <label className='radius' htmlFor='radius'>Max Distance:</label>

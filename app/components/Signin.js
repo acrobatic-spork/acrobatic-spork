@@ -2,6 +2,7 @@ import React from 'react';
 import Auth from './Authorize';
 import { browserHistory } from 'react-router';
 import utils from './utils'
+import styles from '../styles/styles.css'
 // import function that will send post request to DB
 
 class Signin extends React.Component {
@@ -85,24 +86,33 @@ class Signin extends React.Component {
 
   render () {
     return (
-      <div className="">
+      <div className={styles["content"]}>
         <form className="loginform" >
-          <input className="username" type="text" ref="username" name="username" placeholder="username" />
-          <input className="passord" type="password" ref="password" name="password" placeholder="password" />
-          <button className="signin" onClick={this.handleLogin.bind(this)}>
-            <span className="">Login</span>
-          </button>
-          <button className="signup" onClick={this.confirmPass.bind(this)}>
-            <span className="">Signup</span>
-          </button>
-        </form>
+        <fieldset>
+        <legend>Please Login to begin</legend>
+          <div className={styles["form-item"]} >
+            <input className="username" type="text" ref="username" name="username" placeholder="username" required />
+          </div>
+          <div className={styles["form-item"]} >
+            <input className="password" type="password" ref="password" name="password" placeholder="password" required />
+          </div>
+          <div className={styles["form-item"]} >
+            <button className="signin" onClick={this.handleLogin.bind(this)}>
+              <span className="">Login</span>
+            </button>
+            <button className="signup" onClick={this.confirmPass.bind(this)}>
+              <span className="">Signup</span>
+            </button>
+          </div>
         {this.state.passNotMatch ? <p>Password did not match. Please try again.</p> : null}
         {this.state.confirm ?
           <div> 
             <label htmlFor='confirm'>Confirm your password</label>
-            <input className='confirm' name='confirm' type='text' ref='confirm' /> 
+            <input className='confirm' name='confirm' type='password' ref='confirm' /> 
             <button onClick={this.signupNewUser.bind(this)}>Create account</button>
           </div> : null}
+        </fieldset>
+        </form>
       </div>
     )
   }

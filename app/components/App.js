@@ -109,7 +109,7 @@ class App extends React.Component {
               ...this.props });
           });
    return (
-      <div className="container">
+      <div className={styles["container"]}>
       <nav>
         <ul>
          <li><Link activeClassName={styles['active-nav']} to="/dashboard">Dashboard</Link> </li>

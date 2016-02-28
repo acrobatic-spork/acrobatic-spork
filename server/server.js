@@ -17,9 +17,9 @@ var uberController = require('./uber/uberController')(userController);
 // for ssl server
 var fs = require('fs');
 var https = require('https');
-// var privateKey  = fs.readFileSync('sslcerts/acrobaticspork.key', 'utf8');
-// var certificate = fs.readFileSync('sslcerts/acrobaticspork.crt', 'utf8');
-// var credentials = {key: privateKey, cert: certificate};
+var privateKey  = fs.readFileSync('sslcerts/acrobaticspork.key', 'utf8');
+var certificate = fs.readFileSync('sslcerts/acrobaticspork.crt', 'utf8');
+var credentials = {key: privateKey, cert: certificate};
 
 var isDeveloping = process.env.NODE_ENV !== 'production';
 console.log('isDeveloping: ' + isDeveloping);
@@ -40,19 +40,17 @@ app.use(session({
   saveUninitialized: true
 }));
 
-var allowCrossDomain = function(req, res, next) {
-  // if ('OPTIONS' === req.method) {
+var allowCrossDomain = function(req, res, next) {// if ('OPTIONS' === req.method) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-  // res.send(200);
-  // } else {
   next();
-  // }
 };
 
 app.use(allowCrossDomain);
 
+var router = require('./routes.js');
+router(app, express);
 
 var distDir = path.resolve(__dirname, '../dist');
 console.log('distdir: ', distDir);
@@ -73,29 +71,30 @@ if (isDeveloping) {
   });
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
+  app.get(function response(req, res, next) {
+    if (req.accepts('html')) {
+      res.write(middleware.fileSystem.readFileSync(path.join(distDir, '/index.html')));
+      res.end();
+    } else {
+      next();
+    }
+  });
+} else {
+  app.use(express.static(distDir, {
+    extensions: ['html', 'htm', 'css', 'js'],
+    fallthrough: true
+  }));
+
+  app.use(function(req, res, next) {
+    if (req.accepts('html') && req.method === 'GET') {
+      console.log("in fallback. req is " + JSON.stringify(req.accepts('html')));
+      res.sendFile(path.join(distDir, '/index.html'));
+    } else {
+      next();
+    }
+  });
 }
 
-
-var router = require('./routes.js');
-router(app, express);
-
-
-app.use(express.static(distDir, {
-  extensions: ['html', 'htm', 'css', 'js'],
-  fallthrough: true
-}));
-
-app.use(function(req, res, next) {
-  if (req.accepts('html') && req.method === 'GET') {
-    console.log("in fallback. req is " + JSON.stringify(req.accepts('html')));
-    res.sendFile(path.join(distDir, '/index.html'));
-  } else {
-    next();
-  }
-});
-
-
-// app.use( express.errorHandler({ dumpExceptions: true, showStack: true }));
 
 mongoose.connect('mongodb://localhost/spork');
 
