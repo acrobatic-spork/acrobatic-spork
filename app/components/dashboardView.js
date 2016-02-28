@@ -44,8 +44,6 @@ class Dashboard extends React.Component {
         return {chooseFood: !prevState.chooseFood}
       });
     }
-
-    console.log(this.state);
   }
 
   handleSubmit (e) {
