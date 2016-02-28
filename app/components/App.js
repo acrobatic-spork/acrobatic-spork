@@ -14,7 +14,8 @@ class App extends React.Component {
     this.state = {
       user: null,
       preferences: {},
-      message: ''
+      message: '',
+      rideStatus: {}
     };
   }
 
@@ -43,6 +44,13 @@ class App extends React.Component {
     console.log("The user is now: ", name);
     this.setState({
       user: name
+    });
+  }
+
+  updateRideStatus(rideStatus) {
+
+    this.setState({
+      rideStatus: rideStatus
     });
   }
 
@@ -93,9 +101,11 @@ class App extends React.Component {
             return React.cloneElement(child, { 
               updateUser: this.updateUser.bind(this),
               updatePreferences: this.updatePreferences.bind(this),
+              updateRideStatus: this.updateRideStatus.bind(this),
               displayMessage: this.displayMessage.bind(this),
               linkUberAccount: this.linkUberAccount.bind(this),
               getUser: this.getUser.bind(this),
+              status: this.state.rideStatus,
               ...this.props });
           });
    return (
