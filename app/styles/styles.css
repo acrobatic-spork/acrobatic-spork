@@ -26,9 +26,6 @@ ul {
   margin:0;
   padding:0;
 }
-button:focus {
-  outline: none;
-}
 
 nav {
   font-size: 1.5em;
@@ -55,12 +52,21 @@ button:hover {
   background-color: #A1A8C7;
 }
 
-input {
+fieldset {
+  overflow: hidden;
+}
+
+input[type="text"], input[type="password"]{
   margin: 0.5em;
   padding: 0.5em;
   font-size: 1rem;
   font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
   font-weight: lighter;
+}
+
+input[type="range"]{
+  margin: 0 0.5em;
+  color: inherit;
 }
 .container {
   text-align: center;
@@ -77,6 +83,17 @@ input {
 
 .form-item {
   margin: 1em auto;
+  width:auto;
+}
+
+.slider-label {
+  display: inline-block;
+  width:8em;
+  text-align: right;
+}
+.slider-val {
+  display: inline-block;
+  width:3em
 }
 
 .button-box {
@@ -107,6 +124,8 @@ input {
   text-align: center;
   overflow: hidden;
   text-transform: uppercase;
+  margin: 0;
+  padding: 0;
 }
 .spork-button:hover {
   background-color: #A1A8C7;
@@ -114,6 +133,10 @@ input {
 .spork-button:active {
   top:3%;
   bottom:-3%;
+}
+
+.spork-button:focus {
+  outline: none;
 }
 
 /*for food and drinks toggle*/
@@ -142,6 +165,7 @@ input {
 .onoffswitch-inner:before {
     content: "DRINKS";
     padding-left: 10px;
+    padding-right: 10px;
     font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
     background-color: #63677A; color: #CFD6FF;
 }
@@ -213,3 +237,20 @@ input {
     height: 100px;
   }
 
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.fade-leave {
+  opacity: 1;
+}
+
+.fade-leave.fade-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}

@@ -1,9 +1,8 @@
 import React from 'react';
-import { browserHistory, Router, Route, Link } from 'react-router'
+import { browserHistory, Router, Route, Link } from 'react-router';
 import CategoriesView from './CategoriesView.js';
 import utils from './utils';
-import styles from '../styles/styles.css'
-
+import styles from '../styles/styles.css';
 
 class Dashboard extends React.Component {
   constructor(props){
@@ -65,20 +64,21 @@ class Dashboard extends React.Component {
   render (){
     var categories = ['Mexican', 'Italian', 'Bars', 'Pizza'];
     return (
+      <div className={styles['content']}>
       <form name='preferences' className='prefernces' onSubmit={this.handleSubmit.bind(this)}>
         <fieldset>
-          <legend>Dashboard</legend>
-          <div className={styles["form-item"]} >
-            <label className='price' htmlFor='price'>Price:</label>
+          <legend>Preferences</legend>
+          <div className={styles['form-item']} >
+            <label className={styles['slider-label']} htmlFor='price'>Price:</label>
             <input className='price' name='price' type='range' min='1' max='4' value={this.state.price} onChange={this.prefsChange.bind(this)}/>
-            <span className='slider-val'>{this.showDollars(this.state.price)}</span>
+            <span className={styles['slider-val']}>{this.showDollars(this.state.price)}</span>
           </div>
-          <div className={styles["form-item"]} >
-          <label className='radius' htmlFor='radius'>Max Distance:</label>
+          <div className={styles['form-item']} >
+          <label className={styles['slider-label']} htmlFor='radius'>Max Distance:</label>
           <input className='radius' name='radius' type='range' min='1' max='8' value={this.state.range} onChange={this.prefsChange.bind(this)}/>
-          <span className='slider-val'>{this.state.range} mi.</span>
+          <span className={styles['slider-val']}>{this.state.range} mi.</span>
           </div>
-          <div className={styles["form-item"]} >
+          <div className={styles['form-item']} >
             <div className={styles["onoffswitch"]}>
               <input type="checkbox" name="onoffswitch" className={styles["onoffswitch-checkbox"]} id="myonoffswitch" onChange={this.prefsChange.bind(this)} />
               <label className={styles["onoffswitch-label"]} htmlFor="myonoffswitch">
@@ -92,6 +92,7 @@ class Dashboard extends React.Component {
           <button type='submit'>Submit</button>
         </fieldset>
       </form>
+      </div>
       )
   }
 }

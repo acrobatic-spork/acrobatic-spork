@@ -34,8 +34,10 @@ class App extends React.Component {
     utils.updatePrefs(preferences, (updated) => {
         if (updated) {
           console.log('Updated preferences in server')
+          browserHistory.push('/');
         } else {
           console.log('Not updated preferences in server')
+          this.displayMessage('There was a problem updating your preferences. Please try again')
         }
       });
     }

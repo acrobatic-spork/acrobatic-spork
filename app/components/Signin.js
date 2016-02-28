@@ -3,6 +3,9 @@ import Auth from './Authorize';
 import { browserHistory } from 'react-router';
 import utils from './utils'
 import styles from '../styles/styles.css'
+import { spring } from 'react-motion'
+import Transition from 'react-motion-ui-pack'
+
 // import function that will send post request to DB
 
 class Signin extends React.Component {
@@ -106,13 +109,28 @@ class Signin extends React.Component {
               <span className="">Signup</span>
             </button>
           </div>
-        {this.state.passNotMatch ? <p className={styles['message']}>Password did not match. Please try again.</p> : null}
-        {this.state.confirm ?
-          <div> 
-            <label htmlFor='confirm'>Confirm your password</label><br/>
-            <input className='confirm' name='confirm' type='password' placeholder='confirm password' ref='confirm' /> <br/>
-            <button onClick={this.signupNewUser.bind(this)}>Create account</button>
-          </div> : null}
+          {this.state.passNotMatch ? <p className={styles['message']}>Password did not match. Please try again.</p> : null}
+        
+          <Transition
+            component={false} // don't use a wrapping component
+            enter={{
+                height: 'auto',
+                opacity: 1,
+            }}
+            leave={{
+              opacity: 0,
+              height:0
+            }}
+            >
+            
+            {this.state.confirm &&
+            <div className={styles["form-item"]} key="confirm" > 
+              <label htmlFor='confirm'>Confirm your password</label><br/>
+              <input className='confirm' name='confirm' type='password' placeholder='confirm password' ref='confirm' /> <br/>
+              <button onClick={this.signupNewUser.bind(this)}>Create account</button>
+            </div>
+          }
+          </Transition>
         </fieldset>
         </form>
       </div>
