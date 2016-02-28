@@ -9,9 +9,9 @@ class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-      price: 2,
-      range: 2,
-      chooseFood: true
+      price: this.props.preferences.price,
+      range: this.props.preferences.range,
+      chooseFood: this.props.preferences.chooseFood
     }
   }
 
