@@ -65,6 +65,7 @@ class Dashboard extends React.Component {
   render (){
     var categories = ['Mexican', 'Italian', 'Bars', 'Pizza'];
     return (
+      <div className={styles['content']}>
       <form name='preferences' className='prefernces' onSubmit={this.handleSubmit.bind(this)}>
         <fieldset>
           <legend>Dashboard</legend>
@@ -92,6 +93,7 @@ class Dashboard extends React.Component {
           <button type='submit'>Submit</button>
         </fieldset>
       </form>
+      </div>
       )
   }
 }

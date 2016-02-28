@@ -26,9 +26,6 @@ ul {
   margin:0;
   padding:0;
 }
-button:focus {
-  outline: none;
-}
 
 nav {
   font-size: 1.5em;
@@ -55,12 +52,15 @@ button:hover {
   background-color: #A1A8C7;
 }
 
-input {
+input[type="text"], input[type="password"]{
   margin: 0.5em;
   padding: 0.5em;
   font-size: 1rem;
   font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
   font-weight: lighter;
+}
+input[type="range"],{
+  margin: 0 1.5rem;
 }
 .container {
   text-align: center;
@@ -77,6 +77,7 @@ input {
 
 .form-item {
   margin: 1em auto;
+  width:auto;
 }
 
 .button-box {
@@ -107,6 +108,8 @@ input {
   text-align: center;
   overflow: hidden;
   text-transform: uppercase;
+  margin: 0;
+  padding: 0;
 }
 .spork-button:hover {
   background-color: #A1A8C7;
@@ -114,6 +117,10 @@ input {
 .spork-button:active {
   top:3%;
   bottom:-3%;
+}
+
+.spork-button:focus {
+  outline: none;
 }
 
 /*for food and drinks toggle*/
