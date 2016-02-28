@@ -36,6 +36,7 @@ class Signin extends React.Component {
             }
           }
         });
+        this.props.displayMessage('');
       }  else {
         var message = res.error.responseText.substr(0, res.error.responseText.indexOf('<'));
         this.props.displayMessage(message);
@@ -66,6 +67,7 @@ class Signin extends React.Component {
           utils.getLocation( () => console.log('Got location on Login') );
           this.props.updateUser(this.refs.username.value);
           browserHistory.push('/uber');
+          this.props.displayMessage('');
         } else {
           var message = res.error.responseText.substr(0, res.error.responseText.indexOf('<'));
           this.props.displayMessage(message);
@@ -104,11 +106,11 @@ class Signin extends React.Component {
               <span className="">Signup</span>
             </button>
           </div>
-        {this.state.passNotMatch ? <p>Password did not match. Please try again.</p> : null}
+        {this.state.passNotMatch ? <p className={styles['message']}>Password did not match. Please try again.</p> : null}
         {this.state.confirm ?
           <div> 
-            <label htmlFor='confirm'>Confirm your password</label>
-            <input className='confirm' name='confirm' type='password' ref='confirm' /> 
+            <label htmlFor='confirm'>Confirm your password</label><br/>
+            <input className='confirm' name='confirm' type='password' placeholder='confirm password' ref='confirm' /> <br/>
             <button onClick={this.signupNewUser.bind(this)}>Create account</button>
           </div> : null}
         </fieldset>

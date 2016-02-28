@@ -69,6 +69,12 @@ input {
   display: inline-block;
   margin: 0 auto;
 }
+
+.message {
+  margin: 1em;
+  color: #f07575;
+}
+
 .form-item {
   margin: 1em auto;
 }

@@ -1,7 +1,8 @@
 import React from 'react'
+import styles from '../styles/styles.css'
 
 const Message = (props) => (
-  <div className="message"> 
+  <div className={styles["message"]}> 
     <span className="message-text">{props.message}</span>
   </div>
 )
