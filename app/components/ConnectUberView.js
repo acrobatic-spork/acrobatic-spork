@@ -14,7 +14,7 @@ class ConnectUber extends React.Component {
   render() {
     return (
       <div>
-      <span>You need an UBER account to use this app</span>
+      <span><h3>You need an UBER account to use this app</h3></span>
       <form onSubmit={this.handleUberSignin.bind(this)}> 
         <button type="submit" className="connect-uber">
           <span>Connect Your Uber Account</span>

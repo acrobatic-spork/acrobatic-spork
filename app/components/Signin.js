@@ -96,7 +96,7 @@ class Signin extends React.Component {
         <fieldset>
         <legend>Please Login to begin</legend>
           <div className={styles["form-item"]} >
-            <input className="username" type="text" ref="username" name="username" placeholder="username" required />
+            <input className="username" type="text" ref="username" name="username" placeholder="username" required autofocus />
           </div>
           <div className={styles["form-item"]} >
             <input className="password" type="password" ref="password" name="password" placeholder="password" required />
