@@ -80,7 +80,7 @@ class Dashboard extends React.Component {
           </div>
           <div className={styles['form-item']} >
             <div className={styles["onoffswitch"]}>
-              <input type="checkbox" name="onoffswitch" className={styles["onoffswitch-checkbox"]} id="myonoffswitch" onChange={this.prefsChange.bind(this)} />
+              <input type="checkbox" name="onoffswitch" className={styles["onoffswitch-checkbox"]} id="myonoffswitch" onChange={this.prefsChange.bind(this)} checked={this.state.chooseFood || this.props.chooseFood}/>
               <label className={styles["onoffswitch-label"]} htmlFor="myonoffswitch">
                 <span className={styles["onoffswitch-inner"]}></span>
                 <span className={styles["onoffswitch-switch"]}></span>
