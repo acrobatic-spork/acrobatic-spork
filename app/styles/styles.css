@@ -43,7 +43,16 @@ nav li {
 
 button {
   font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+  border: 5px solid #D5FFB5;
+  background-color: #63677A;
+  color: inherit;
+  overflow: hidden;
+  text-transform: uppercase;
+  font-size: 1rem; 
+}
 
+.form-item {
+  margin: 1em auto;
 }
 
 .button-box {
