@@ -112,7 +112,4 @@ var server = app.listen(port, '0.0.0.0', function onStart(err) {
 var httpsServer = https.createServer(credentials, app);
 httpsServer.listen(httpsPort);
 console.info('==> 🌎 HTTPS running on port %s.', httpsPort);
-
-
-console.log('server address: ' + JSON.stringify(server.address()));
 console.log('https server address: ' + JSON.stringify(httpsServer.address()));

@@ -74,6 +74,7 @@
     "build": "rimraf dist && BABEL_ENV=production NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors",
     "deploy": "rimraf dist && BABEL_ENV=production NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors && NODE_ENV=production PORT=80 nodemon ./server/server",
     "fakedeploy": "rimraf dist && BABEL_ENV=production NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors && NODE_ENV=production PORT=8080 HTTPS_PORT=8443 nodemon ./server/server",
+    "forever": "rimraf forever.log && NODE_ENV=production forever start --workingDir ./ -l /var/www/acrobatic-spork/forever.log  /usr/local/bin/nodemon /var/www/acrobatic-spork/server/server.js",
     "eslint": "eslint .",
     "jscs": "jscs ."
   },
