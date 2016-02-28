@@ -41,7 +41,7 @@ class Signin extends React.Component {
         });
         this.props.displayMessage('');
       }  else {
-        var message = res.error.responseText.substr(0, res.error.responseText.indexOf('<'));
+        var message = res.error.responseText;
         this.props.displayMessage(message);
       }
     });
@@ -72,7 +72,7 @@ class Signin extends React.Component {
           browserHistory.push('/uber');
           this.props.displayMessage('');
         } else {
-          var message = res.error.responseText.substr(0, res.error.responseText.indexOf('<'));
+          var message = res.error.responseText;
           this.props.displayMessage(message);
         }
 

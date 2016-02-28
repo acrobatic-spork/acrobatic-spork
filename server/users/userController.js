@@ -61,7 +61,7 @@ Controller.signup = function(req, res, next) {
   User.findOneAsync({ username: username })
     .then(function(user) {
       if (user) {
-        next(new Error('User already exists!'));
+        res.status(400).send('User already exists!');
       } else {
           // make a new user if not one
         return User.createAsync({
