@@ -62,13 +62,13 @@ class Dashboard extends React.Component {
           <legend>Dashboard</legend>
           <div className={styles["form-item"]} >
             <label className='price' htmlFor='price'>Price:</label>
-            <input className='price' name='price' type='range' min='1' max='4' onChange={this.prefsChange.bind(this)}/>
+            <input className='price' name='price' type='range' min='1' max='4' value={this.state.price} onChange={this.prefsChange.bind(this)}/>
             <span className='slider-val'>{this.state.price}</span>
           </div>
           <div className={styles["form-item"]} >
           <label className='radius' htmlFor='radius'>Max Distance:</label>
-          <input className='radius' name='radius' type='range' min='1' max='4' onChange={this.prefsChange.bind(this)}/>
-          <span className='slider-val'>{this.state.range}</span>
+          <input className='radius' name='radius' type='range' min='1' max='8' value={this.state.range} onChange={this.prefsChange.bind(this)}/>
+          <span className='slider-val'>{this.state.range} mi.</span>
           </div>
           <div className={styles["form-item"]} >
             <div className={styles["onoffswitch"]}>
