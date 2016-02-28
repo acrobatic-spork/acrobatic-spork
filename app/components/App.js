@@ -31,13 +31,12 @@ class App extends React.Component {
 
    // updatePreferences
    var preferences = {
-    preferences: newPrefs,
-    username: this.state.user
+    preferences: newPrefs
    };
 
-    utils.updatePrefs(preferences, (updated) => {
+    utils.updatePrefs(preferences, this.state.user, (updated) => {
         if (updated) {
-          console.log('Updated preferences in server')
+          console.log('Updated preferences in server', updated);
           browserHistory.push('/');
         } else {
           console.log('Not updated preferences in server')

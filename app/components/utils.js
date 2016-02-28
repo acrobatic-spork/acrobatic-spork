@@ -35,7 +35,7 @@ utils.updatePrefs = (prefs, username, cb) => {
         request.setRequestHeader("x-access-token", Auth.getToken());
       }
     },
-    method: 'POST',
+    method: 'PUT',
     data: prefs,
     success (data) {
       cb(true);
