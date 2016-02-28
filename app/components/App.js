@@ -14,7 +14,8 @@ class App extends React.Component {
     this.state = {
       user: null,
       preferences: {},
-      message: ''
+      message: '',
+      destination: ''
     };
   }
 
@@ -43,6 +44,12 @@ class App extends React.Component {
     console.log("The user is now: ", name);
     this.setState({
       user: name
+    });
+  }
+
+  updateDestination(destination) {
+    this.setState({
+      destination: destination
     });
   }
 
