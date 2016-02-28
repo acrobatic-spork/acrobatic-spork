@@ -37,11 +37,11 @@ class App extends React.Component {
 
     utils.updatePrefs(preferences, (updated) => {
         if (updated) {
-          console.log('Updated preferences in server')
+          console.log('Updated preferences in server');
           browserHistory.push('/');
         } else {
-          console.log('Not updated preferences in server')
-          this.displayMessage('There was a problem updating your preferences. Please try again')
+          console.log('Not updated preferences in server');
+          this.displayMessage('There was a problem updating your preferences. Please try again');
         }
       });
     }
@@ -90,10 +90,6 @@ class App extends React.Component {
       }
   }
 
-  getUser() {
-    return this.state.user
-  }
-
   logout(e) {
     if (e) e.preventDefault;
     auth.logout(() => {
@@ -111,7 +107,7 @@ class App extends React.Component {
               updateRideStatus: this.updateRideStatus.bind(this),
               displayMessage: this.displayMessage.bind(this),
               linkUberAccount: this.linkUberAccount.bind(this),
-              getUser: this.getUser.bind(this),
+              user: this.state.user,
               status: this.state.rideStatus,
               preferences: this.state.preferences,
               ...this.props });
