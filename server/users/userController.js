@@ -25,13 +25,7 @@ var sendUserInfo = function (user, req, res, next) {
   });
 };
 
-Controller.redirectToUber = function (req, res, next) {
-  console.log('*************** connect to uber', req.query);
-  req.session.user = req.query.username;
-  redirectUri = 'https://login.uber.com/oauth/v2/authorize?response_type=code&client_id=x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m&scope=request&redirect_uri='+ req.protocol + '://' + req.get('host') + '/auth/uber';
-  console.log('redirecting user to ' + redirectUri);
-  res.redirect(redirectUri);
-};
+
 
 Controller.signin = function(req, res, next) {
   var username = req.body.username;

@@ -60,15 +60,26 @@ utils.getLocation = (successNav) => {
 
 utils.getUberAuth = (username, cb) => {
   console.log('In getUberAuth: user: ', username)
-  var uberParams = {
-    responseType: 'code',
-    client_id: 'x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m',
-    redirect_uri: 'http://acrobaticspork.com/auth/uber/'
-  }
-   var url = 'https://login.uber.com/oauth/v2/authorize?'
-   url = url + $.param( uberParams );
-   window.location.replace(url);// redirect to uber auth with redirect uri
-   cb(null);
+  $.ajax({
+    url: '/api/uber/auth?username='+username,
+    type: 'GET',
+     success (data) {
+      console.log('Send user to uber redirect endpoint, here is data...', data);
+      cb(null, data);
+     },
+     error (error) {
+      cb(error, null);
+     }
+  })
+  // var uberParams = {
+  //   responseType: 'code',
+  //   client_id: 'x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m',
+  //   redirect_uri: 'http://acrobaticspork.com/auth/uber/'
+  // }
+  //  var url = 'https://login.uber.com/oauth/v2/authorize?'
+  //  url = url + $.param( uberParams );
+  //  window.location.replace(url);// redirect to uber auth with redirect uri
+  //  cb(null);
 }
 
 utils.checkUberToken = (username, cb) => {
