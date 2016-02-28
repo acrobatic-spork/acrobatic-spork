@@ -31,7 +31,6 @@ function notAlreadyAuth (nextState, replace) {
 }
 
 function redirectToRoot (nextState, replace) {
-  console.log("inredirect")
   replace({
     pathname: '/',
   });
