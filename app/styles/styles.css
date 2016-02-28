@@ -52,6 +52,10 @@ button:hover {
   background-color: #A1A8C7;
 }
 
+fieldset {
+  overflow: hidden;
+}
+
 input[type="text"], input[type="password"]{
   margin: 0.5em;
   padding: 0.5em;
@@ -233,3 +237,20 @@ input[type="range"]{
     height: 100px;
   }
 
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.fade-leave {
+  opacity: 1;
+}
+
+.fade-leave.fade-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
