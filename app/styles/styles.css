@@ -43,12 +43,36 @@ nav li {
 
 button {
   font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
-  border: 5px solid #D5FFB5;
+  border: 2px solid #D5FFB5;
   background-color: #63677A;
   color: inherit;
   overflow: hidden;
   text-transform: uppercase;
   font-size: 1rem; 
+  margin:0.5em;
+}
+button:hover {
+  background-color: #A1A8C7;
+}
+
+input {
+  margin: 0.5em;
+  padding: 0.5em;
+  font-size: 1rem;
+  font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+  font-weight: lighter;
+}
+.container {
+  text-align: center;
+}
+.content {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.message {
+  margin: 1em;
+  color: #f07575;
 }
 
 .form-item {
@@ -125,7 +149,8 @@ button {
     content: "FOOD";
     padding-right: 10px;
     font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
-    background-color: #D5FFB5; color: #252839;
+    background-color: #D5FFB5;
+    color: #63677A;
     text-align: right;
 }
 .onoffswitch-switch {
@@ -135,6 +160,9 @@ button {
     right: 76px;
     border: 2px solid #999999; border-radius: 20px;
     transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-switch:hover {
+    background: #999999;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
     margin-left: 0;
