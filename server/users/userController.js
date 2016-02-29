@@ -30,14 +30,14 @@ Controller.signin = function(req, res, next) {
   User.findOneAsync({ username: username })
     .then(function(user) {
       if (!user) {
-        next(new Error('User does not exist'));
+        res.status(400).send('User does not exist!');
       } else {
         return user.comparePasswords(password)
           .then(function(foundUser) {
             if (foundUser) {
               sendUserInfo(user, req, res, next);
             } else {
-              return next(new Error('No user'));
+              res.status(400).send('Password doesn\'t match');
             }
           });
       }

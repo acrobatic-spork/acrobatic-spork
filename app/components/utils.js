@@ -59,9 +59,9 @@ utils.getLocation = (successNav) => {
 
 utils.getUberAuth = (username, cb) => {
   console.log('In getUberAuth: user: ', username)
-  var sendToServer = 'http://localhost:3000/api/uber/auth?username='+username;
-   window.location.replace(sendToServer);
-   cb(null);
+  var sendToServer = '/api/uber/auth?username='+username;
+  window.location.replace(sendToServer);
+  cb(null);
 }
 
 utils.updateETA = (rideId, cb) => {
