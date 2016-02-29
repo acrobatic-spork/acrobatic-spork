@@ -91,7 +91,8 @@ Uber.cancelRequest = function (req, res, next) {
     if(err) {
       console.error("There was an error cancelling the uber: ", err);
     } else {
-      console.log('Cancelling uber request. Response: ', response);
+      console.log('Cancelling uber request.');
+      //console.log('The response was: ', response);
     }
   });
 }
