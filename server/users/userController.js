@@ -13,10 +13,6 @@ var Controller = {};
 var sendUserInfo = function (user, req, res, next) {
 
 
-  // GET USER INFO TO SEND
-  //
-  // var alteredUser = user prefs and uber staus
-  //
 
   var token = jwt.encode(user, 'secret');
   res.json({
@@ -39,7 +35,7 @@ Controller.signin = function(req, res, next) {
         return user.comparePasswords(password)
           .then(function(foundUser) {
             if (foundUser) {
-              sendUserInfo(foundUser, req, res, next);
+              sendUserInfo(user, req, res, next);
             } else {
               return next(new Error('No user'));
             }
