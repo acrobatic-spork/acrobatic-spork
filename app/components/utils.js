@@ -73,7 +73,22 @@ utils.updateETA = (rideId, cb) => {
     success (data) {
       cb(null, data);
     },
-    error (data) {
+    error (error) {
+      cb(error, null);
+    }
+  });
+}
+
+utils.cancelRide = (rideId, cb) => {
+  $.ajax({
+    url: '/api/cancel',
+    type: 'GET',
+    data: rideId,
+
+    success (data) {
+      cb(null, data);
+    },
+    error (error) {
       cb(error, null);
     }
   });
