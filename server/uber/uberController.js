@@ -32,8 +32,8 @@ Uber.redirectToUber = function (req, res) {
 };
 
 Uber.getToken = function (req, res, next) {
-  request.post("https://login.uber.com/oauth/v2/token?code=" + req.query.code + "&redirect_uri=" + test.redirect_uri + "&client_id=" + config.client_id + "&client_secret=" + config.client_secret + "&grant_type=authorization_code", function(err, response) {
-    var redirect = req.protocol + '://' + req.get('host') + '/auth/uber';
+  var redirect = req.protocol + '://' + req.get('host') + '/auth/uber';
+  request.post("https://login.uber.com/oauth/v2/token?code=" + req.query.code + "&redirect_uri=" + redirect + "&client_id=" + config.client_id + "&client_secret=" + config.client_secret + "&grant_type=authorization_code", function(err, response) {
     var token = {
       uberToken: JSON.parse(response.body).access_token
     };
@@ -43,7 +43,7 @@ Uber.getToken = function (req, res, next) {
     //   json: true
     // }, function (err, resonse) {
     userController.updateUberToken(req.session.user, token.uberToken, function(err, user) {
-      res.redirect('/');
+      res.redirect('/?username=' + req.session.user);
     });
   });
 };
