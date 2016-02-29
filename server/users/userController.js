@@ -108,7 +108,10 @@ Controller.getUser = function (req, res, next) {
 
 Controller.updatePrefs = function (req, res, next) {
   var query = { username: req.query.username };
-  var prefsToUpdate = req.body.uberToken ? req.body : {preferences: req.body.preferences};
+  console.log("About to update prefs. The request body is: ", req.body);
+  // var prefsToUpdate = req.body.uberToken ? req.body : {preferences: req.body.preferences};
+  var prefsToUpdate = {preferences: req.body};
+  console.log("And the prefs to update: ", prefsToUpdate);
   var options = { new: true };
   User.findOneAndUpdateAsync(query, prefsToUpdate, options)
     .then(function (updatedPrefs) {
