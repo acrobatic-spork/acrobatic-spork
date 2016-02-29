@@ -24,7 +24,8 @@ class App extends React.Component {
     };
   }
 
-  updatePreferences(newPrefs) {
+  updatePreferences(newPrefs, path) {
+    path = path || '/';
 
     this.setState({
       preferences: newPrefs
@@ -33,7 +34,7 @@ class App extends React.Component {
     utils.updatePrefs(newPrefs, this.state.user, (updated) => {
         if (updated) {
           console.log('Updated preferences in server')
-          browserHistory.push('/');
+          browserHistory.push(path);
         } else {
           console.log('Not updated preferences in server');
           this.displayMessage('There was a problem updating your preferences. Please try again');
