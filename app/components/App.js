@@ -77,6 +77,9 @@ class App extends React.Component {
         console.error("Error cancelling the ride.");
       } else {
         console.log("The ride was successfully cancelled.");
+        this.setState({
+          rideStatus: {}
+        });
       } 
     });
   }
