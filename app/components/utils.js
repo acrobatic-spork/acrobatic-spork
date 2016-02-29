@@ -64,6 +64,19 @@ utils.getUberAuth = (username, cb) => {
   cb(null);
 }
 
+utils.checkUberToken = (username, cb) => {
+  $.ajax({
+    url: '/api/users?username='+username,
+    type: 'GET',
+    success (data) {
+      cb(null, data.uberToken.length);
+    },
+    error (error) {
+      cb(error, null);
+    }
+  });
+}
+
 utils.updateETA = (rideId, cb) => {
   $.ajax({
     url: '/api/eta',
