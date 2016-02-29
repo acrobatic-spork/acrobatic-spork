@@ -31,7 +31,7 @@ class App extends React.Component {
 
     utils.updatePrefs(newPrefs, this.state.user, (updated) => {
         if (updated) {
-          console.log('Updated preferences in server');
+          console.log('Updated preferences in server')
           browserHistory.push('/');
         } else {
           console.log('Not updated preferences in server');
@@ -55,7 +55,6 @@ class App extends React.Component {
   }
 
   displayMessage(message) {
-    console.log("The message is now: ", message);
     this.setState({
       message: message
     });
@@ -92,8 +91,6 @@ class App extends React.Component {
   }
 
   render () {
-    console.log('in app.js');
-
      var childrenWithProps = React.Children.map(this.props.children, (child) => {
             return React.cloneElement(child, { 
               updateUser: this.updateUser.bind(this),
