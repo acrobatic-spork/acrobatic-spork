@@ -20,7 +20,7 @@ class App extends React.Component {
         chooseFood: true
       },
       message: '',
-      rideStatus: {}
+      rideStatus: {},
     };
   }
 
@@ -106,6 +106,17 @@ class App extends React.Component {
     });
   }
 
+  componentWillMount () {
+    if (auth.loggedIn() && !this.state.user) {
+      auth.getUserInfoFromJWT(function(data) {
+        this.setState({
+          user: data.username,
+          preferences: data.preferences,
+          isLoading: false
+        });      
+      }.bind(this));
+    }
+  }
 
   linkUberAccount() {
     console.log('In linkUberAccount')
@@ -137,6 +148,7 @@ class App extends React.Component {
     });
   }
 
+
   render () {
      var childrenWithProps = React.Children.map(this.props.children, (child) => {
             return React.cloneElement(child, { 
@@ -150,6 +162,8 @@ class App extends React.Component {
               user: this.state.user,
               status: this.state.rideStatus,
               preferences: this.state.preferences,
+              loadingToggle: this.loadingToggle.bind(this),
+              isLoading: this.state.isLoading,
               ...this.props });
           });
    return (

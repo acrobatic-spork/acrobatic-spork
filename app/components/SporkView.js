@@ -2,10 +2,15 @@ import React from 'react';
 import styles from '../styles/styles.css'
 import utils from './utils'
 import Status from './UberStatusView'
+import { browserHistory, Router, Route, Link } from 'react-router'
 
 class Spork extends React.Component {
   constructor(props){
     super(props);
+
+    // this.state = {
+    //   isLoading: 
+    // }
   }
 
   sporkHandler (e) {
@@ -29,6 +34,7 @@ class Spork extends React.Component {
             id: res.uberStatus.request_id
           };
           this.props.setRideStatus(rideStatus);
+          browserHistory.push('/status')
         });  
       } else {
         console.log('The user name in props is: ', this.props.user, ' which is bad.');
