@@ -23,7 +23,6 @@ FourSquare.userObj = {}
 FourSquare.init = function (req, res, next) {
   FourSquare.getUserInfoAsync(req)
   .then(function() {
-    console.log('user: ', FourSquare.userObj)
     return FourSquare.sendQueryAsync(FourSquare.userObj);
   })
   .then(function (venue) {
@@ -34,7 +33,6 @@ FourSquare.init = function (req, res, next) {
       uberStatus: response.body.body,
       venue: FourSquare.userObj.venue
     }
-    console.log('response from callUberAsync: ', sendToFront);
     res.json(sendToFront);
   })
   .catch(function(error) {
@@ -125,41 +123,3 @@ FourSquare.callUberAsync = function (venue) {
 }
 
 module.exports = FourSquare;
-
-// var foursquare = function (req, res, next) {
-//   console.log('fourquare query', req.query);
-//   request.get(test.uri + '/api/users?username='+req.query.username, function (err, response) {
-//     console.log('user pulled from db for 4square params: ', response);
-//     var userObj = {
-//       section: test.section,
-//       radius: test.radius,
-//       price: test.price,
-//       token: test.token,
-//       lat: req.query.lat,
-//       lng: req.query.lng
-//     };
-    
-//     var queryString = config.foursquare_endpoint + '&ll='+userObj.lat+','+userObj.lng+'&section='+userObj.section+'&radius='+userObj.radius+'&price='+userObj.price+'&client_id='+config.client_id+'&client_secret='+config.client_secret;
-
-//     request.get(queryString, function (err, response) {
-
-//       var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*10)].venue;
-
-//       console.log('venue chosen ========', venue.name);
-//       request.post({ 
-//         uri: test.uri + '/api/uber', 
-//         body: {
-//           token: userObj.token,
-//           startLat: userObj.lat,
-//           startLng: userObj.lng,
-//           endLat: venue.location.lat,
-//           endLng: venue.location.lng
-//         },
-//         json: true
-//       } , function(err, response) {
-//         // console.log('yelp to uber request response', err, response.body);
-//       });     
-//     });
-//   })
-// }
-
