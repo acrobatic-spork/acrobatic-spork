@@ -70,10 +70,15 @@ FourSquare.sendQueryAsync = function (userObj) {
       if (err) {
         reject(err);
       } else {
-        var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*10)].venue;
-        console.log('venue name = ', venue.name)
-        FourSquare.userObj.venue = venue.name;
-        resolve(venue);
+        if(JSON.parse(response.body).response.groups[0].items.length < 1) {
+          console.log('recalling 4[] due to lack of results: ', userObj);
+          return FourSquare.sendQueryAsync(userObj);
+        } else {
+          var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*10)].venue;
+          console.log('venue name = ', venue.name)
+          FourSquare.userObj.venue = venue.name;
+          resolve(venue);
+        }
       }
     });
   })
