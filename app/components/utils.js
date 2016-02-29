@@ -15,7 +15,7 @@ utils.sendAuthRequest = (username, password, url, cb) => {
       cb({
         authenticated: true,
         token: data.token,
-        username: data.user
+        user: data.user
       });
     },
     error (err) {
