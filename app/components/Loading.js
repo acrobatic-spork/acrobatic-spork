@@ -4,19 +4,20 @@ import { browserHistory, Router, Route, Link } from 'react-router'
 
 
 const Loading = (props) => {
-	if (!props.store.status) const options = {enabled : true}
+
 	return	(
 		<div>
 		<div className='loading'>
 		<img src="images/wc-spork.png" />
 		</div>
-
-		<ReactInterval timeout={1000} enabled={options.enabled}
+		{console.log('props.store.isLoading: ', props.store.isLoading)}
+		<ReactInterval timeout={1000} enabled={props.store.isLoading}
 		    callback={() => {
 		      console.log("Loading..");
 			  if (props.store.status !== undefined) {
-			  	options.enabled = false;
+				props.store.loadingToggle();
 			  	browserHistory.push('/status');
+			  	return
 			  }
 		    }
 		  } />
