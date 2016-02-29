@@ -162,8 +162,6 @@ class App extends React.Component {
               user: this.state.user,
               status: this.state.rideStatus,
               preferences: this.state.preferences,
-              loadingToggle: this.loadingToggle.bind(this),
-              isLoading: this.state.isLoading,
               ...this.props });
           });
    return (
