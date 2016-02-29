@@ -81,8 +81,7 @@ Uber.checkStatus = function (req, res, next) {
 }
 
 Uber.cancelRequest = function (req, res, next) {
-  request({
-    method: 'DELETE', 
+  request.del({
     uri: test.endpoint+'/'+req.body,
     headers: {
       'Authorization': 'Bearer '+test.access_token
@@ -92,7 +91,7 @@ Uber.cancelRequest = function (req, res, next) {
       console.error("There was an error cancelling the uber: ", err);
     } else {
       console.log('Cancelling uber request.');
-      //console.log('The response was: ', response);
+      // console.log('The response was: ', response);
     }
   });
 }
