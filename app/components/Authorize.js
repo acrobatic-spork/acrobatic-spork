@@ -18,6 +18,24 @@ var Auth = {
     })
   },
 
+  getUserInfoFromJWT(cb) {
+     $.ajax({
+      url: '/api/users/signedin',
+      beforeSend: function (request) {
+        if(Auth.loggedIn()){
+          request.setRequestHeader("x-access-token", Auth.getToken());
+        }
+      },
+      success (data) {
+        cb(data);
+      },
+      error (data) {
+        console.error('error with jwt check:', data);
+        cb(null) 
+      }
+    });
+  },
+
   getToken() {
     return localStorage.getItem('token');
   },

@@ -16,7 +16,7 @@ class Signin extends React.Component {
     this.state = {
       confirm: false,
       passNotMatch: false
-    }
+    };
   }
 
   handleLogin (e) {
@@ -43,7 +43,7 @@ class Signin extends React.Component {
         // });
         this.props.displayMessage('');
       }  else {
-        var message = res.error.responseText;
+        var message = res.error.responseText.substr(0, res.error.responseText.indexOf('<')) || res.error.responseText;
         this.props.displayMessage(message);
       }
     });
@@ -75,7 +75,7 @@ class Signin extends React.Component {
           browserHistory.push('/uber');
           this.props.displayMessage('');
         } else {
-          var message = res.error.responseText;
+          var message = res.error.responseText.substr(0, res.error.responseText.indexOf('<')) || res.error.responseText;
           this.props.displayMessage(message);
         }
 
