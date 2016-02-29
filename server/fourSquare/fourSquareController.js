@@ -20,7 +20,7 @@ var FourSquare = {};
 
 FourSquare.userObj = {}
 
-FourSquare.init = function (req, res, cb) {
+FourSquare.init = function (req, res, next) {
   FourSquare.getUserInfoAsync(req)
   .then(function() {
     console.log('user: ', FourSquare.userObj)
@@ -36,6 +36,9 @@ FourSquare.init = function (req, res, cb) {
     }
     console.log('response from callUberAsync: ', sendToFront);
     res.json(sendToFront);
+  })
+  .catch(function(error) {
+    next(error);
   })
 
 }
@@ -70,20 +73,26 @@ FourSquare.sendQueryAsync = function (userObj) {
       if (err) {
         reject(err);
       } else {
-        if(JSON.parse(response.body).response.groups[0].items.length < 1) {
-          console.log('recalling 4[] due to lack of results: ', userObj);
+        var numResults = JSON.parse(response.body).response.groups[0].items.length;
+        if(numResults < 1) {
           request.get(queryString, function (err, response) {
             if (err) {
               reject(err);
             } else {
-              var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*10)].venue;
-              console.log('venue name = ', venue.name)
-              FourSquare.userObj.venue = venue.name;
-              resolve(venue);
+              var numResults2 = JSON.parse(response.body).response.groups[0].items.length;
+              if(numResults < 1) {
+                resolve(err);
+              } {
+                console.log('First f[] call return no results, results length #2: ', numResults2);
+                var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*numResults2)].venue;
+                console.log('venue name = ', venue.name)
+                FourSquare.userObj.venue = venue.name;
+                resolve(venue);
+              }
             }
           });
         } else {
-          var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*10)].venue;
+          var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*numResults)].venue;
           console.log('venue name = ', venue.name)
           FourSquare.userObj.venue = venue.name;
           resolve(venue);

@@ -68,7 +68,7 @@ class Dashboard extends React.Component {
           <legend>Preferences</legend>
           <div className={styles['form-item']} >
             <label className={styles['slider-label']} htmlFor='price'>Price:</label>
-            <input className='price' name='price' type='range' min='1' max='4' value={this.state.price} onChange={this.prefsChange.bind(this)} autofocus />
+            <input className='price' name='price' type='range' min='1' max='3' value={this.state.price} onChange={this.prefsChange.bind(this)} autofocus />
             <span className={styles['slider-val']}>{this.showDollars(this.state.price)}</span>
           </div>
           <div className={styles['form-item']} >
