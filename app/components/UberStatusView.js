@@ -38,6 +38,11 @@ class UberStatus extends React.Component {
             <span className="">Cancel Ride</span>
           </button>
         </div>
+        <div>
+          <button>
+            <a target="_blank" href="https://m.uber.com/">Open Uber</a>
+          </button>
+        </div>
       </div>
     )
   }
