@@ -76,9 +76,9 @@ FourSquare.sendQueryAsync = function (userObj) {
     },
     function (next) {
       request.get(queryString, function (err, response) {
-        var numResults = JSON.parse(response.body).response.groups[0].items.length;
-        var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*numResults)].venue;
-        if (!err) {
+        if (!err && JSON.parse(response.body).response && JSON.parse(response.body).response.groups[0].items.length > 0) {
+          var numResults = JSON.parse(response.body).response.groups[0].items.length;
+          var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*numResults)].venue;
           console.log('venue name = ', venue.name)
           FourSquare.userObj.venue = venue.name;
           FourSquare.userObj.venueLoc = venue.location;
