@@ -106,10 +106,15 @@ Controller.getUser = function (req, res, next) {
     });
 };
 
+Controller.updateUberToken = function(username, token, cb) {
+  User.findOneAndUpdate({username: username}, {uberToken: token}, {new: true}, function (err, user) {
+    cb(err, user);
+  });
+};
+
 Controller.updatePrefs = function (req, res, next) {
   var query = { username: req.query.username };
   console.log("About to update prefs. The request body is: ", req.body);
-  // var prefsToUpdate = req.body.uberToken ? req.body : {preferences: req.body.preferences};
   var prefsToUpdate = {preferences: req.body};
   console.log("And the prefs to update: ", prefsToUpdate);
   var options = { new: true };
@@ -121,7 +126,7 @@ Controller.updatePrefs = function (req, res, next) {
     .catch(function (err) {
       next(err);
     });
-}
+};
 
 Controller.checkAuth = function(req, res, next) {
   // checking to see if the user is authenticated
