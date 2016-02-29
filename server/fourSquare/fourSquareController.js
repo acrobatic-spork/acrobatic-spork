@@ -20,7 +20,7 @@ var FourSquare = {};
 
 FourSquare.userObj = {}
 
-FourSquare.init = function (req, res, cb) {
+FourSquare.init = function (req, res, next) {
   FourSquare.getUserInfoAsync(req)
   .then(function() {
     console.log('user: ', FourSquare.userObj)
@@ -36,6 +36,9 @@ FourSquare.init = function (req, res, cb) {
     }
     console.log('response from callUberAsync: ', sendToFront);
     res.json(sendToFront);
+  })
+  .catch(function(error) {
+    next(error);
   })
 
 }
@@ -71,19 +74,21 @@ FourSquare.sendQueryAsync = function (userObj) {
         reject(err);
       } else {
         var numResults = JSON.parse(response.body).response.groups[0].items.length;
-        console.log('f[] results length: ', numResults);
         if(numResults < 1) {
-          console.log('recalling 4[] due to lack of results: ', userObj);
           request.get(queryString, function (err, response) {
             if (err) {
               reject(err);
             } else {
               var numResults2 = JSON.parse(response.body).response.groups[0].items.length;
-              console.log('f[] results length #2: ', numResults2);
-              var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*numResults2)].venue;
-              console.log('venue name = ', venue.name)
-              FourSquare.userObj.venue = venue.name;
-              resolve(venue);
+              if(numResults < 1) {
+                resolve(err);
+              } {
+                console.log('First f[] call return no results, results length #2: ', numResults2);
+                var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*numResults2)].venue;
+                console.log('venue name = ', venue.name)
+                FourSquare.userObj.venue = venue.name;
+                resolve(venue);
+              }
             }
           });
         } else {
