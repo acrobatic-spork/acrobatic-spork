@@ -28,7 +28,7 @@ class Spork extends React.Component {
             eta: res.uberStatus.eta,
             id: res.uberStatus.request_id
           };
-          this.props.upDateRideStatus(rideStatus);
+          this.props.updateRideStatus(rideStatus);
         });  
       } else {
         console.log('The user name in props is: ', this.props.user, ' which is bad.');
