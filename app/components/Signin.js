@@ -97,7 +97,7 @@ class Signin extends React.Component {
       <div className={styles["content"]}>
         <form className="loginform" >
         <fieldset>
-        <legend>Please Login to begin</legend>
+        <legend>Please Login/Signup to begin</legend>
           <div className={styles["form-item"]} >
             <input className="username" type="text" ref="username" name="username" placeholder="username" required autofocus />
           </div>
