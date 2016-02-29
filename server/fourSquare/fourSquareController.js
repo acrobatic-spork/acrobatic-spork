@@ -70,20 +70,24 @@ FourSquare.sendQueryAsync = function (userObj) {
       if (err) {
         reject(err);
       } else {
-        if(JSON.parse(response.body).response.groups[0].items.length < 1) {
+        var numResults = JSON.parse(response.body).response.groups[0].items.length;
+        console.log('f[] results length: ', numResults);
+        if(numResults < 1) {
           console.log('recalling 4[] due to lack of results: ', userObj);
           request.get(queryString, function (err, response) {
             if (err) {
               reject(err);
             } else {
-              var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*10)].venue;
+              var numResults2 = JSON.parse(response.body).response.groups[0].items.length;
+              console.log('f[] results length #2: ', numResults2);
+              var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*numResults2)].venue;
               console.log('venue name = ', venue.name)
               FourSquare.userObj.venue = venue.name;
               resolve(venue);
             }
           });
         } else {
-          var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*10)].venue;
+          var venue = JSON.parse(response.body).response.groups[0].items[Math.floor(Math.random()*numResults)].venue;
           console.log('venue name = ', venue.name)
           FourSquare.userObj.venue = venue.name;
           resolve(venue);
