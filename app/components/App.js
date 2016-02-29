@@ -21,7 +21,6 @@ class App extends React.Component {
       },
       message: '',
       rideStatus: {},
-      isLoading: false
     };
   }
 
@@ -149,14 +148,6 @@ class App extends React.Component {
     });
   }
 
-  loadingToggle() {
-    console.log('In toggle loading')
-    this.setState((prevState) => (
-    {
-      isLoading: !this.state.isLoading
-    }));
-    console.log(this.state.isLoading)
-  }
 
   render () {
      var childrenWithProps = React.Children.map(this.props.children, (child) => {
