@@ -99,21 +99,21 @@ class Signin extends React.Component {
         <fieldset>
         <legend>Please Login/Signup to begin</legend>
           <div className={styles["form-item"]} >
-            <input className="username" type="text" ref="username" name="username" placeholder="username" required autofocus />
+            <input className="username" type="text" ref="username" name="username" placeholder="username" required autoFocus={!this.state.confirm} />
           </div>
           <div className={styles["form-item"]} >
             <input className="password" type="password" ref="password" name="password" placeholder="password" required />
           </div>
           <div className={styles["form-item"]} >
-            <button className="signin" onClick={this.handleLogin.bind(this)}>
+            <button className={styles['default-button']}  onClick={this.handleLogin.bind(this)}>
               <span className="">Login</span>
             </button>
-            <button className="signup" onClick={this.confirmPass.bind(this)}>
+            <button onClick={this.confirmPass.bind(this)}>
               <span className="">Signup</span>
             </button>
           </div>
-          {this.state.passNotMatch ? <p className={styles['message']}>Password did not match. Please try again.</p> : null}
-        
+          </fieldset>
+          </form>
           <Transition
             component={false} // don't use a wrapping component
             enter={{
@@ -127,15 +127,19 @@ class Signin extends React.Component {
             >
             
             {this.state.confirm &&
+              <form key="confirm-form">
+              <fieldset>
+                <legend>Confirm your password</legend>
+          {this.state.passNotMatch ? <p className={styles['message']}>Password did not match. Please try again.</p> : null}
             <div className={styles["form-item"]} key="confirm" > 
-              <label htmlFor='confirm'>Confirm your password</label><br/>
-              <input className='confirm' name='confirm' type='password' placeholder='confirm password' ref='confirm' /> <br/>
-              <button onClick={this.signupNewUser.bind(this)}>Create account</button>
+                <input className='confirm' name='confirm' type='password' placeholder='confirm password' ref='confirm' autoFocus={this.state.confirm} />
+                <br/>
+                <button type="submit" className={styles['default-button']} onClick={this.signupNewUser.bind(this)}>Create account</button>
             </div>
-          }
-          </Transition>
         </fieldset>
         </form>
+          }
+          </Transition>
       </div>
     )
   }
