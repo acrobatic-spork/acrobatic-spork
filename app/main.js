@@ -10,6 +10,7 @@ import Categories from './components/CategoriesView.js'
 import Uber from './components/ConnectUberView.js'
 import auth from './components/Authorize'
 import Status from './components/UberStatusView.js'
+import Loading from './components/Loading'
 
 
 

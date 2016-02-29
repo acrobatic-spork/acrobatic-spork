@@ -7,6 +7,10 @@ import Loading from './Loading'
 class Spork extends React.Component {
   constructor(props){
     super(props);
+
+    // this.state = {
+    //   isLoading: 
+    // }
   }
 
   sporkHandler (e) {
@@ -15,6 +19,7 @@ class Spork extends React.Component {
 
     // sends the spork request after getting location
     var successNav =  (loc) => {
+      this.props.loadingToggle();
       var lat = loc.coords.latitude;
       var lon = loc.coords.longitude;
       var location = {lat: lat, lng: lon};
@@ -30,7 +35,6 @@ class Spork extends React.Component {
             id: res.uberStatus.request_id
           };
           this.props.setRideStatus(rideStatus);
-          this.props.isLoading = true;
         });  
       } else {
         console.log('The user name in props is: ', this.props.user, ' which is bad.');
@@ -42,7 +46,7 @@ class Spork extends React.Component {
   }
   
   render (){
-    return (this.state.isLoading ? <Loading /> : 
+    return (this.props.isLoading ? <Loading /> : 
       <div className={styles['button-box']}>
         <div>
           <button onClick={this.sporkHandler.bind(this)} className={styles['spork-button']}>Spork</button>

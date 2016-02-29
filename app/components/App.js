@@ -149,6 +149,14 @@ class App extends React.Component {
     });
   }
 
+  loadingToggle() {
+    console.log('In toggle loading')
+    this.setState((prevState) => (
+    {
+      isLoading: !this.state.isLoading
+    }));
+  }
+
   render () {
      var childrenWithProps = React.Children.map(this.props.children, (child) => {
             return React.cloneElement(child, { 
@@ -162,6 +170,7 @@ class App extends React.Component {
               user: this.state.user,
               status: this.state.rideStatus,
               preferences: this.state.preferences,
+              loadingToggle: this.loadingToggle.bind(this),
               isLoading: this.state.isLoading,
               ...this.props });
           });
