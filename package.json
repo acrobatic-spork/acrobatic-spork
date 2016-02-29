@@ -73,11 +73,18 @@
   "scripts": {
     "test": "mocha test --compilers js:babel-core/register",
     "start": "nodemon server/server",
+    
     "build": "rimraf dist && BABEL_ENV=production NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors",
-    "deploy": "npm run build && NODE_ENV=production PORT=80 nodemon ./server/server",
-    "fakedeploy": "npm run build && NODE_ENV=production PORT=8080 HTTPS_PORT=8443 nodemon ./server/server",
+    
+    "prod": "NODE_ENV=production PORT=80 HTTPS_PORT=443 nodemon ./server/server",
+    "localprod": "NODE_ENV=production PORT=8080 HTTPS_PORT=8443 nodemon ./server/server",
+    
+    "deploy": "npm run build && npm run prod",
+    "localdeploy": "npm run build && NODE_ENV=production PORT=8080 HTTPS_PORT=8443 nodemon ./server/server",
+    
     "forever": "rimraf forever.log && NODE_ENV=production forever start --workingDir ./ -l /var/www/acrobatic-spork/forever.log  /usr/local/bin/nodemon /var/www/acrobatic-spork/server/server.js",
     "deployforever": "npm run build && npm run forever",
+    
     "eslint": "eslint .",
     "jscs": "jscs ."
   },
