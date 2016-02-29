@@ -4,13 +4,13 @@ import utils from './utils'
 var Auth = {
   confirmUser(username, password, cb, url) {
     url = url || '/api/users/signin'
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('com.spork')) {
       if (cb) cb(true)
       return
     }
     utils.sendAuthRequest(username, password, url, (res) => {
       if (res.authenticated) {
-        localStorage.setItem('token', res.token);
+        localStorage.setItem('com.spork', res.token);
         if (cb) cb(true, res)
       } else {
         if (cb) cb(false, res)
@@ -37,16 +37,16 @@ var Auth = {
   },
 
   getToken() {
-    return localStorage.getItem('token');
+    return localStorage.getItem('com.spork');
   },
 
   logout(cb) {
-    localStorage.removeItem('token');
+    localStorage.removeItem('com.spork');
     if (cb) cb()
   },
 
   loggedIn() {
-    return !!localStorage.getItem('token')
+    return !!localStorage.getItem('com.spork')
   }
 }
 

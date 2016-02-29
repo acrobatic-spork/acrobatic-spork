@@ -131,13 +131,14 @@ class App extends React.Component {
       <div className={styles["container"]}>
       <nav>
         <ul>
-         <li><Link activeClassName={styles['active-nav']} to="/dashboard">Dashboard</Link> </li>
-         <li><Link activeClassName={styles['active-nav']} to="/status">Status</Link> </li>
-         <li><Link onlyActiveOnIndex activeClassName={styles['active-nav']} to="/">Spork Now</Link> </li>
-         <li><Link activeClassName={styles['active-nav']} to="/uber">Connect Uber</Link> </li>
-        {auth.loggedIn() ?
-         <li><a href='#' onClick={this.logout.bind(this)}>Log Out</a></li>
-         : <li><Link activeClassName={styles['active-nav']} to="/signin">Sign in</Link></li> }
+        { auth.loggedIn() ? [
+         <li><Link activeClassName={styles['active-nav']} to="/dashboard">Dashboard</Link> </li>,
+         <li><Link activeClassName={styles['active-nav']} to="/status">Status</Link> </li>,
+         <li><Link onlyActiveOnIndex activeClassName={styles['active-nav']} to="/">Spork Now</Link> </li>,
+         <li><Link activeClassName={styles['active-nav']} to="/uber">Connect Uber</Link> </li>,
+         <li><a href='#' onClick={this.logout.bind(this)}>Log Out</a></li>,
+         ]
+         :  <li><Link activeClassName={styles['active-nav']} to="/signin">Sign in</Link></li>  }
        </ul>
        </nav>
        <Message message={this.state.message} />
