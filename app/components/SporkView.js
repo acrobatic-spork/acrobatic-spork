@@ -46,7 +46,7 @@ class Spork extends React.Component {
   }
   
   render (){
-    return (this.props.isLoading ? <Loading /> : 
+    return (this.props.isLoading ? <Loading store={this.props}/> : 
       <div className={styles['button-box']}>
         <div>
           <button onClick={this.sporkHandler.bind(this)} className={styles['spork-button']}>Spork</button>

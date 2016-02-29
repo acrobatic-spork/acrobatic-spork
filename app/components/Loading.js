@@ -12,8 +12,7 @@ const Loading = (props) => (
 	<ReactInterval timeout={1000} enabled={true}
 	    callback={() => {
 	      console.log("Loading..");
-	      console.log('status...: ', props.status);
-		  if (props.status !== undefined) {
+		  if (props.store.status !== undefined) {
 		  	browserHistory.push('/status') 
 		  }
 	    }
