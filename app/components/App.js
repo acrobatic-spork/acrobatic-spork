@@ -61,6 +61,8 @@ class App extends React.Component {
         console.error("Error getting ride update.");
       } else {
         console.log("The ride update is: ", res);
+        // update the state if we get a new eta
+        // message if ride not found?
       }
     });
     

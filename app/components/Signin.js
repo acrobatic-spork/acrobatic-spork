@@ -27,20 +27,20 @@ class Signin extends React.Component {
         utils.getLocation( () => console.log('Got location on Login') );
         this.props.updateUser(res.user.username);
         this.props.updatePreferences(res.user.preferences);
-        browserHistory.push('/');
+        // browserHistory.push('/');
         // check for uber token, if not valid, route to connect uber
-        // utils.checkUberToken(this.refs.username.value, (err, tokenLength) => {
-        //   if(err) {
-        //     console.error(err);
-        //   } else {
-        //     console.log("The token length: ", tokenLength);
-        //     if(tokenLength) {
-                  // browserHistory.push('/');  
-        //     } else {
-        //       browserHistory.push('/uber');
-        //     }
-        //   }
-        // });
+        utils.checkUberToken(this.refs.username.value, (err, tokenLength) => {
+          if(err) {
+            console.error(err);
+          } else {
+            console.log("The token length: ", tokenLength);
+            if(tokenLength) {
+              browserHistory.push('/');  
+            } else {
+              browserHistory.push('/uber');
+            }
+          }
+        });
         this.props.displayMessage('');
       }  else {
         var message = res.error.responseText.substr(0, res.error.responseText.indexOf('<')) || res.error.responseText;
@@ -72,8 +72,9 @@ class Signin extends React.Component {
           utils.getLocation( () => console.log('Got location on Login') );
           this.props.updateUser(res.user.username);
           this.props.updatePreferences(res.user.preferences);
-          browserHistory.push('/uber');
           this.props.displayMessage('');
+          console.log("Sending new user to uber route");
+          browserHistory.push('/uber');
         } else {
           var message = res.error.responseText.substr(0, res.error.responseText.indexOf('<')) || res.error.responseText;
           this.props.displayMessage(message);
