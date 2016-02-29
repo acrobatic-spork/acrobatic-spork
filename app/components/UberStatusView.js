@@ -1,16 +1,22 @@
 import React from 'react';
 import ReactInterval from 'react-interval';
+import { browserHistory } from 'react-router';
 
 
 class UberStatus extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      checkStatus: !!Object.keys(this.props.status).length
+    };
   }
 
   handleCancel (e) {
     e.preventDefault();
     this.props.cancelRide(this.props.status.id);
+    browserHistory.push('/');
   }
 
   render () {
@@ -21,7 +27,7 @@ class UberStatus extends React.Component {
         </div>
         <div className="uber-status"> 
 
-          <ReactInterval timeout={5000} enabled={true}
+          <ReactInterval timeout={5000} enabled={this.state.checkStatus}
               callback={() => {
                 console.log("Tick");
                 console.log(this.props.status.id);
