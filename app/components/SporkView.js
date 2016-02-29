@@ -51,7 +51,7 @@ class Spork extends React.Component {
   render (){
     return (
       <div>
-        {this.state.buttonDisabled ? <LoadingAnimation /> :
+        {this.state.buttonDisabled || !!Object.keys(this.props.status).length ? <LoadingAnimation /> :
         <div className={styles['button-box']}>
             <button onClick={this.sporkHandler.bind(this)} className={styles['spork-button']}>Spork</button>
         </div>
