@@ -26,7 +26,6 @@ class Signin extends React.Component {
         //get location permission on sign so spork request had better user experience
         utils.getLocation( () => console.log('Got location on Login') );
         this.props.updateUser(res.user.username);
-        console.log("Logged in ", res.user.username, " and updating pref to ", res.user.preferences);
         this.props.updatePreferences(res.user.preferences);
         browserHistory.push('/');
         // check for uber token, if not valid, route to connect uber
