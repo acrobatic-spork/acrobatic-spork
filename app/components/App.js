@@ -47,11 +47,23 @@ class App extends React.Component {
     });
   }
 
-  updateRideStatus(rideStatus) {
-
+  setRideStatus(rideStatus) {
     this.setState({
       rideStatus: rideStatus
     });
+  }
+
+  updateRideStatus(rideId) {
+    // call utility
+    utils.updateETA(rideId, (err, res) => {
+      if(err) {
+        console.log("Error getting ride update.");
+      } else {
+        console.log("The ride update is: ", res);
+      }
+    });
+    
+    // update state
   }
 
   displayMessage(message) {
@@ -97,6 +109,7 @@ class App extends React.Component {
               updateUser: this.updateUser.bind(this),
               updatePreferences: this.updatePreferences.bind(this),
               updateRideStatus: this.updateRideStatus.bind(this),
+              setRideStatus: this.setRideStatus.bind(this),
               displayMessage: this.displayMessage.bind(this),
               linkUberAccount: this.linkUberAccount.bind(this),
               user: this.state.user,
