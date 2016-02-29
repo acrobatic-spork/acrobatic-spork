@@ -55,7 +55,7 @@ Uber.requestCar = function (req, res, next) {
   request.post({ 
     uri: test.endpoint,
     headers: {
-      'Authorization': 'Bearer '+test.access_token
+      'Authorization': 'Bearer '+req.body.token
     },
     body: requestCar,
     json: true
