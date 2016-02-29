@@ -57,13 +57,24 @@ class App extends React.Component {
     // call utility
     utils.updateETA(rideId, (err, res) => {
       if(err) {
-        console.log("Error getting ride update.");
+        console.error("Error getting ride update.");
       } else {
         console.log("The ride update is: ", res);
       }
     });
     
     // update state
+  }
+
+  cancelRide(rideId) {
+    console.log("Called cancel ride with id: ", rideId);
+    utils.cancelRide(rideId, (err, res) => {
+      if(err) {
+        console.error("Error cancelling the ride.");
+      } else {
+        console.log("The ride was successfully cancelled.");
+      } 
+    });
   }
 
   displayMessage(message) {
@@ -122,6 +133,7 @@ class App extends React.Component {
               setRideStatus: this.setRideStatus.bind(this),
               displayMessage: this.displayMessage.bind(this),
               linkUberAccount: this.linkUberAccount.bind(this),
+              cancelRide: this.cancelRide.bind(this),
               user: this.state.user,
               status: this.state.rideStatus,
               preferences: this.state.preferences,
