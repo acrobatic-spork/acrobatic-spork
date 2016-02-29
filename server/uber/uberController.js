@@ -22,10 +22,7 @@ module.exports = function(userController) {
 var Uber = {};
 
 Uber.redirectToUber = function (req, res) {
-  console.log('*************** connect to uber', req.query);
-  console.log('*************** connect to uber', test.code_redirect);
   req.session.user = req.query.username;
-  console.log('req.session: ',req.session);
   var redirect = req.protocol + '://' + req.get('host') + '/auth/uber';
   var code_redirect = 'https://login.uber.com/oauth/v2/authorize?response_type=code&client_id=x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m&scope=request&redirect_uri=' + redirect;
   res.redirect(code_redirect);
@@ -96,18 +93,5 @@ Uber.cancelRequest = function (req, res, next) {
   });
 }
 
-
-// example response
-/*{
-   "request_id": "852b8fdd-4369-4659-9628-e122662ad257",
-   "status": "processing",
-   "vehicle": null,
-   "driver": null,
-   "location": null,
-   "eta": 5,
-   "surge_multiplier": null
-}*/
-
 return Uber;
 };
-// module.exports = Uber;

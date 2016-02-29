@@ -110,13 +110,11 @@ Controller.updateUberToken = function(username, token, cb) {
 
 Controller.updatePrefs = function (req, res, next) {
   var query = { username: req.query.username };
-  console.log("About to update prefs. The request body is: ", req.body);
   var prefsToUpdate = {preferences: req.body};
-  console.log("And the prefs to update: ", prefsToUpdate);
   var options = { new: true };
   User.findOneAndUpdateAsync(query, prefsToUpdate, options)
     .then(function (updatedPrefs) {
-      console.log('Prefences Updated: ', updatedPrefs);
+      console.log('Prefences Updated: ', updatedPrefs.preferences);
       res.json(updatedPrefs);
     })
     .catch(function (err) {
@@ -125,20 +123,14 @@ Controller.updatePrefs = function (req, res, next) {
 };
 
 Controller.checkAuth = function(req, res, next) {
-  // checking to see if the user is authenticated
-  // grab the token in the header is any
-  // then decode the token, which we end up being the user object
-  // check to see if that user exists in the database
   var token = req.headers['x-access-token'];
   if (!token) {
     next(new Error('No token'));
   } else {
     var user = jwt.decode(token, 'blahblahblah');
-    console.log('finding user from token: ' + user.username);
     User.findOneAsync({ username: user.username })
       .then(function(foundUser) {
         if (foundUser) {
-          console.log('found User ' + JSON.stringify(foundUser));
           res.json({
             username: foundUser.username,
             preferences: foundUser.preferences
