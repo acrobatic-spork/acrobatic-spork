@@ -141,8 +141,7 @@ Controller.checkAuth = function(req, res, next) {
           console.log('found User ' + JSON.stringify(foundUser));
           res.json({
             username: foundUser.username,
-            preferences: foundUser.preferences,
-            uberToken: foundUser.uberToken
+            preferences: foundUser.preferences
           });
         } else {
           res.sendStatus(401);

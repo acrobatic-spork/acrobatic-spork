@@ -75,7 +75,6 @@ class App extends React.Component {
   componentWillMount () {
     if (auth.loggedIn() && !this.state.user) {
       auth.getUserInfoFromJWT(function(data) {
-        console.log('got user data from jwt: ', data);
         this.setState({
           user: data.username,
           preferences: data.preferences
@@ -115,7 +114,6 @@ class App extends React.Component {
   }
 
   render () {
-    console.log('app rendered with state' + JSON.stringify(this.state));
      var childrenWithProps = React.Children.map(this.props.children, (child) => {
             return React.cloneElement(child, { 
               updateUser: this.updateUser.bind(this),
