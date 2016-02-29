@@ -2,20 +2,24 @@ import React from 'react';
 import styles from '../styles/styles.css'
 import utils from './utils'
 import Status from './UberStatusView'
+import LoadingAnimation from './LoadingAnimation'
 import { browserHistory, Router, Route, Link } from 'react-router'
 
 class Spork extends React.Component {
   constructor(props){
     super(props);
 
-    // this.state = {
-    //   isLoading: 
-    // }
+    this.state = {
+       buttonDisabled: false 
+     }
   }
 
   sporkHandler (e) {
     e.preventDefault();
     console.log('in spork handler');
+    this.setState({
+      buttonDisabled: true
+    });
 
     // sends the spork request after getting location
     var successNav =  (loc) => {
@@ -42,15 +46,16 @@ class Spork extends React.Component {
     }
     // get location
     utils.getLocation(successNav.bind(this));
-
   }
   
   render (){
     return (
-      <div className={styles['button-box']}>
-        <div>
-          <button onClick={this.sporkHandler.bind(this)} className={styles['spork-button']}>Spork</button>
+      <div>
+        {this.state.buttonDisabled ? <LoadingAnimation /> :
+        <div className={styles['button-box']}>
+            <button onClick={this.sporkHandler.bind(this)} className={styles['spork-button']}>Spork</button>
         </div>
+        }
       </div>
       )
   }
