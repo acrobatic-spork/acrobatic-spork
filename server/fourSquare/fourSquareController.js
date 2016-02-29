@@ -13,8 +13,7 @@ var test = {
   radius: 4828,
   price: 2,
   lat: 37.7836970,
-  lng: -122.4089660,
-  uri: 'http://localhost:3000'
+  lng: -122.4089660
 }
 
 var FourSquare = {};
@@ -27,7 +26,7 @@ FourSquare.init = function (req, res, next) {
     return FourSquare.sendQueryAsync(FourSquare.userObj);
   })
   .then(function (venue) {
-    return FourSquare.callUberAsync(venue);
+    return FourSquare.callUberAsync(venue, req);
   })
   .then(function (response) {
     var sendToFront = {
@@ -47,7 +46,7 @@ FourSquare.init = function (req, res, next) {
 
 FourSquare.getUserInfoAsync = function (req) {
   return new Promise(function (resolve, reject) {
-    request.get(test.uri + '/api/users?username='+req.query.username, function (err, response) {
+    request.get( req.protocol + '://' + req.get('host') + '/api/users?username='+req.query.username, function (err, response) {
       if (err) {
         reject(err);
       } else {
@@ -93,10 +92,10 @@ FourSquare.sendQueryAsync = function (userObj) {
   })
 }
 
-FourSquare.callUberAsync = function (venue) {
+FourSquare.callUberAsync = function (venue, req) {
   return new Promise(function (resolve, reject) {
     request.post({ 
-      uri: test.uri + '/api/uber', 
+      uri: req.protocol + '://' + req.get('host') + '/api/uber', 
       body: {
         token: FourSquare.userObj.token,
         startLat: FourSquare.userObj.lat,
