@@ -24,6 +24,22 @@ class App extends React.Component {
     };
   }
 
+  componentWillMount () {
+    if (auth.loggedIn() && !this.state.user) {
+      auth.getUserInfoFromJWT(function(data) {
+        if (!data) {
+          auth.logout(function() {
+            browserHistory.push('/signin')
+          });
+        }
+        this.setState({
+          user: data.username,
+          preferences: data.preferences
+        });      
+      }.bind(this));
+    }
+  }
+
   updatePreferences(newPrefs, path) {
     path = path || '/';
 
@@ -87,16 +103,6 @@ class App extends React.Component {
     });
   }
 
-  componentWillMount () {
-    if (auth.loggedIn() && !this.state.user) {
-      auth.getUserInfoFromJWT(function(data) {
-        this.setState({
-          user: data.username,
-          preferences: data.preferences
-        });      
-      }.bind(this));
-    }
-  }
 
   linkUberAccount() {
     console.log('In linkUberAccount')
