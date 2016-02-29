@@ -77,11 +77,10 @@ utils.checkUberToken = (username, cb) => {
   });
 }
 
-utils.updateETA = (rideId, cb) => {
+utils.updateETA = (ride, cb) => {
   $.ajax({
-    url: '/api/eta',
+    url: '/api/eta?username='+ride.user+'&id='+ride.id,
     type: 'GET',
-    data: rideId,
 
     success (data) {
       cb(null, data);
@@ -92,11 +91,10 @@ utils.updateETA = (rideId, cb) => {
   });
 }
 
-utils.cancelRide = (rideId, cb) => {
+utils.cancelRide = (ride, cb) => {
   $.ajax({
-    url: '/api/cancel',
+    url: '/api/cancel?username='+ride.user+'&id='+ride.id,
     type: 'GET',
-    data: rideId,
 
     success (data) {
       cb(null, data);

@@ -15,7 +15,11 @@ class UberStatus extends React.Component {
 
   handleCancel (e) {
     e.preventDefault();
-    this.props.cancelRide(this.props.status.id);
+    var ride = {
+      id: this.props.status.id,
+      user: this.props.user
+    };
+    this.props.cancelRide(ride);
     browserHistory.push('/');
   }
 
@@ -31,8 +35,11 @@ class UberStatus extends React.Component {
               callback={() => {
                 console.log("Tick");
                 console.log(this.props.status.id);
-                var id = this.props.status.id;
-                this.props.updateRideStatus(id);
+                var ride = {
+                  id: this.props.status.id,
+                  user: this.props.user
+                };
+                this.props.updateRideStatus(ride);
               }
             } />
 
