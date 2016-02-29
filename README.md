@@ -1,4 +1,4 @@
-# Project Name
+# Spork
 
 > Pithy project description
 
@@ -23,19 +23,30 @@
 > Some usage instructions
 
 ## Requirements
-npm
+[npm](https://www.npmjs.com/)
+
+[nodemon](https://github.com/remy/nodemon)
+
+[forever](https://github.com/foreverjs/forever)
 
 ## Development
 
 ### Installing Dependencies
 
 From within the project directory:
-
 ```sh
 npm install -g nodemon
 npm install -g forever
 npm install
 ```
+
+### Tasks
+
+Run tests
+```sh
+npm tests
+```
+See "Running below for info on running in various environments"
 
 ## Running
 
@@ -64,7 +75,7 @@ Build and run on 8080 & 8443
 ```sh
 npm run localdeploy
 ```
-use "forever" to run on remote server (NOTE: this contains specific file structures from our production server, you may have to change it)
+use [forever](https://github.com/foreverjs/forever) to run on remote server (NOTE: this contains specific file structures from our production server, you may have to change it)
 ```sh
 npm run forever
 ```
