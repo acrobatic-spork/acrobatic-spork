@@ -23,23 +23,54 @@
 > Some usage instructions
 
 ## Requirements
-
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+npm
 
 ## Development
 
 ### Installing Dependencies
 
-From within the root directory:
+From within the project directory:
 
 ```sh
-sudo npm install -g bower
+npm install -g nodemon
+npm install -g forever
 npm install
-bower install
+```
+
+## Running
+
+Run in development mode using nodemon and webpack middleware:
+```sh
+npm start
+```
+
+Build files into ``dist`` folder for production
+```sh
+npm run build
+```
+Run in production mode on ports 80 (http) & 443 (https)
+```sh
+npm run prod
+```
+Run in production mode on ports 8080 & 8443 (ports below 1024 are reserved for root user)
+```sh
+npm run localprod
+```
+Build and run on 80 & 443 
+```sh
+npm run deploy
+```
+Build and run on 8080 & 8443 
+```sh
+npm run localdeploy
+```
+use "forever" to run on remote server (NOTE: this contains specific file structures from our production server, you may have to change it)
+```sh
+npm run forever
+```
+build and run forever (see above)
+```sh
+npm run deployforever
 ```
 
 ### Roadmap
@@ -50,3 +81,4 @@ View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
