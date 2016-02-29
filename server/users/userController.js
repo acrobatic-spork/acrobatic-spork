@@ -5,7 +5,7 @@ var Promise = require('bluebird');
 var jwt = require('jwt-simple');
 var User = require('./user');
 
-var redirectUri = 'https://login.uber.com/oauth/v2/authorize?response_type=code&client_id=x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m&scope=request&redirect_uri=http://localhost:3000/auth/uber'
+// var redirectUri = 'https://login.uber.com/oauth/v2/authorize?response_type=code&client_id=x8ZBOGgvve2JHQgOFuR7ib2e2dt_A66m&scope=request&redirect_uri=http://localhost:3000/auth/uber'
 
 Promise.promisifyAll(User);
 var Controller = {};
@@ -14,7 +14,7 @@ var sendUserInfo = function (user, req, res, next) {
 
 
 
-  var token = jwt.encode(user, 'secret');
+  var token = jwt.encode(user, 'blahblahblah');
   res.json({
     token: token,
     user: user
@@ -133,13 +133,19 @@ Controller.checkAuth = function(req, res, next) {
   if (!token) {
     next(new Error('No token'));
   } else {
-    var user = jwt.decode(token, 'secret');
+    var user = jwt.decode(token, 'blahblahblah');
+    console.log('finding user from token: ' + user.username);
     User.findOneAsync({ username: user.username })
       .then(function(foundUser) {
         if (foundUser) {
-          res.send(200);
+          console.log('found User ' + JSON.stringify(foundUser));
+          res.json({
+            username: foundUser.username,
+            preferences: foundUser.preferences,
+            uberToken: foundUser.uberToken
+          });
         } else {
-          res.send(401);
+          res.sendStatus(401);
         }
       })
       .catch(function(error) {
