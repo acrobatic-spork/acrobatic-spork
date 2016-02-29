@@ -17,7 +17,6 @@ const Loading = (props) => {
 			  if (props.store.status !== undefined) {
 				props.store.loadingToggle();
 			  	browserHistory.push('/status');
-			  	return
 			  }
 		    }
 		  } />

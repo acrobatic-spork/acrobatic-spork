@@ -155,6 +155,7 @@ class App extends React.Component {
     {
       isLoading: !this.state.isLoading
     }));
+    console.log(this.state.isLoading)
   }
 
   render () {
