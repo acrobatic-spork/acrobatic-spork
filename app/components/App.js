@@ -3,6 +3,7 @@ import React from 'react';
 import { browserHistory, Router, Route, Link } from 'react-router'
 import Message from './Message'
 import Status from './UberStatusView'
+import SporkSvg from './SporkSvg'
 import auth from './Authorize'
 import styles from '../styles/styles.css'
 import utils from './utils'
@@ -143,6 +144,7 @@ class App extends React.Component {
       <div className={styles["container"]}>
       <nav>
         <ul>
+        <li className={styles['logo-li']}><SporkSvg /></li>
         { auth.loggedIn() ? [
          <li><Link activeClassName={styles['active-nav']} to="/dashboard">Dashboard</Link> </li>,
          <li><Link activeClassName={styles['active-nav']} to="/status">Status</Link> </li>,
