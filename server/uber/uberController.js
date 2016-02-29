@@ -37,11 +37,6 @@ Uber.getToken = function (req, res, next) {
     var token = {
       uberToken: JSON.parse(response.body).access_token
     };
-    // request.put({
-    //   uri: 'http://localhost:3000/api/users?username=' + req.session.user,
-    //   body: token,
-    //   json: true
-    // }, function (err, resonse) {
     userController.updateUberToken(req.session.user, token.uberToken, function(err, user) {
       res.redirect('/?username=' + req.session.user);
     });
