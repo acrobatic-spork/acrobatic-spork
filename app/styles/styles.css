@@ -98,7 +98,7 @@ input[type="range"]{
 
 .button-box {
   position: relative;
-  width: 50%;
+  width: 80%;
   margin: 0 auto;
   max-width: 400px;
 }
@@ -119,7 +119,7 @@ input[type="range"]{
   border: 10px solid #D5FFB5;
   background-color: #63677A;
   font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
-  font-size: 5em;
+  font-size: 3em;
   color: inherit;
   text-align: center;
   overflow: hidden;
@@ -254,4 +254,14 @@ input[type="range"]{
 .fade-leave.fade-leave-active {
   opacity: 0.01;
   transition: opacity 300ms ease-in;
+}
+
+@media (min-width: 600px) {
+  .button-box {
+    width: 50%;
+    max-width: 400px;
+}
+  .spork-button {
+    font-size: 5em;
+  }
 }
