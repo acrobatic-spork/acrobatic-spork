@@ -91,6 +91,7 @@ class App extends React.Component {
   }
 
   render () {
+    console.log('app rendered with state' + JSON.stringify(this.state));
      var childrenWithProps = React.Children.map(this.props.children, (child) => {
             return React.cloneElement(child, { 
               updateUser: this.updateUser.bind(this),
