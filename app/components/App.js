@@ -106,18 +106,6 @@ class App extends React.Component {
     });
   }
 
-  componentWillMount () {
-    if (auth.loggedIn() && !this.state.user) {
-      auth.getUserInfoFromJWT(function(data) {
-        this.setState({
-          user: data.username,
-          preferences: data.preferences,
-          isLoading: false
-        });      
-      }.bind(this));
-    }
-  }
-
   linkUberAccount() {
     console.log('In linkUberAccount')
     if(!this.state.user){
