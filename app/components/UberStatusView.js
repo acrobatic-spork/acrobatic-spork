@@ -9,16 +9,13 @@ class UberStatus extends React.Component {
     super(props);
 
     this.state = {
-      checkStatus: true
+      checkStatus: !!Object.keys(this.props.status).length
     };
   }
 
   handleCancel (e) {
     e.preventDefault();
     this.props.cancelRide(this.props.status.id);
-    this.setState({
-      checkStatus: false
-    });
     browserHistory.push('/');
   }
 

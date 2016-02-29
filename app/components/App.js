@@ -88,14 +88,15 @@ class App extends React.Component {
 
   cancelRide(rideId) {
     console.log("Called cancel ride with id: ", rideId);
+    this.setState({
+      rideStatus: {}
+    });
     utils.cancelRide(rideId, (err, res) => {
       if(err) {
         console.error("Error cancelling the ride.");
       } else {
         console.log("The ride was successfully cancelled.");
-        this.setState({
-          rideStatus: {}
-        });
+        
       } 
     });
   }
