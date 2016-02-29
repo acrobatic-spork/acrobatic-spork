@@ -123,7 +123,7 @@ class App extends React.Component {
           } else {
             console.log('Got uber auth: ',res);
             // have to confirm if the server has recieved 'code' & access / refresh token
-            browserHistory.push('/dashboard');
+            // browserHistory.push('/dashboard');
             // then sends them to preferences 
           }
         });
@@ -170,7 +170,6 @@ class App extends React.Component {
        </nav>
        <Message message={this.state.message} />
        {childrenWithProps}
-      <div className={styles['anim-box']} style={{display: 'none'}}><img src="images/wc-spork.png" /></div>
       </div>
       )
     }
