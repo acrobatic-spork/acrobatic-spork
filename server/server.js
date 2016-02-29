@@ -24,8 +24,8 @@ var credentials = {key: privateKey, cert: certificate};
 var isDeveloping = process.env.NODE_ENV !== 'production';
 console.log('isDeveloping: ' + isDeveloping);
 
-var port = isDeveloping ? 3000 : process.env.PORT || 80;
-var httpsPort = isDeveloping ? 8000 : process.env.HTTPS_PORT || 443;
+var port = isDeveloping ? 8080 : process.env.PORT || 80;
+var httpsPort = isDeveloping ? 8443 : process.env.HTTPS_PORT || 443;
 var app = express();
 
 
