@@ -65,15 +65,25 @@ Uber.requestCar = function (req, res, next) {
 };
 
 Uber.checkStatus = function (req, res, next) {
-  request.get({ 
-    uri: test.endpoint+'/'+req.body,
-    headers: {
-      'Authorization': 'Bearer '+req.body.token
-    }
-  } , function(err, response) {
-    // console.log('Status of uber ride', err, response.body);
-    res.json(response.body);
-  });
+  console.log('chcek status: ', req.body);
+  if(req.body) {
+    request.get( req.protocol + '://' + req.get('host') + '/api/users?username='+req.query.username, function (err, response) {
+      if (err) {
+        reject(err);
+      } else {
+        console.log('db response for Uber status update: ', response.body);
+        request.get({ 
+          uri: test.endpoint+'/'+req.body,
+          headers: {
+            'Authorization': 'Bearer '+response.body.uberToken
+          } 
+        }, function(err, response) {
+            console.log('Status of uber ride', err, response.body);
+            res.json(response.body);
+        });
+      }
+    });
+  }
 }
 
 Uber.cancelRequest = function (req, res, next) {
