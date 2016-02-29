@@ -2,6 +2,7 @@ import React from 'react';
 import styles from '../styles/styles.css'
 import utils from './utils'
 import Status from './UberStatusView'
+import Loading from './Loading'
 
 class Spork extends React.Component {
   constructor(props){
@@ -29,6 +30,7 @@ class Spork extends React.Component {
             id: res.uberStatus.request_id
           };
           this.props.setRideStatus(rideStatus);
+          this.props.isLoading = true;
         });  
       } else {
         console.log('The user name in props is: ', this.props.user, ' which is bad.');
@@ -40,7 +42,7 @@ class Spork extends React.Component {
   }
   
   render (){
-    return (
+    return (this.state.isLoading ? <Loading /> : 
       <div className={styles['button-box']}>
         <div>
           <button onClick={this.sporkHandler.bind(this)} className={styles['spork-button']}>Spork</button>
