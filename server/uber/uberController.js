@@ -75,12 +75,12 @@ Uber.requestCar = function (req, res, next) {
 
 Uber.checkStatus = function (req, res, next) {
   request.get({ 
-    uri: test.endpoint+'/<REQUEST_ID>',
+    uri: test.endpoint+'/'+req.body,
     headers: {
       'Authorization': 'Bearer '+test.access_token
     }
   } , function(err, response) {
-    console.log('Status of uber ride', err, response.body);
+    // console.log('Status of uber ride', err, response.body);
     res.json(response.body);
   });
 }

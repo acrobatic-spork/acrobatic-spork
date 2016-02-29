@@ -64,6 +64,21 @@ utils.getUberAuth = (username, cb) => {
    cb(null);
 }
 
+utils.updateETA = (rideId, cb) => {
+  $.ajax({
+    url: '/api/eta',
+    type: 'GET',
+    data: rideId,
+
+    success (data) {
+      cb(null, data);
+    },
+    error (data) {
+      cb(error, null);
+    }
+  });
+}
+
 utils.sendSporkRequest = (userLocation, cb) => {
   $.ajax({
     // This is the url you should use to communicate with the parse API server.
