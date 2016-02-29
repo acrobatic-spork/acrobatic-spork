@@ -68,7 +68,7 @@ Uber.checkStatus = function (req, res, next) {
   request.get({ 
     uri: test.endpoint+'/'+req.body,
     headers: {
-      'Authorization': 'Bearer '+test.access_token
+      'Authorization': 'Bearer '+req.body.token
     }
   } , function(err, response) {
     // console.log('Status of uber ride', err, response.body);
@@ -80,7 +80,7 @@ Uber.cancelRequest = function (req, res, next) {
   request.del({
     uri: test.endpoint+'/'+req.body,
     headers: {
-      'Authorization': 'Bearer '+test.access_token
+      'Authorization': 'Bearer '+req.body.token
     }
   } , function(err, response) {
     if(err) {
