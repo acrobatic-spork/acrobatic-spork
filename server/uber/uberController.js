@@ -65,17 +65,15 @@ Uber.requestCar = function (req, res, next) {
 };
 
 Uber.checkStatus = function (req, res, next) {
-  console.log('chcek status: ', req.body);
-  if(req.body) {
+  if(req.query.username) {
     request.get( req.protocol + '://' + req.get('host') + '/api/users?username='+req.query.username, function (err, response) {
       if (err) {
         reject(err);
       } else {
-        console.log('db response for Uber status update: ', response.body);
         request.get({ 
-          uri: test.endpoint+'/'+req.body,
+          uri: test.endpoint+'/'+req.query.id,
           headers: {
-            'Authorization': 'Bearer '+response.body.uberToken
+            'Authorization': 'Bearer '+JSON.parse(response.body).uberToken
           } 
         }, function(err, response) {
             console.log('Status of uber ride', err, response.body);
