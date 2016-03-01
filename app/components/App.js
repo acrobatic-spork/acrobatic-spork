@@ -160,13 +160,10 @@ class App extends React.Component {
       <div className={styles["container"]}>
       <nav>
         <ul>
-        <li className={styles['logo-li']}><SporkSvg /></li>
         { auth.loggedIn() ? [
-         <li><Link activeClassName={styles['active-nav']} to="/dashboard">Dashboard</Link> </li>,
-         <li><Link activeClassName={styles['active-nav']} to="/status">Status</Link> </li>,
-         <li><Link onlyActiveOnIndex activeClassName={styles['active-nav']} to="/">Spork Now</Link> </li>,
-         <li><Link activeClassName={styles['active-nav']} to="/uber">Connect Uber</Link> </li>,
-         <li><a href='#' onClick={this.logout.bind(this)}>Log Out</a></li>,
+        <li className={styles['logo-li']}><Link onlyActiveOnIndex activeClassName={styles['active-nav']} to="/"><SporkSvg /></Link></li>,
+         <li><Link activeClassName={styles['active-nav']} to="/dashboard"><i className="fa fa-cog fa-2x"></i></Link> </li>,
+         <li><a href='#' onClick={this.logout.bind(this)}><i className="fa fa-sign-out fa-2x"></i></a></li>,
          ]
          :  <li><Link activeClassName={styles['active-nav']} to="/signin">Sign in</Link></li>  }
        </ul>
