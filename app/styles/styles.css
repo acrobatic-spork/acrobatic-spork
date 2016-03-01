@@ -91,7 +91,7 @@ input[type="range"]{
 
 .slider-label {
   display: inline-block;
-  width:8em;
+  width:5em;
   text-align: right;
 }
 .slider-val {
@@ -260,11 +260,11 @@ input[type="range"]{
 }
 
 .logo {
-  width:2em;
-  height:auto;
+  height:1.5em;
+  width:auto;
 }
-.logo-li {
-  vertical-align: top;
+.logo:hover path {
+  fill:#D5FFB5;
 }
 
 @media (min-width: 600px) {
