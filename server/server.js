@@ -20,7 +20,7 @@ var https = require('https');
 var privateKey  = fs.readFileSync(path.resolve(__dirname+'/../sslcerts/acrobaticspork.key'), 'utf8');
 var certificate = fs.readFileSync(path.resolve(__dirname+'/../sslcerts/acrobaticspork.crt'), 'utf8');
 var ca = [
-            fs.readFileSync(path.resolve(__dirname+'/../sslcerts/intermediate.key'), 'utf8'),
+            fs.readFileSync(path.resolve(__dirname+'/../sslcerts/intermediate.crt'), 'utf8'),
             fs.readFileSync(path.resolve(__dirname+'/../sslcerts/root.crt'), 'utf8')
         ]
 var credentials = {key: privateKey, cert: certificate, ca: ca};
