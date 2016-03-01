@@ -19,7 +19,11 @@ var fs = require('fs');
 var https = require('https');
 var privateKey  = fs.readFileSync(path.resolve(__dirname+'/../sslcerts/acrobaticspork.key'), 'utf8');
 var certificate = fs.readFileSync(path.resolve(__dirname+'/../sslcerts/acrobaticspork.crt'), 'utf8');
-var credentials = {key: privateKey, cert: certificate};
+var ca = [
+            fs.readFileSync(path.resolve(__dirname+'/../sslcerts/intermediate.crt'), 'utf8'),
+            fs.readFileSync(path.resolve(__dirname+'/../sslcerts/root.crt'), 'utf8')
+        ]
+var credentials = {key: privateKey, cert: certificate, ca: ca};
 
 var isDeveloping = process.env.NODE_ENV !== 'production';
 console.log('isDeveloping: ' + isDeveloping);
@@ -97,9 +101,9 @@ if (isDeveloping) {
 
 mongoose.connect('mongodb://localhost/spork');
 
-if (isDeveloping) {
-  User.seed(); // THIS ERASES USER DB! DON'T DO IT IN PRODUCTION!!!
-}
+// if (isDeveloping) {
+//   User.seed(); // THIS ERASES USER DB! DON'T DO IT IN PRODUCTION!!!
+// }
 
 var server = app.listen(port, '0.0.0.0', function onStart(err) {
   if (err) {
