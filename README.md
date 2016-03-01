@@ -46,7 +46,7 @@ Run tests
 ```sh
 npm tests
 ```
-See "Running below for info on running in various environments"
+See "Running" below for info on running in various environments
 
 ## Running
 
