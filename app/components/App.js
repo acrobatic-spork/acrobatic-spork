@@ -79,6 +79,9 @@ class App extends React.Component {
       } else {
         console.log("The ride update is: ", res);
         // update the state if we get a new eta
+        this.setState({
+          status: res.status
+        });
         // message if ride not found?
       }
     });
