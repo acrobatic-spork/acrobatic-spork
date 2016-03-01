@@ -2,13 +2,13 @@
   Acrobatic Spork
 
 ## Heading ##
-  Instantly decides for you and takes you to a destination nearby using the Yelp and Uber APIs.
+  Instantly decides for you and takes you to a destination nearby using the Foursquare and Uber APIs.
 
 ## Sub-Heading ##
   For people or groups of people who are indisicive and open for adventure. A quick and fun way to experience a new restaurant or attraction.
 
 ## Summary ##
-  Deciding on where to eat or what to do can be a lot of pressure. Stress no more. With Acrobatic Spork, just push a button and everything is taken care of for you. It works by integrating the Yelp API to find a random place nearby that matches your criteria and calls you an uber to take you and your friends there. At any time you can go in your dashboard and update you preferences and make sure Acrobatic Spork takes you to places that you'll love. 
+  Deciding on where to eat or what to do can be a lot of pressure. Stress no more. With Acrobatic Spork, just push a button and everything is taken care of for you. It works by integrating the Foursquare API to find a random place nearby that matches your criteria and calls you an uber to take you and your friends there. At any time you can go in your dashboard and update you preferences and make sure Acrobatic Spork takes you to places that you'll love. 
 
 ## Problem ##
   Many people have trouble making decisions about where to eat. In a group setting, the decision maker has a ton of pressure to pick something everyone will like.

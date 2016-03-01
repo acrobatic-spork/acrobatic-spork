@@ -1,6 +1,6 @@
 # Spork
 
-> Pithy project description
+Deciding on where to eat or what to do can be a lot of pressure. Stress no more. With Acrobatic Spork, just push a button and everything is taken care of for you.
 
 ## Team
 
