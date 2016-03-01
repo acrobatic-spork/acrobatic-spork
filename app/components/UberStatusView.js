@@ -43,7 +43,7 @@ class UberStatus extends React.Component {
               }
             } />
 
-          <span className="uber-status-text">ETA: {this.props.status.eta}</span>
+          <span className="uber-status-text">Status: {this.props.status.status}</span>
         
         </div>
         <div>
