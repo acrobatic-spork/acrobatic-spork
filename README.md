@@ -23,6 +23,7 @@ Deciding on where to eat or what to do can be a lot of pressure. Stress no more.
 
 ## Requirements
 [npm](https://www.npmjs.com/)  
+[MongoDB](https://docs.mongodb.org/manual/installation/)
 [nodemon](https://github.com/remy/nodemon)  
 [forever](https://github.com/foreverjs/forever)  
 
