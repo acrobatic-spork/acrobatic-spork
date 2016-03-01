@@ -267,6 +267,11 @@ input[type="range"]{
   fill:#D5FFB5;
 }
 
+.status {
+  font-size: 1.5em;
+  margin: 1em auto;
+}
+
 @media (min-width: 600px) {
   .button-box {
     width: 50%;

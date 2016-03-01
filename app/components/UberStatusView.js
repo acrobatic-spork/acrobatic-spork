@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactInterval from 'react-interval';
 import { browserHistory } from 'react-router';
+import styles from '../styles/styles.css'
 
 
 class UberStatus extends React.Component {
@@ -26,10 +27,10 @@ class UberStatus extends React.Component {
   render () {
     return (
       <div>
-        <div className="venue"> 
-          <span className="venue-text">Destination: {this.props.status.venue}</span>
+        <div className={styles['status']}> 
+          <span className="venue-text"><i className="fa fa-cutlery"></i> {this.props.status.venue}</span>
         </div>
-        <div className="uber-status"> 
+        <div className={styles['status']}> 
 
           <ReactInterval timeout={5000} enabled={this.state.checkStatus}
               callback={() => {
@@ -43,7 +44,7 @@ class UberStatus extends React.Component {
               }
             } />
 
-          <span className="uber-status-text">Status: {this.props.status.status}</span>
+          <span className="uber-status-text"><i className="fa fa-car"></i> {this.props.status.status}</span>
         
         </div>
         <div>
