@@ -10,12 +10,11 @@ Deciding on where to eat or what to do can be a lot of pressure. Stress no more.
 
 ## Table of Contents
 
-1. [Usage](#Usage)
+1. [Team](#team)
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
     1. [Tasks](#tasks)
-1. [Team](#team)
 1. [Contributing](#contributing)
 
 ## Usage
@@ -23,11 +22,9 @@ Deciding on where to eat or what to do can be a lot of pressure. Stress no more.
 > Some usage instructions
 
 ## Requirements
-[npm](https://www.npmjs.com/)
-
-[nodemon](https://github.com/remy/nodemon)
-
-[forever](https://github.com/foreverjs/forever)
+[npm](https://www.npmjs.com/)  
+[nodemon](https://github.com/remy/nodemon)  
+[forever](https://github.com/foreverjs/forever)  
 
 ## Development
 
@@ -48,7 +45,7 @@ npm tests
 ```
 See "Running" below for info on running in various environments
 
-## Running
+### Running
 
 Run in development mode using nodemon and webpack middleware:
 ```sh
@@ -86,10 +83,10 @@ npm run deployforever
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/acrobatic-spork/acrobatic-spork/issues)
 
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+See [CONTRIBUTING.md](_CONTRIBUTING.md) for contribution guidelines.
 
